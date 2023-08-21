@@ -1,0 +1,36 @@
+defaults:
+  run:
+    shell: "bash"
+
+name: "CI"
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  install:
+    name: "Install project"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+
+      - name: "Install node.js"
+        uses: "actions/setup-node@v3"
+        with:
+          node-version-file: ".node-version"
+
+      - name: "Cache node_modules"
+        uses: "actions/cache@v3.3.1"
+        with:
+          path: "node_modules"
+          key: "node-modules-${{ hashFiles('package-lock.json') }}"
+
+      - name: "Install project"
+        run: "npm install"
+
+      - name: "Lint project"
+        run: "npm run lint"
+
+      - name: "Build project"
+        run: "npm run build"
