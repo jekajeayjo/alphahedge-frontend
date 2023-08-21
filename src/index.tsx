@@ -1,19 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
 
-import './index.css';
+import './styles/index.scss'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('app') as HTMLElement
-);
+const container = document.getElementById('app') as HTMLElement
+
+if (!container) {
+  throw new Error(
+    'Контейнер app не найден. Не удалось вмонтировать реакт приложение',
+  )
+}
+
+const root = createRoot(container)
 
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
-);
-
-reportWebVitals();
+  </BrowserRouter>,
+)

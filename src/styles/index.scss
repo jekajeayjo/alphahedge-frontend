@@ -1,0 +1,15 @@
+@import 'vender/normalize.css';
+@import 'vender/fonts';
+@import 'vender/reset';
+@import 'global/variables';
+
+body {
+  font-family: var(--font-family-main);
+
+  background-color: #000;
+  color: #fff;
+
+  a {
+    color: inherit;
+  }
+}
