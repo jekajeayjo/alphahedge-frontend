@@ -1,0 +1,23 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  button {
+    svg {
+      path, circle {
+        transition: .3s;
+      }
+    }
+
+    &:hover svg {
+      circle {
+        stroke: var(--pinki-medium);
+      }
+
+      path {
+        fill: var(--pinki-medium);
+      }
+    }
+  }
+}

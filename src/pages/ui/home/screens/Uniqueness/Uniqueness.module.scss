@@ -1,0 +1,59 @@
+.section {
+  padding: 197px 0 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 107px;
+}
+
+.carousel {
+  padding-left: 135px;
+  margin-left: -135px;
+}
+
+.list {
+  display: flex;
+  gap: 135px;
+  cursor: grab;
+}
+
+.card {
+  border-radius: 22px;
+  background: #FFF;
+  text-align: center;
+  width: 534px;
+  height: 495px;
+  padding: 50px 36px 0;
+  flex: 0 0 auto;
+}
+
+.logo {
+  display: inline-block;
+  margin-bottom: 42px;
+}
+
+.name {
+  font-family: var(--font-family-title);
+  color: var(--purple-medium);
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.text {
+  color: var(--black-light);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 37px;
+}
+
+.bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
