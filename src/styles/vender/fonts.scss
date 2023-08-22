@@ -30,12 +30,19 @@
 
 @font-face {
   font-family: 'Murecho';
+  font-weight: 600;
+  font-style: normal;
+  src: local('Murecho'),
+  url(../../assets/fonts/Murecho-SemiBold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Murecho';
   font-weight: 700;
   font-style: normal;
   src: local('Murecho'),
   url(../../assets/fonts/Murecho-Bold.woff2) format('woff2');
 }
-
 
 @font-face {
   font-family: 'Murecho';
@@ -44,3 +51,4 @@
   src: local('Murecho'),
   url(../../assets/fonts/Murecho-Black.woff2) format('woff2');
 }
+
