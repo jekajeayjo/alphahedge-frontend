@@ -1,0 +1,230 @@
+@use 'styles/use/utils';
+
+.section {
+  position: relative;
+  padding: 66px 0 59px;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.80);
+  }
+}
+
+.content{
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin-bottom: 60px;
+}
+
+.bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+
+  @include utils.imageBg();
+  filter: blur(6.5px);
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+}
+
+.bar {
+  transform: scaleX(0);
+  shape-rendering: auto;
+  animation-fill-mode: forwards;
+  transform-origin: 300px 0;
+}
+
+.icon {
+  opacity: 0;
+}
+
+.text {
+  opacity: 0;
+}
+
+.firstBar {
+  animation-delay: calc(1 * 250ms);
+}
+
+.firstIcon {
+  animation-delay: calc(1 * 250ms + 300ms);
+}
+
+.firstText {
+  animation-delay: calc(1 * 250ms + 500ms);
+}
+
+.secondBar {
+  animation-delay: calc(2 * 250ms);
+}
+
+.secondIcon {
+  animation-delay: calc(2 * 250ms + 300ms);
+}
+
+.secondText {
+  animation-delay: calc(3 * 250ms + 500ms);
+}
+
+.thirdBar {
+  animation-delay: calc(3 * 250ms);
+}
+
+.thirdIcon {
+  animation-delay: calc(3 * 250ms + 300ms);
+}
+
+.thirdText {
+  animation-delay: calc(3 * 250ms + 500ms);
+}
+
+.damnBar {
+  animation-delay: calc(4 * 250ms);
+}
+
+.damnIcon {
+  animation-delay: calc(4 * 250ms + 300ms);
+}
+
+.damnText {
+  animation-delay: calc(4 * 250ms + 500ms);
+}
+
+.fifthBar {
+  animation-delay: calc(5 * 250ms);
+}
+
+.fifthIcon {
+  animation-delay: calc(5 * 250ms + 300ms);
+}
+
+.fifthText {
+  animation-delay: calc(5 * 250ms + 500ms);
+}
+
+.sixthBar {
+  animation-delay: calc(6 * 250ms);
+}
+
+.sixthIcon {
+  animation-delay: calc(6 * 250ms + 300ms);
+}
+
+.sixthText {
+  animation-delay: calc(6 * 250ms + 500ms);
+}
+
+.seventhBar {
+  animation-delay: calc(7 * 250ms);
+}
+
+.seventhIcon {
+  animation-delay: calc(7 * 250ms + 300ms);
+}
+
+.seventhText {
+  animation-delay: calc(7 * 250ms + 500ms);
+}
+
+.eighthBar {
+  animation-delay: calc(8 * 250ms);
+}
+
+.eighthIcon {
+  animation-delay: calc(8 * 250ms + 300ms);
+}
+
+.eighthText {
+  animation-delay: calc(8 * 250ms + 500ms);
+}
+
+.ninthBar {
+  animation-delay: calc(9 * 250ms);
+}
+
+.ninthIcon {
+  animation-delay: calc(9 * 250ms + 300ms);
+}
+
+.ninthText {
+  animation-delay: calc(9 * 250ms + 500ms);
+}
+
+.tenthBar {
+  animation-delay: calc(10 * 250ms);
+}
+
+.tenthIcon {
+  animation-delay: calc(10 * 250ms + 300ms);
+}
+
+.tenthText {
+  animation-delay: calc(10 * 250ms + 500ms);
+}
+
+.eleventhBar {
+  animation-delay: calc(11 * 250ms);
+}
+
+.eleventhIcon {
+  animation-delay: calc(11 * 250ms + 300ms);
+}
+
+.eleventhText {
+  animation-delay: calc(11 * 250ms + 500ms);
+}
+
+.animate {
+  .bar {
+    animation-name: animateInBarFill;
+    animation-duration: 550ms;
+    animation-fill-mode: forwards;
+  }
+
+  .text {
+    animation-name: animateOpacity;
+    animation-duration: 550ms;
+    animation-fill-mode: forwards;
+  }
+
+  .icon {
+    animation-name: animateOpacity;
+    animation-duration: 550ms;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes animateInBarFill {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes animateOpacity{
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -6,7 +6,7 @@ import { Container } from 'components/shared/Container'
 import { CarouselNavigation } from 'components/shared/CarouselNavigation'
 import { TitleSection } from 'components/shared/TitleSection'
 
-import { uniquenessBg } from 'assets/images'
+import { UniquenessBg } from 'assets/images'
 
 import { UniquenessCard } from './UniquenessCard'
 
@@ -44,7 +44,7 @@ export const Uniqueness = () => {
           </div>
         </div>
       </Container>
-      <img className={s.bg} src={uniquenessBg} alt="bg" />
+      <img className={s.bg} src={UniquenessBg} alt="bg" />
     </section>
   )
 }

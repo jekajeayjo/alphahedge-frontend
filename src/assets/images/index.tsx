@@ -1,2 +1,3 @@
 export { default as BgBanner } from './home/Main-banner-bg.jpg'
-export { default as uniquenessBg } from './home/uniquenessBg.png'
+export { default as UniquenessBg } from './home/uniquenessBg.png'
+export { default as ProfitabilityBg } from './home/profitability-bg.jpg'
