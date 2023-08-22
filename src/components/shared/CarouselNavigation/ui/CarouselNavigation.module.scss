@@ -6,17 +6,20 @@
   button {
     svg {
       path, circle {
+        opacity: .5;
         transition: .3s;
       }
     }
 
     &:hover svg {
       circle {
-        stroke: var(--pinki-medium);
+        opacity: 1;
+        stroke: var(--purple-medium);
       }
 
       path {
-        fill: var(--pinki-medium);
+        opacity: 1;
+        fill: var(--purple-medium);
       }
     }
   }

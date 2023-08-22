@@ -23,6 +23,7 @@
 
 .title {
   margin-bottom: 60px;
+  color: #fff;
 }
 
 .bg {
@@ -34,7 +35,6 @@
   height: 100%;
 
   @include utils.imageBg();
-  filter: blur(6.5px);
 }
 
 .table {

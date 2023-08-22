@@ -1,5 +1,7 @@
 // home
 export { default as LogoBanner } from './home/logo.svg'
+export { default as FirstCase } from './home/case-1.svg'
+export { default as SecondCase } from './home/case-2.svg'
 
 // shared
 export { default as HeaderLogo } from './shared/HeaderLogo.svg'
