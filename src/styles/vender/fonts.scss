@@ -1,33 +1,46 @@
 @font-face {
   font-family: 'GetVoIPGrotesque';
   font-style: normal;
-  src:
-    local('GetVoIPGrotesque'),
-    url(../../assets/fonts/GetVoIPGrotesque.woff2) format('woff2');
+  src: local('GetVoIPGrotesque'),
+  url(../../assets/fonts/GetVoIPGrotesque.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'GetVoIPGrotesque';
   font-style: italic;
-  src:
-    local('GetVoIPGrotesque'),
-    url(../../assets/fonts/GetVoIPGrotesqueItalic.woff2) format('woff2');
+  src: local('GetVoIPGrotesque'),
+  url(../../assets/fonts/GetVoIPGrotesqueItalic.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Murecho';
   font-weight: 300;
   font-style: normal;
-  src:
-    local('Murecho'),
-    url(../../assets/fonts/Murecho-Light.woff2) format('woff2');
+  src: local('Murecho'),
+  url(../../assets/fonts/Murecho-Light.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Murecho';
   font-weight: 400;
   font-style: normal;
-  src:
-    local('Murecho'),
-    url(../../assets/fonts/Murecho-Regular.woff2) format('woff2');
+  src: local('Murecho'),
+  url(../../assets/fonts/Murecho-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Murecho';
+  font-weight: 700;
+  font-style: normal;
+  src: local('Murecho'),
+  url(../../assets/fonts/Murecho-Bold.woff2) format('woff2');
+}
+
+
+@font-face {
+  font-family: 'Murecho';
+  font-weight: 900;
+  font-style: normal;
+  src: local('Murecho'),
+  url(../../assets/fonts/Murecho-Black.woff2) format('woff2');
 }

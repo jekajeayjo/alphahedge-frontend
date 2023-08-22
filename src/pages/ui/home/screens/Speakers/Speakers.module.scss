@@ -1,0 +1,65 @@
+.section {
+  margin-bottom: 200px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 31px;
+  border-bottom: 1px solid #868686;
+  margin-bottom: 63px;
+}
+
+.carousel {
+  padding-left: 135px;
+  margin-left: -135px;
+}
+
+.list {
+  display: flex;
+  gap: 80px;
+}
+
+
+.speaker {
+
+}
+
+.image {
+  display: block;
+  margin-bottom: 35px;
+  width: 450px;
+  height: 281px;
+
+  img {
+    display: block;
+  }
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.data {
+  color: #888;
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #505050;
+}
+
+.name {
+  color: #343434;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}

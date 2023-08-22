@@ -1,0 +1,46 @@
+.section {
+  margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 280px;
+  margin-bottom: 200px;
+}
+
+.image {
+  position: absolute;
+  right: -105px;
+  top: 0;
+}
+
+
+.left {
+  padding-top: 132px;
+  max-width: 927px;
+}
+
+.header {
+  margin-bottom: 105px;
+  line-height: 78.72px ;
+}
+
+.list {
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 31px;
+    color: #4F4F4F;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 4.2px;
+
+    img {
+      display: inline-block;
+      transform: translateY(2px);
+    }
+
+    & + li {
+      margin-top: 60px;
+    }
+  }
+}
