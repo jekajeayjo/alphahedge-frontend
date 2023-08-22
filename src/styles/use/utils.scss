@@ -1,0 +1,69 @@
+@mixin line-clamp($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+@mixin imageBg() {
+  object-position: center;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+@mixin padding-hack($percentage) {
+  width: 100%;
+  position: relative;
+  height: 0;
+  padding-top: $percentage;
+
+  & > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@mixin media-min-width($media) {
+  @media only screen and (min-width: #{$media}px) {
+    @content;
+  }
+}
+
+@mixin media-max-width($media) {
+  @media only screen and (max-width: #{$media}px) {
+    @content;
+  }
+}
+
+@mixin media-max-height($media) {
+  @media only screen and (max-height: #{$media}px) {
+    @content;
+  }
+}
+
+@mixin centering() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin center() {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin centerVertically($scale: 1) {
+  top: 50%;
+  transform: translateY(-50%) scale($scale);
+}
+
+@mixin centerCenter() {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
