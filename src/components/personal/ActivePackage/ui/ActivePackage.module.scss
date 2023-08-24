@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 44px 0 24px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+}
+
+.right a{
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+
+  img {
+    transform: translateY(1px);
+  }
+}
+
+
+.tbody {
+  th {
+    font-size: 18px;
+  }
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > table {
+      flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-right: 4px;
+  margin-top: 25px;
+}

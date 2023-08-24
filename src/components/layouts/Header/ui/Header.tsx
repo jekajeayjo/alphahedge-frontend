@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
-import { DropArrow, HeaderLogo, UserIcon } from 'assets/icons'
 import { Container } from 'components/shared/Container'
+import { ChangeLanguage } from 'components/shared/ChangeLanguage'
+
+import { DropArrow, HeaderLogo, UserIcon } from 'assets/icons'
 
 import s from './Header.module.scss'
 
@@ -28,8 +30,8 @@ export const Header = () => (
           </Link>
         </nav>
         <div className={s.actions}>
-          <button type="button">RU</button>
-          <button type="button">
+          <ChangeLanguage />
+          <button className={s.user} type="button">
             <img src={UserIcon} alt="user-icon" />
           </button>
         </div>

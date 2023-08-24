@@ -1,0 +1,57 @@
+.navigation {
+  a {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    padding: 0 30px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    transition: 400ms;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      right: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 3px 0px 0px 3px;
+      background: #B050F2;
+      opacity: 0;
+      transition: 400ms;
+    }
+
+    &.current {
+      background: rgba(194, 160, 217, 0.10);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  span {
+    color: #000;
+    font-size: 18px;
+  }
+}
+
+.investments {
+  transform: translateY(-2px);
+}
+
+.finance {
+  transform: translateY(5px);
+}
+
+.account {
+  transform: translateY(3px);
+}
+
+.icon {
+  width: 22px;
+  height: 30px;
+  text-align: left;
+  margin-right: 15px;
+}

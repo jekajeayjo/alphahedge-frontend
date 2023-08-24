@@ -1,0 +1,22 @@
+.wrapper {
+  margin-top: 38px;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > div {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+}
