@@ -1,0 +1,22 @@
+.body {
+  th {
+    padding: 15px 0;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    display: table-row;
+    vertical-align: middle;
+    outline: 0;
+
+    &:first-child {
+      th {
+        padding-top: 19px;
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

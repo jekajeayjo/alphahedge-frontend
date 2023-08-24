@@ -1,0 +1,99 @@
+@use 'styles/use/utils';
+
+.referral {
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 58px;
+  margin-top: 37px;
+  padding-bottom: 41px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
+}
+
+.col {
+  flex: 0 0 auto;
+}
+
+.ref {
+  white-space: normal;
+
+  span {
+    @include utils.line-clamp(1);
+    max-width: 200px;
+  }
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-right: 26px;
+
+  button {
+    position: absolute;
+    right: 0;
+    top: -6px;
+  }
+}
+
+.label {
+  color: var(--gray-light);
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  gap: 80px;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.referal {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 50px 1fr 1fr 1fr;
+  font-size: 18px;
+
+  & + & {
+    margin-top: 15px;
+  }
+}
+
+.name {
+  margin-left: 24px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.data {
+  margin-left: 73.5px;
+}
+
+.price {
+  text-align: right;
+  color: var(--gray-black);
+
+  &.positive {
+    color: var(--green)
+  }
+}
+
+.pagination {
+  margin-top: 69px;
+  transform: translateX(11px);
+}

@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  &.showPercent {
+    gap: 5px;
+
+    svg {
+      margin-top: 2px;
+    }
+  }
+
+  &.up {
+    color: #04C100;
+
+    .percent {
+      background-color: #039300;
+    }
+  }
+
+  &.down {
+    color: #C10000;
+
+    .percent {
+      background-color: #740000;
+    }
+  }
+}
+
+.percent {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 25px;
+  padding: 0 7.5px;
+  border-radius: 7px;
+  margin-top: 2px;
+}

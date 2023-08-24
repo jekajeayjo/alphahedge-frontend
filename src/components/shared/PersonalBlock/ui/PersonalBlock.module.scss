@@ -1,0 +1,29 @@
+.block {
+  padding: 20px;
+  border-radius: 15px;
+  background: #FFF;
+  overflow: hidden;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    text-transform: uppercase;
+    color: var(--gray-light);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  a {
+    font-size: 16px;
+    font-weight: 600;
+
+    img {
+      margin-left: 9px;
+      transform: translateY(3px);
+    }
+  }
+}

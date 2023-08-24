@@ -6,29 +6,8 @@
   margin-bottom: 38px;
 }
 
-.name {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  flex: 0 0 auto;
-  text-transform: uppercase;
-  line-height: 50px;
-  color: #FFF;
-  font-size: 20px;
-  font-weight: 500;
-  background: var(--purple-medium);
-  text-align: center;
-}
-
-.balance {
-  font-size: 18px;
-  font-weight: 700;
+.price {
   margin-bottom: 6px;
-
-  span {
-    display: inline-block;
-    margin-right: 5px;
-  }
 }
 
 .account {

@@ -1,6 +1,19 @@
+@use 'styles/use/utils';
+
 .layout {
   display: grid;
-  grid-column-gap: 30px;
   grid-template-columns: 330px 1fr;
   background: #F6F6F6;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 18px 50px 50px 30px;
+}
+
+.overlay {
+  @include utils.media-max-height(890) {
+    display: none;
+  }
 }
