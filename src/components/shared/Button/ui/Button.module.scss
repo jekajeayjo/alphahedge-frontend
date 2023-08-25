@@ -6,4 +6,10 @@
   display: block;
   width: 100%;
   height: 47px;
+  transition: 400ms;
+
+  &:disabled {
+    pointer-events: none;
+    background: rgba(#000000, .5);
+  }
 }

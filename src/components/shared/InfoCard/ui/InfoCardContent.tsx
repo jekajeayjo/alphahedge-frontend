@@ -1,9 +1,10 @@
-import cn from 'classnames'
 import { useState } from 'react'
-
-import { ButtonAccordionIcon, Lightning, RocketIcon } from 'assets/icons'
-
 import AnimateHeight from 'react-animate-height'
+import cn from 'classnames'
+
+import { LightningText } from 'components/shared/LightningText'
+
+import { ButtonAccordionIcon, RocketIcon } from 'assets/icons'
 
 import s from './InfoCard.module.scss'
 
@@ -52,22 +53,10 @@ export const InfoCardContent = (props: { isActive: boolean }) => {
             потенциально могут изменить то, как работает мир.
           </p>
           <ul className={s.content__list}>
-            <li>
-              <img src={Lightning} alt="" />
-              ДНК-технологии и «геномная революция»
-            </li>
-            <li>
-              <img src={Lightning} alt="" />
-              Автоматизация, робототехника и хранение энергии
-            </li>
-            <li>
-              <img src={Lightning} alt="" />
-              Искусственный интеллект и «Интернет следующего поколения»
-            </li>
-            <li>
-              <img src={Lightning} alt="" />
-              Финтех инновации
-            </li>
+            <LightningText text="ДНК-технологии и «геномная революция»" />
+            <LightningText text="Автоматизация, робототехника и хранение энергии" />
+            <LightningText text="Искусственный интеллект и «Интернет следующего поколения»" />
+            <LightningText text="Финтех инновации" />
           </ul>
           <div className={s.content__packages}>
             <div className={s.content__packages_label}>

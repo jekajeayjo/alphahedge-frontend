@@ -1,0 +1,95 @@
+.card {
+  padding: 26px 25px 26px 24px;
+  border-radius: 11px;
+  background: #FFF;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25);
+
+  & + & {
+    margin-top: 39px;
+  }
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.day {
+  color: #7F7F7F;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: lowercase;
+  line-height: 20px;
+}
+
+
+.row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.cell {
+
+  & + .cell {
+    margin: 0 65px;
+  }
+}
+
+.label {
+  color: #7F7F7F;
+  font-size: 14px;
+  text-transform: capitalize;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+
+.price {
+  color: var(--pinki-tin);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 35px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    background-color: #04C100;
+
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+.statusText {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 23px;
+}
+
+.button {
+  margin-left: auto;
+  width: 188px;
+  margin-top: auto;
+}

@@ -1,0 +1,46 @@
+.button {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 17px;
+  width: auto;
+  margin-left: auto;
+}
+
+.label {
+  span {
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
+
+th.changer {
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 13px;
+}
+
+tr.borderHide {
+  border: none;
+}
+
+tr.last {
+  border-bottom: none;
+}
+
+tr.counter {
+  display: none;
+
+  &.show {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: table-row;
+  }
+}
+
+
+.company {
+  width: 243px;
+}
+
+.price {
+  width: 273px;
+}

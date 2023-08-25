@@ -99,7 +99,7 @@
 
   .value {
     font-size: 18px;
-    color: #B050F2;
+    color: var(--pinki-tin);
     margin-bottom: 10px;
   }
 
@@ -145,18 +145,8 @@
   }
 
   &__list {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 26px;
-
     li + li {
       margin-top: 10px;
-    }
-
-    img {
-      width: auto;
-      height: 14px;
-      margin-right: 12px;
     }
   }
 

@@ -1,0 +1,55 @@
+.wrapper {
+  margin-top: 30px;
+  padding: 45px 20px 40px;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.left {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 35px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+}
+
+.tbody {
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  tr:nth-last-child(2) {
+    border-bottom: none;
+  }
+
+  th {
+    font-size: 18px;
+  }
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+
+  > table {
+    flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-top: 50px;
+}

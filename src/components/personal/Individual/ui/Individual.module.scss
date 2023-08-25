@@ -1,0 +1,20 @@
+.block {
+  display: grid;
+  grid-template-columns: 705px 1fr;
+  grid-column-gap: 87px;
+  padding: 70px 24px 73px 24px;
+}
+
+
+.text {
+  font-size: 18px;
+  line-height: 37px;
+  margin-bottom: 60px;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 45px;
+}

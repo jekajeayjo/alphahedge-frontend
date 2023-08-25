@@ -16,6 +16,12 @@ export { default as MapPoint } from './shared/MapPoint.svg'
 export { default as CopyIcon } from './shared/Copy.svg'
 export { default as RocketIcon } from './shared/Rocket.svg'
 export { default as ButtonAccordionIcon } from './shared/ButtonAccordion.svg'
+export { default as LockIcon } from './shared/Lock.svg'
+export { default as UnlockIcon } from './shared/Unlock.svg'
+export { default as UpIcon } from './shared/UpIcon.svg'
+export { default as DownIcon } from './shared/DownIcon.svg'
+export { default as BigUnlockIcon } from './shared/BigUnlockIcon.svg'
+export { default as BigLockIcon } from './shared/BigLockIcon.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'
@@ -28,3 +34,5 @@ export { default as ExitIcon } from './personal/exit.svg'
 
 // mock
 export { default as MetaIcon } from './shared/MetaIcon.svg'
+export { default as ApplyIcon } from './shared/ApplyIcon.svg'
+export { default as DiagramaIcon } from './shared/DiagramaIcon.svg'

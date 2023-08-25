@@ -11,15 +11,13 @@ import { InfoCardForm } from './InfoCardForm'
 
 import s from './InfoCard.module.scss'
 
-const IS_ACTIVE = true
-
 export const InfoCard = (props: IInfoCard) => {
-  const { className } = props
+  const { className, isActive = false } = props
 
   return (
     <div className={cn(s.card, className)}>
-      <InfoCardContent isActive={IS_ACTIVE} />
-      {IS_ACTIVE && (
+      <InfoCardContent isActive={isActive} />
+      {isActive && (
         <div className={s.actives}>
           <InfoCardActive label="Инвестированно">
             <Price type="xs" price="350" />
@@ -32,7 +30,7 @@ export const InfoCard = (props: IInfoCard) => {
           </InfoCardActive>
         </div>
       )}
-      {!IS_ACTIVE && <InfoCardForm />}
+      {!isActive && <InfoCardForm />}
       <div className={s.stats}>
         <InfoCardStat label="Минимальный депозит" value="$ 250" />
         <InfoCardStat label="Ежедневный доход" value="0.35 %" />
