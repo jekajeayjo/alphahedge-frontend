@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import {
@@ -14,7 +15,7 @@ export const AsideNavigation = () => (
     <NavLink
       end
       className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal"
+      to="/personal/dashboard"
     >
       <div className={s.icon}>
         <img src={DashboardIcon} alt="dashboard" />
@@ -33,15 +34,17 @@ export const AsideNavigation = () => (
     <NavLink
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal/finance"
+      end
     >
-      <div className={s.icon}>
+      <div className={cn(s.icon, s.financeIcon)}>
         <img src={FinanceIcon} alt="финансы" />
       </div>
       <span className={s.finance}>Финансы</span>
     </NavLink>
     <NavLink
       className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal/account"
+      to="/personal"
+      end
     >
       <div className={s.icon}>
         <img src={AccountIcon} alt="аккаунт" />

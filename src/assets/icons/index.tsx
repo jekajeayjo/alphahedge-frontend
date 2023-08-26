@@ -23,6 +23,7 @@ export { default as DownIcon } from './shared/DownIcon.svg'
 export { default as BigUnlockIcon } from './shared/BigUnlockIcon.svg'
 export { default as BigLockIcon } from './shared/BigLockIcon.svg'
 export { default as DropArrowBlackIcon } from './shared/DropArrowBlack.svg'
+export { default as ArrowAccordionIcon } from './shared/ArrowAccordion.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'
@@ -32,6 +33,10 @@ export { default as FinanceIcon } from './personal/finance.svg'
 export { default as InvestmentsIcon } from './personal/investments.svg'
 export { default as HelpIcon } from './personal/help.svg'
 export { default as ExitIcon } from './personal/exit.svg'
+export { default as VerificationIcon } from './personal/verification.svg'
+export { default as PersonalCardIcon } from './personal/personalCard.svg'
+export { default as PhoneIcon } from './personal/phone.svg'
+export { default as SuccessIcon } from './personal/success.svg'
 
 // mock
 export { default as MetaIcon } from './shared/MetaIcon.svg'

@@ -1,0 +1,32 @@
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 35px;
+  margin-bottom: 14px;
+}
+
+.verification {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 25px;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__id {
+    color: #4B4B4B;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+}
+
+
+.inner {
+  display: grid;
+  grid-template-columns: 530px 1fr;
+  grid-column-gap: 156px;
+}

@@ -1,0 +1,33 @@
+
+.item {
+
+  & + .item {
+    margin-top: 25px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #171C2C;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  width: 100%;
+
+  img {
+    transition: 400ms;
+  }
+}
+
+.active {
+  transform: rotate(180deg);
+}
+
+.content {
+  color: var(--gray-black);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+}
