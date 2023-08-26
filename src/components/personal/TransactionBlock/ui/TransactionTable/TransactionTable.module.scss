@@ -1,0 +1,75 @@
+.head {
+  text-transform: uppercase;
+}
+
+.tbody {
+  tr {
+    border: none;
+
+    &:first-child {
+      th {
+        padding-top: 24px;
+      }
+    }
+
+    th {
+      padding: 15px 0 0;
+    }
+  }
+}
+
+.first {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 200px;
+}
+
+.type {
+}
+
+.data,
+.type {
+  width: 145px;
+  span {
+    font-weight: 400;
+  }
+}
+
+.type {
+}
+
+.status {
+  text-align: right;
+
+  &.success {
+    color: #04C100;
+  }
+
+  &.cancel {
+    color: #DEBB00;
+  }
+
+  &.pending {
+    color: #C10000;
+  }
+}
+
+.carousel {
+  overflow: hidden;
+  margin-top: 32px;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > table {
+    flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-top: 25px;
+}

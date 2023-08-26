@@ -7,9 +7,9 @@ import {
   TableRow,
 } from 'components/shared/table'
 
-import s from './IndividualTable.module.scss'
+import s from './IncomeTable.module.scss'
 
-export const IndividualTable = () => (
+export const IncomeTable = () => (
   <Table>
     <TableHead>
       <TableRow>

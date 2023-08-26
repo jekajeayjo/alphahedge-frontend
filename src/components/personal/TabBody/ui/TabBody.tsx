@@ -2,8 +2,7 @@ import { useState } from 'react'
 
 import { Promotions, PromotionTable } from 'components/personal/Promotions'
 import { PackageList } from 'components/personal/PackageList'
-import { Individual } from 'components/personal/Individual'
-import { IndividualTableCarousel } from 'components/personal/Individual/ui/IndividualTable/IndividualTableCarousel'
+import { IncomeTableCarousel, Individual } from 'components/personal/Individual'
 
 import { tabEnum } from '../model/TabBody.interface'
 
@@ -27,7 +26,7 @@ export const TabBody = () => {
         {tab === tabEnum.INDIVIDUAL && <Individual />}
       </div>
       {tab === tabEnum.ACTIVE && <PromotionTable />}
-      {tab === tabEnum.INDIVIDUAL && <IndividualTableCarousel />}
+      {tab === tabEnum.INDIVIDUAL && <IncomeTableCarousel />}
     </div>
   )
 }
