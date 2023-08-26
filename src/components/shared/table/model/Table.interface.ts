@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 export interface ITable {
   children: ReactNode
   className?: string
+  colspan?: number
 }
 
 export interface ITablePrice {

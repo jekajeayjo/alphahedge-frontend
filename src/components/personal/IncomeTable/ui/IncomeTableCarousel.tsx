@@ -5,15 +5,15 @@ import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react'
 import { CarouselPagination } from 'components/shared/CarouselPagination'
 import { TableLabel } from 'components/shared/table'
 
-import { IndividualTable } from './IndividualTable'
+import { IncomeTable } from './IncomeTable'
 
-import s from './IndividualTable.module.scss'
+import s from './IncomeTable.module.scss'
 
 const options: EmblaOptionsType = {
   align: 'start',
 }
 
-export const IndividualTableCarousel = () => {
+export const IncomeTableCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const [otherRef, embla] = useEmblaCarousel({ ...options })
@@ -47,11 +47,11 @@ export const IndividualTableCarousel = () => {
       </div>
       <div className={s.carousel} ref={otherRef}>
         <div className={s.list}>
-          <IndividualTable />
-          <IndividualTable />
-          <IndividualTable />
-          <IndividualTable />
-          <IndividualTable />
+          <IncomeTable />
+          <IncomeTable />
+          <IncomeTable />
+          <IncomeTable />
+          <IncomeTable />
         </div>
       </div>
 

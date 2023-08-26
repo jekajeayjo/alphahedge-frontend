@@ -22,6 +22,7 @@ export { default as UpIcon } from './shared/UpIcon.svg'
 export { default as DownIcon } from './shared/DownIcon.svg'
 export { default as BigUnlockIcon } from './shared/BigUnlockIcon.svg'
 export { default as BigLockIcon } from './shared/BigLockIcon.svg'
+export { default as DropArrowBlackIcon } from './shared/DropArrowBlack.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'
@@ -36,3 +37,4 @@ export { default as ExitIcon } from './personal/exit.svg'
 export { default as MetaIcon } from './shared/MetaIcon.svg'
 export { default as ApplyIcon } from './shared/ApplyIcon.svg'
 export { default as DiagramaIcon } from './shared/DiagramaIcon.svg'
+export { default as SystemIcon } from './shared/SystemIcon.svg'
