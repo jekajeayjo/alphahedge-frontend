@@ -1,0 +1,45 @@
+.wrapper {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  margin-top: 45px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.title {
+  text-transform: uppercase;
+  color: var(--gray-light);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > table {
+    flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-right: 4px;
+  margin-top: 25px;
+}

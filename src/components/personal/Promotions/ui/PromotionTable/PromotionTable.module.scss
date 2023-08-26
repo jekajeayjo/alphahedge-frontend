@@ -26,13 +26,14 @@
 }
 
 .tbody {
-  //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  tr:nth-last-child(2) {
-    border-bottom: none;
-  }
-
   th {
     font-size: 18px;
+  }
+
+  tr {
+    &:nth-last-child(2) {
+      border-bottom: none;
+    }
   }
 }
 

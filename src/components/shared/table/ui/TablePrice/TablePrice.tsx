@@ -20,11 +20,7 @@ export const TablePrice = (props: ITablePrice) => {
       })}
     >
       <Price type="xs" price={price} />
-      {type === 'up' ? (
-        <img src={UpIcon} alt="up" />
-      ) : (
-        <img src={DownIcon} alt="down" />
-      )}
+      <img src={type === 'up' ? UpIcon : DownIcon} alt={type} />
       {showPercent && <div className={s.percent}>+14%</div>}
     </div>
   )

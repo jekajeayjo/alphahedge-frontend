@@ -29,6 +29,12 @@
   th {
     font-size: 18px;
   }
+
+  tr {
+    &:nth-last-child(2) {
+      border-bottom: none;
+    }
+  }
 }
 
 .carousel {
