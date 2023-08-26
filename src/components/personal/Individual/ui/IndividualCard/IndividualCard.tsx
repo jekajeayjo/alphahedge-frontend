@@ -48,6 +48,7 @@ export const IndividualCard = (props: IIndividualCard) => {
           className={s.button}
           disabled={!status && !isOpen}
           type="button"
+          onClick={() => setOpen((prevState) => !prevState)}
         >
           {open ? 'закрыть' : 'открыть'}
         </Button>
