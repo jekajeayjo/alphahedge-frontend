@@ -1,0 +1,126 @@
+.card {
+  padding: 11px 15px 15px;
+  border-radius: 10px;
+  background: #FAFAFA;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 15px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #3F434E;
+}
+
+.content {
+  transform: translateY(-3px);
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 29px;
+}
+
+.company {
+  color: #676767;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 23px;
+  margin-top: 1px;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.label {
+  color: #676767;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 23px;
+}
+
+.percent {
+  color: #04C100;
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transform: translateY(-1px);
+
+
+  &.down {
+    color: #C10000;
+  }
+}
+
+.diagramma {
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 0 18px;
+
+  &.apply {
+    font-size: 14px;
+
+    .price {
+      font-size: 16px;
+    }
+  }
+}
+
+.body {
+
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+  margin-bottom: 7px;
+}
+
+.counterLabel {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 38px;
+}
+
+.price {
+  font-size: 18px;
+}
+
+.notification {
+  color: #7B7B7B;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  padding-left: 3px;
+}

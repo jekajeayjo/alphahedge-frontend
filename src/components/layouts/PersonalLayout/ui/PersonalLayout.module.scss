@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 330px 1fr;
   background: #F6F6F6;
+  align-items: flex-start;
 }
 
 .body {
@@ -13,6 +14,7 @@
 }
 
 .overlay {
+  height: 100vh;
   @include utils.media-max-height(890) {
     display: none;
   }

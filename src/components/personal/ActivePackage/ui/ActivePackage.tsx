@@ -2,18 +2,15 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react'
-
-import { Company } from 'components/personal/Company'
-import { Price } from 'components/shared/Price'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableLabel,
-  TablePrice,
   TableRow,
 } from 'components/shared/table'
+import { ActiveTableRow } from 'components/shared/ActiveTableRow'
 import { CarouselPagination } from 'components/shared/CarouselPagination'
 
 import { ArrowLinkBlack } from 'assets/icons'
@@ -77,66 +74,12 @@ export const ActivePackage = () => {
                 </TableRow>
               </TableHead>
               <TableBody className={s.tbody}>
-                <TableRow>
-                  <TableCell>
-                    <Company name="Meta" />
-                  </TableCell>
-                  <TableCell>
-                    <Price type="xs" price="1753.00" />
-                  </TableCell>
-                  <TableCell>
-                    <TablePrice price="18,530. 00" type="up" showPercent />
-                  </TableCell>
-                  <TableCell>10</TableCell>
-                  <TableCell>
-                    <TablePrice price="18,530. 00" type="up" />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Company name="Meta" />
-                  </TableCell>
-                  <TableCell>
-                    <Price type="xs" price="153. 00" />
-                  </TableCell>
-                  <TableCell>
-                    <TablePrice price="16.53" type="down" showPercent />
-                  </TableCell>
-                  <TableCell>10</TableCell>
-                  <TableCell>
-                    <TablePrice price="130. 00" type="down" />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Company name="Meta" />
-                  </TableCell>
-                  <TableCell>
-                    <Price type="xs" price="1753.00" />
-                  </TableCell>
-                  <TableCell>
-                    <TablePrice price="18,530. 00" type="up" showPercent />
-                  </TableCell>
-                  <TableCell>10</TableCell>
-                  <TableCell>
-                    <TablePrice price="18,530. 00" type="up" />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Company name="Meta" />
-                  </TableCell>
-                  <TableCell>
-                    <Price type="xs" price="153. 00" />
-                  </TableCell>
-                  <TableCell>
-                    <TablePrice price="16.53" type="down" showPercent />
-                  </TableCell>
-                  <TableCell>10</TableCell>
-                  <TableCell>
-                    <TablePrice price="130. 00" type="down" />
-                  </TableCell>
-                </TableRow>
+                <ActiveTableRow />
+                <ActiveTableRow />
+                <ActiveTableRow />
+                <ActiveTableRow />
+                <ActiveTableRow />
+                <ActiveTableRow />
               </TableBody>
             </Table>
           ))}

@@ -12,6 +12,7 @@ import s from './AsideNavigation.module.scss'
 export const AsideNavigation = () => (
   <nav className={s.navigation}>
     <NavLink
+      end
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal"
     >
