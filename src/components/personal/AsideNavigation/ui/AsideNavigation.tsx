@@ -1,55 +1,21 @@
-import cn from 'classnames'
-import { NavLink } from 'react-router-dom'
+import { useAuth } from 'hooks/useAuth'
 
-import {
-  AccountIcon,
-  DashboardIcon,
-  FinanceIcon,
-  InvestmentsIcon,
-} from 'assets/icons'
+import { AsideNavigationUser } from './AsideNavigationUser'
+import { AsideNavigationAdmin } from './AsideNavigationAdmin'
+import { AsideNavigationAdminEdit } from './AsideNavigationAdminEdit'
+
+import { IAsideNavigation } from '../model/AsideNavigation.interface'
 
 import s from './AsideNavigation.module.scss'
 
-export const AsideNavigation = () => (
-  <nav className={s.navigation}>
-    <NavLink
-      end
-      className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal/dashboard"
-    >
-      <div className={s.icon}>
-        <img src={DashboardIcon} alt="dashboard" />
-      </div>
-      <span>Dashboard</span>
-    </NavLink>
-    <NavLink
-      className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal/investments"
-    >
-      <div className={s.icon}>
-        <img src={InvestmentsIcon} alt="инвестиции" />
-      </div>
-      <span className={s.investments}>Инвестиции</span>
-    </NavLink>
-    <NavLink
-      className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal/finance"
-      end
-    >
-      <div className={cn(s.icon, s.financeIcon)}>
-        <img src={FinanceIcon} alt="финансы" />
-      </div>
-      <span className={s.finance}>Финансы</span>
-    </NavLink>
-    <NavLink
-      className={({ isActive }) => (isActive ? s.current : '')}
-      to="/personal"
-      end
-    >
-      <div className={s.icon}>
-        <img src={AccountIcon} alt="аккаунт" />
-      </div>
-      <span className={s.account}>Аккаунт</span>
-    </NavLink>
-  </nav>
-)
+export const AsideNavigation = ({ adminEdit }: IAsideNavigation) => {
+  const { role } = useAuth()
+
+  return (
+    <nav className={s.navigation}>
+      {role === 'USER' && <AsideNavigationUser />}
+      {!adminEdit && role === 'ADMIN' && <AsideNavigationAdmin />}
+      {adminEdit && role === 'ADMIN' && <AsideNavigationAdminEdit />}
+    </nav>
+  )
+}

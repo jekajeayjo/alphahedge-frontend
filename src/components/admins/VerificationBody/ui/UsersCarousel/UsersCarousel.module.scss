@@ -1,0 +1,44 @@
+@use 'styles/use/utils';
+
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > table {
+    flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-right: 4px;
+  margin-top: 25px;
+}
+
+.toggle {
+  width: 41px;
+  height: 15px;
+  border-radius: 42px;
+  position: relative;
+  background-color: var(--gray-light);
+
+  &.active {
+    background-color: #00A624;
+
+    .overlay {
+      left: 22px;
+    }
+  }
+}
+
+.overlay {
+  @include utils.centerVertically();
+  left: -2px;
+  position: absolute;
+  width: 19.71px;
+  height: 19.71px;
+  border-radius: 50%;
+  background-color: var(--pinki-tin);
+  transition: 400ms;
+}

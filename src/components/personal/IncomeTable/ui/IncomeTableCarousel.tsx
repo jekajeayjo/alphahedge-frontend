@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
+import cn from 'classnames'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react'
 
 import { CarouselPagination } from 'components/shared/CarouselPagination'
 import { TableLabel } from 'components/shared/table'
+
+import { IIncomeTableCarousel } from '../model/IncomeTableCarousel.interface'
 
 import { IncomeTable } from './IncomeTable'
 
@@ -13,7 +16,9 @@ const options: EmblaOptionsType = {
   align: 'start',
 }
 
-export const IncomeTableCarousel = () => {
+export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
+  const { className, showTotal = true } = props
+
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const [otherRef, embla] = useEmblaCarousel({ ...options })
@@ -33,17 +38,23 @@ export const IncomeTableCarousel = () => {
   }, [embla, onSelect])
 
   return (
-    <div className={s.wrapper}>
+    <div className={cn(s.wrapper, className)}>
       <div className={s.header}>
         <div className={s.title}>Доходы</div>
-        <div className={s.total}>
-          <TableLabel
-            label="общее кол-во Доходов"
-            value="599,860. 00"
-            type="price"
-          />
-          <TableLabel label="кол-во Активных Портфелей" value="2" type="num" />
-        </div>
+        {showTotal && (
+          <div className={s.total}>
+            <TableLabel
+              label="общее кол-во Доходов"
+              value="599,860. 00"
+              type="price"
+            />
+            <TableLabel
+              label="кол-во Активных Портфелей"
+              value="2"
+              type="num"
+            />
+          </div>
+        )}
       </div>
       <div className={s.carousel} ref={otherRef}>
         <div className={s.list}>

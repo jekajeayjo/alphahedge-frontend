@@ -1,4 +1,4 @@
-// home
+// PersonalHome
 export { default as BgBanner } from './home/Main-banner-bg.jpg'
 export { default as UniquenessBg } from './home/uniquenessBg.png'
 export { default as ProfitabilityBg } from './home/profitability-bg.jpg'

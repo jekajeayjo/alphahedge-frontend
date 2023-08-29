@@ -16,7 +16,7 @@
       top: 0;
       width: 4px;
       height: 100%;
-      border-radius: 3px 0px 0px 3px;
+      border-radius: 3px 0 0 3px;
       background: var(--pinki-tin);
       opacity: 0;
       transition: 400ms;
@@ -50,4 +50,9 @@
   height: 30px;
   text-align: left;
   margin-right: 15px;
+}
+
+.verification,
+.transaction{
+  transform: translateY(1px);
 }

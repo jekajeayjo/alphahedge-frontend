@@ -12,11 +12,11 @@ import { InfoCardForm } from './InfoCardForm'
 import s from './InfoCard.module.scss'
 
 export const InfoCard = (props: IInfoCard) => {
-  const { className, isActive = false } = props
+  const { className, isActive = false, isAdmin = false } = props
 
   return (
     <div className={cn(s.card, className)}>
-      <InfoCardContent isActive={isActive} />
+      <InfoCardContent isActive={isActive} isAdmin={isAdmin} />
       {isActive && (
         <div className={s.actives}>
           <InfoCardActive label="Инвестированно">

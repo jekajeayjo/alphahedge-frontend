@@ -1,6 +1,5 @@
 import { LightningText } from 'components/shared/LightningText'
-
-import { IndividualCard } from './IndividualCard/IndividualCard'
+import { IndividualCard } from 'components/shared/IndividualCard'
 
 import s from './Individual.module.scss'
 

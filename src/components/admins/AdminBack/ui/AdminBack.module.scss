@@ -1,0 +1,14 @@
+.back {
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  gap: 13px;
+  margin-bottom: 17px;
+  margin-top: 45px;
+
+  img {
+    transform: translateY(2px);
+  }
+}

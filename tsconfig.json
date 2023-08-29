@@ -22,6 +22,7 @@
 			"helpers/*": ["helpers/*"],
 			"hooks/*": ["hooks/*"],
 			"assets/*": ["assets/*"],
+			"types/*": ["types/*"],
 			"styles/*": ["styles/*"]
 		}
 	},
