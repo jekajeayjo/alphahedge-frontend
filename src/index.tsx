@@ -1,8 +1,8 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
 
-import { BrowserRouter } from 'react-router-dom'
-import App from './App'
+import { appRouter } from 'pages'
 
 import './styles/index.scss'
 
@@ -16,8 +16,4 @@ if (!container) {
 
 const root = createRoot(container)
 
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-)
+root.render(<RouterProvider router={appRouter} />)

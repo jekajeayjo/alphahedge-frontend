@@ -1,18 +1,14 @@
-import { FC } from 'react'
+import { Outlet } from 'react-router'
 
-import { IPageLayout } from '../model/PageLayout.interface'
 import { Header } from '../../Header'
 import { Footer } from '../../Footer'
 
 import s from './PageLayout.module.scss'
 
-export const PageLayout: FC<IPageLayout> = (props) => {
-  const { children } = props
-  return (
-    <div className={s.layout}>
-      <Header />
-      {children}
-      <Footer />
-    </div>
-  )
-}
+export const PageLayout = () => (
+  <div className={s.layout}>
+    <Header />
+    <Outlet />
+    <Footer />
+  </div>
+)

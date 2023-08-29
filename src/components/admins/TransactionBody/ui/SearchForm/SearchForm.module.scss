@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+
+.cell {
+  max-width: 250px;
+  width: 100%;
+}
+
+.label {
+  color: var(--gray-light);
+  font-size: 14px;
+  margin-top: 10px;
+  text-transform: capitalize;
+  line-height: 20px;
+}
+
+
+.button {
+  margin-left: auto;
+  width: 188px;
+  flex: 0 0 auto;
+}
+
+.drop > button{
+  font-weight: 700;
+}

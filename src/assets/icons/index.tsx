@@ -1,4 +1,4 @@
-// home
+// PersonalHome
 export { default as LogoBanner } from './home/logo.svg'
 export { default as FirstCase } from './home/case-1.svg'
 export { default as SecondCase } from './home/case-2.svg'
@@ -24,6 +24,7 @@ export { default as BigUnlockIcon } from './shared/BigUnlockIcon.svg'
 export { default as BigLockIcon } from './shared/BigLockIcon.svg'
 export { default as DropArrowBlackIcon } from './shared/DropArrowBlack.svg'
 export { default as ArrowAccordionIcon } from './shared/ArrowAccordion.svg'
+export { default as ArrowBackIcon } from './shared/ArrowBack.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'
@@ -37,6 +38,10 @@ export { default as VerificationIcon } from './personal/verification.svg'
 export { default as PersonalCardIcon } from './personal/personalCard.svg'
 export { default as PhoneIcon } from './personal/phone.svg'
 export { default as SuccessIcon } from './personal/success.svg'
+export { default as IndividualIcon } from './personal/individual.svg'
+export { default as UsersIcon } from './personal/users.svg'
+export { default as TransactionIcon } from './personal/transaction.svg'
+export { default as Verification } from './personal/verificationIcon.svg'
 
 // mock
 export { default as MetaIcon } from './shared/MetaIcon.svg'

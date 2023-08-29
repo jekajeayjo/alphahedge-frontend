@@ -1,0 +1,54 @@
+.status {
+  position: relative;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+
+  &.pending {
+    pointer-events: auto;
+    color: #DEBB00;
+  }
+}
+
+.arrow {
+  transition: 400ms;
+  transform: translateY(1px);
+
+  &.active {
+    transform: translateY(1px) rotate(180deg);
+  }
+}
+
+.success {
+  color: #04C100;
+}
+
+.cancel {
+  color: #C10000
+}
+
+.list {
+  padding: 10px;
+  border: 1px solid #E5E8EC;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  background-color: #fff;
+  width: 140px;
+  border-radius: 9px;
+  z-index: 1;
+
+  &.open {
+    display: block;
+  }
+
+  button {
+    display: block;
+    line-height: 30px;
+  }
+}

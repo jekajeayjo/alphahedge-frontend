@@ -1,0 +1,47 @@
+.wrapper {
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 141px;
+  padding: 30px 34px 0 30px;
+}
+
+.right {
+  padding-top: 10px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  margin-bottom: 41px;
+}
+
+.circle {
+  width: 59px;
+  height: 59px;
+  line-height: 59px;
+  font-size: 22px;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 44px;
+}
+
+.username {
+  color: #949494;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.carousel {
+  border: none;
+  background-color: transparent;
+  margin-top: 70px;
+}

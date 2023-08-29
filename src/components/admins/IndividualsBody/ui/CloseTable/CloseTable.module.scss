@@ -1,0 +1,59 @@
+.form {
+  display: flex;
+  align-items: flex-start;
+  gap: 85px;
+  margin-bottom: 40px;
+}
+
+.drop > button{
+  font-weight: 700;
+}
+
+.cell {
+  max-width: 331px;
+  width: 100%;
+}
+
+.button {
+  margin-left: auto;
+  width: 188px;
+  flex: 0 0 auto;
+}
+
+.label {
+  color: var(--gray-light);
+  font-size: 14px;
+  margin-top: 10px;
+  text-transform: capitalize;
+  line-height: 20px;
+}
+
+.name button{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.th {
+  font-size: 18px;
+}
+
+.price {
+  color: var(--pinki-tin);
+  font-size: 24px;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  > table {
+    flex: 0 0 auto;
+  }
+}
+
+.pagination {
+  margin-right: 4px;
+  margin-top: 25px;
+}

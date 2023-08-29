@@ -3,13 +3,16 @@ import AnimateHeight from 'react-animate-height'
 import cn from 'classnames'
 
 import { LightningText } from 'components/shared/LightningText'
+import { Button } from 'components/shared/Button'
 
 import { ButtonAccordionIcon, RocketIcon } from 'assets/icons'
 
+import { IInfoCardContent } from '../model/InfoCard.interface'
+
 import s from './InfoCard.module.scss'
 
-export const InfoCardContent = (props: { isActive: boolean }) => {
-  const { isActive } = props
+export const InfoCardContent = (props: IInfoCardContent) => {
+  const { isActive, isAdmin } = props
 
   const [open, setOpen] = useState(false)
 
@@ -25,6 +28,11 @@ export const InfoCardContent = (props: { isActive: boolean }) => {
             <img src={RocketIcon} alt="rocket" />
           </div>
           <span>прорывные инновации</span>
+          {isAdmin && (
+            <Button className={s.close} type="button">
+              ЗАКРЫТЬ
+            </Button>
+          )}
         </div>
         <button
           className={cn(s.toggler, { [s.rotate]: open })}
