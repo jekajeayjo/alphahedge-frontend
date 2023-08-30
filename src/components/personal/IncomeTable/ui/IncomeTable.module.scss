@@ -1,11 +1,15 @@
 @use 'styles/use/utils';
 
 .wrapper {
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
   border-radius: 15px;
   margin-top: 45px;
   overflow: hidden;
+
+  @include utils.media-max-width(1050) {
+    padding: 0;
+  }
 }
 
 .header {
@@ -17,6 +21,7 @@
   @include utils.media-max-width(900) {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 20px;
   }
 }
 
@@ -26,10 +31,6 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-
-  @include utils.media-max-width(900) {
-    margin-bottom: 20px;
-  }
 }
 
 .inner {

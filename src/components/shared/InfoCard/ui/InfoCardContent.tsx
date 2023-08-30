@@ -28,7 +28,7 @@ export const InfoCardContent = (props: IInfoCardContent) => {
             <img src={RocketIcon} alt="rocket" />
           </div>
           <span>прорывные инновации</span>
-          {isAdmin && (
+          {isAdmin && isActive && (
             <Button className={s.close} type="button">
               ЗАКРЫТЬ
             </Button>
@@ -48,6 +48,11 @@ export const InfoCardContent = (props: IInfoCardContent) => {
         нового продукта или услуги, которые потенциально могут изменить то, как
         работает мир.
       </p>
+      {isAdmin && isActive && (
+        <Button className={s.mobClose} type="button">
+          ЗАКРЫТЬ
+        </Button>
+      )}
       <AnimateHeight
         className={cn(s.accordion, { [s.haveActive]: isActive })}
         height={open ? 'auto' : 0}

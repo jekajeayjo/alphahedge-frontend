@@ -12,8 +12,8 @@ export const Header = () => {
   const navigate = useNavigate()
 
   const login = () => {
-    localStorage.setItem('user', JSON.stringify({ role: 'USER' }))
-    navigate('/personal/dashboard')
+    localStorage.setItem('user', JSON.stringify({ role: 'ADMIN' }))
+    navigate('/admin/dashboard')
   }
 
   return (

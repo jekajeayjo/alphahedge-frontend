@@ -1,21 +1,5 @@
 @use 'styles/use/utils';
 
-
-.list {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-
-  > table {
-    flex: 0 0 auto;
-  }
-}
-
-.pagination {
-  margin-right: 4px;
-  margin-top: 25px;
-}
-
 .toggle {
   width: 41px;
   height: 15px;
@@ -41,4 +25,64 @@
   border-radius: 50%;
   background-color: var(--pinki-tin);
   transition: 400ms;
+}
+
+.table {
+  @include utils.media-max-width(1400) {
+    min-width: 1000px;
+  }
+}
+
+.inner {
+  @include utils.media-max-width(1400) {
+    overflow-x: auto;
+    @include utils.customScroll(#000);
+  }
+}
+
+.row {
+  th {
+    font-size: 18px;
+
+    @include utils.media-max-width(1500) {
+      font-size: 16px;
+    }
+  }
+}
+
+.fullName {
+  width: 25%;
+
+  @include utils.media-max-width(1500) {
+    width: 28%;
+  }
+}
+
+.username {
+  width: 20%;
+
+}
+
+.photo {
+  width: 20%;
+
+  a {
+    color: #000;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration-line: underline;
+  }
+}
+
+.date {
+
+}
+
+.status {
+  width: 200px;
+
+
+  @include utils.media-max-width(1500) {
+    width: 150px;
+  }
 }

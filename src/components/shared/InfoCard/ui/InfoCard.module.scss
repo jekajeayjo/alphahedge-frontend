@@ -59,6 +59,20 @@
   width: 188px;
   white-space: nowrap;
   margin-left: 29px;
+
+  @include utils.media-max-width(900) {
+    display: none;
+  }
+}
+
+.mobClose {
+  display: none;
+  width: 100%;
+  margin-top: 20px;
+
+  @include utils.media-max-width(900) {
+    display: block;
+  }
 }
 
 .toggler {

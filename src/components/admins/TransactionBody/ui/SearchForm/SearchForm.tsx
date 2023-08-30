@@ -1,4 +1,6 @@
+import cn from 'classnames'
 import { FormProvider, useForm } from 'react-hook-form'
+
 import { Input } from 'components/shared/Input'
 import { DropDown, OptionType } from 'components/shared/DropDown'
 import { Button } from 'components/shared/Button'
@@ -58,8 +60,8 @@ export const SearchForm = () => {
         </div>
         <div className={s.cell}>
           <DropDown
-            className={s.drop}
-            placeholder="Роль"
+            className={cn(s.drop, s.rol)}
+            placeholder="Сеть"
             options={options}
             defaultOption={options[0]}
           />

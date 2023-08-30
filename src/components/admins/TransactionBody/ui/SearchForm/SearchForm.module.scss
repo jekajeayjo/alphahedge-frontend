@@ -1,13 +1,33 @@
+@use 'styles/use/utils';
+
 .form {
   display: flex;
   align-items: flex-start;
   gap: 50px;
   margin-bottom: 40px;
+
+  @include utils.media-max-width(1660) {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include utils.media-max-width(1350) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include utils.media-max-width(1000) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cell {
   max-width: 250px;
   width: 100%;
+
+  @include utils.media-max-width(1660) {
+    max-width: 100%;
+  }
 }
 
 .label {
@@ -23,8 +43,19 @@
   margin-left: auto;
   width: 188px;
   flex: 0 0 auto;
+
+  @include utils.media-max-width(1660) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .drop > button{
   font-weight: 700;
+}
+
+
+.rol {
+  position: relative;
+  z-index: 3;
 }

@@ -14,13 +14,13 @@ export const UserTableRow = () => {
   }
 
   return (
-    <TableRow>
-      <TableNameUser showType="fullName" />
-      <TableNameUser showType="username" />
-      <TableCell>golovneanatalia@yahoo.com</TableCell>
-      <TableCell>user</TableCell>
+    <TableRow className={s.row}>
+      <TableNameUser className={s.fullname} showType="fullName" />
+      <TableNameUser className={s.username} showType="username" />
+      <TableCell className={s.email}>golovneanatalia@yahoo.com</TableCell>
+      <TableCell className={s.type}>user</TableCell>
       <TableCell>$25,000</TableCell>
-      <TableCell>
+      <TableCell className={s.switch}>
         <button
           className={cn(s.toggle, { [s.active]: isActive })}
           type="button"

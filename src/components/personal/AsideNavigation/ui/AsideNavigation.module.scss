@@ -88,7 +88,10 @@
   }
 }
 
-.verification,
-.transaction{
+.verification{
   transform: translateY(1px);
+}
+
+.transaction {
+  transform: translateX(-2px) translateY(1px);
 }
