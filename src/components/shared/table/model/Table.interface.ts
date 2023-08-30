@@ -18,3 +18,18 @@ export interface ITableLabel {
   type: 'price' | 'num'
   className?: string
 }
+
+export interface ITableComponent<T> {
+  tableTitles: string[]
+  perPage: number
+
+  tables: T[]
+  renderComponent: (item: T) => ReactNode
+
+  classNameWrapper?: string
+  classNameInner?: string
+  className?: string
+  classNameHeader?: string
+  classNameBody?: string
+  classNamePagination?: string
+}

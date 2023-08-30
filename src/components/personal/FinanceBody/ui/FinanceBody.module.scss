@@ -1,19 +1,39 @@
+@use 'styles/use/utils';
+
 .grid {
   display: grid;
-  grid-template-columns: 845px 1fr;
+  grid-template-columns: minmax(300px, 845px) minmax(615px, 1fr);
   grid-gap: 30px;
   margin-bottom: 30px;
+
+  @include utils.media-max-width(1780) {
+    display: block;
+    overflow: hidden;
+  }
 }
 
 .col {
   > div + div {
     margin-top: 30px;
   }
+
+  @include utils.media-max-width(1780) {
+    margin-bottom: 30px;
+  }
+}
+
+.block {
+  padding-top: 35px;
 }
 
 .form {
   grid-template-columns: repeat(2, 1fr) 180px;
   grid-gap: 39px;
+
+  @include utils.media-max-width(900) {
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+  }
 }
 
 .carousel {

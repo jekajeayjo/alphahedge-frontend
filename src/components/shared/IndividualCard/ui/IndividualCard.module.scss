@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .card {
   padding: 26px 25px 26px 24px;
   border-radius: 11px;
@@ -7,8 +9,15 @@
   & + & {
     margin-top: 39px;
   }
-}
 
+  @include utils.media-max-width(1400) {
+    padding: 20px;
+
+    & + & {
+      margin-top: 0;
+    }
+  }
+}
 
 .header {
   display: flex;
@@ -29,12 +38,33 @@
 .row {
   display: flex;
   align-items: flex-start;
+
+  @include utils.media-max-width(1600) {
+    flex-wrap: wrap;
+  }
+
+  @include utils.media-max-width(1050) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .cell {
 
   & + .cell {
     margin: 0 65px;
+  }
+
+  @include utils.media-max-width(1400) {
+    & + .cell {
+      margin: 0 0 0 30px;
+    }
+  }
+
+  @include utils.media-max-width(1050) {
+    & + .cell {
+      margin: 20px 0 0;
+    }
   }
 }
 
@@ -44,6 +74,10 @@
   text-transform: capitalize;
   line-height: 20px;
   margin-bottom: 24px;
+
+  @include utils.media-max-width(1050) {
+    margin-bottom: 0;
+  }
 }
 
 
@@ -59,6 +93,10 @@
   align-items: center;
   gap: 15px;
   margin-top: 30px;
+
+  @include utils.media-max-width(1050) {
+    margin-top: 10px;
+  }
 }
 
 .icon {
@@ -92,4 +130,9 @@
   margin-left: auto;
   width: 188px;
   margin-top: auto;
+
+  @include utils.media-max-width(1600) {
+    margin-top: 20px;
+    width: 100%;
+  }
 }

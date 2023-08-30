@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .title {
   font-size: 24px;
   font-weight: 500;
@@ -22,6 +24,18 @@
     font-weight: 400;
     margin-top: 2px;
   }
+
+  @include utils.media-max-width(1000) {
+    &__title {
+      font-size: 20px;
+    }
+  }
+
+  @include utils.media-max-width(650) {
+    &__title {
+      font-size: 18px;
+    }
+  }
 }
 
 
@@ -29,4 +43,36 @@
   display: grid;
   grid-template-columns: 530px 1fr;
   grid-column-gap: 156px;
+
+  @include utils.media-max-width(1700) {
+    grid-template-columns: 400px 1fr;
+  }
+
+  @include utils.media-max-width(1600) {
+    grid-column-gap: 50px;
+  }
+
+
+  @include utils.media-max-width(1400) {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    grid-gap: 30px;
+  }
+}
+
+.left {
+  @include utils.media-max-width(1400) {
+    max-width: 600px;
+  }
+}
+
+.right {
+  max-width: 784px;
+  width: 100%;
+  margin-left: auto;
+
+  @include utils.media-max-width(1400) {
+    max-width: 500px;
+    margin-left: 0;
+  }
 }

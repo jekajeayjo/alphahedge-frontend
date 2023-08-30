@@ -23,16 +23,20 @@ export const FinanceBody = (props: { adminEdit: boolean }) => {
           <PersonalBlock label="Общий Баланс">
             <Balance />
           </PersonalBlock>
-          <PersonalBlock label="Пополнение">
+          <PersonalBlock className={s.block} label="Пополнение">
             <TransactionBlock
               classNameForm={s.form}
-              classNameCarousel={s.carousel}
+              perPage={4}
               type="replenishment"
             />
           </PersonalBlock>
         </div>
         <PersonalBlock label="Вывод">
-          <TransactionBlock classNameForm={s.derivation} type="derivation" />
+          <TransactionBlock
+            classNameForm={s.derivation}
+            perPage={6}
+            type="derivation"
+          />
         </PersonalBlock>
       </div>
       <IncomeTableCarousel />

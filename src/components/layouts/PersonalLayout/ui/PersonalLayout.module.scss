@@ -5,17 +5,37 @@
   grid-template-columns: 330px 1fr;
   background: #F6F6F6;
   align-items: flex-start;
+
+  @include utils.media-max-width(1850) {
+    grid-template-columns: 280px 1fr;
+  }
+
+  @include utils.media-max-width(1279) {
+    grid-template-columns: 68px 1fr;
+  }
+
+  @include utils.media-max-width(900) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .body {
   display: grid;
   grid-template-columns: 1fr;
   padding: 18px 50px 50px 30px;
+
+  @include utils.media-max-width(1279) {
+    padding: 18px 30px 50px 30px;
+  }
+
+  @include utils.media-max-width(900) {
+    padding: 18px 15px 20px 15px;
+  }
 }
 
 .overlay {
   height: 100vh;
-  @include utils.media-max-height(890) {
+  @include utils.media-range-height(1280, 890) {
     display: none;
   }
 }

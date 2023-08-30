@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .form {
   margin-bottom: 50px;
 }
@@ -13,6 +15,18 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 35px;
+
+  @include utils.media-max-width(1500) {
+    font-size: 25px;
+  }
+
+  @include utils.media-max-width(1000) {
+    font-size: 22px;
+  }
+
+  @include utils.media-max-width(650) {
+    font-size: 20px;
+  }
 }
 
 .button {
@@ -23,6 +37,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 60px;
+
+  @include utils.media-max-width(1600) {
+    gap: 40px;
+  }
+
+  @include utils.media-max-width(1300) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include utils.media-max-width(900) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .label {

@@ -9,8 +9,8 @@ export const CarouselPagination = (props: ICarouselNavigation) => {
     className,
     prevButtonClick,
     nextButtonClick,
-    index,
-    total,
+    index = 1,
+    total = 1,
     showPagination = false,
   } = props
 
@@ -18,10 +18,10 @@ export const CarouselPagination = (props: ICarouselNavigation) => {
     <div className={cn(s.navigation, className)}>
       {showPagination && (
         <div className={s.pagination}>
-          {index} of {total}
+          {index} of {Math.ceil(total)}
         </div>
       )}
-      <button onClick={prevButtonClick} type="button">
+      <button onClick={prevButtonClick} disabled={index === 1} type="button">
         <svg
           width="36"
           height="36"
@@ -35,7 +35,7 @@ export const CarouselPagination = (props: ICarouselNavigation) => {
           />
         </svg>
       </button>
-      <button onClick={nextButtonClick} type="button">
+      <button onClick={nextButtonClick} disabled={index >= total} type="button">
         <svg
           width="36"
           height="36"

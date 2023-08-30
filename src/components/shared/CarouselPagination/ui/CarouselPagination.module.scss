@@ -2,6 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  button {
+    svg path {
+      transition: 400ms;
+    }
+
+    &:disabled {
+      svg path {
+        fill: #919EAB;
+      }
+    }
+  }
 }
 
 .pagination {

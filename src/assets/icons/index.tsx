@@ -25,6 +25,7 @@ export { default as BigLockIcon } from './shared/BigLockIcon.svg'
 export { default as DropArrowBlackIcon } from './shared/DropArrowBlack.svg'
 export { default as ArrowAccordionIcon } from './shared/ArrowAccordion.svg'
 export { default as ArrowBackIcon } from './shared/ArrowBack.svg'
+export { default as DoubleArrowIcon } from './shared/DoubleArrow.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'

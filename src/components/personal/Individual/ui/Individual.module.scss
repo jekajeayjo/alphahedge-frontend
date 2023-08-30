@@ -1,8 +1,25 @@
+@use 'styles/use/utils';
+
 .block {
   display: grid;
-  grid-template-columns: 705px 1fr;
+  grid-template-columns: 1fr minmax(670px, 1fr);
   grid-column-gap: 87px;
   padding: 70px 24px 73px 24px;
+
+  @include utils.media-max-width(1800) {
+    padding: 70px 20px 73px 20px;
+    grid-column-gap: 50px;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding: 40px 20px 40px 20px;
+    grid-column-gap: 50px;
+    grid-template-columns: 1fr minmax(500px, 1fr);
+  }
+
+  @include utils.media-max-width(1400) {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -10,6 +27,15 @@
   font-size: 18px;
   line-height: 37px;
   margin-bottom: 60px;
+
+  @include utils.media-max-width(1600) {
+    font-size: 16px;
+    line-height: 33px;
+  }
+
+  @include utils.media-max-width(1400) {
+    margin-bottom: 20px;
+  }
 }
 
 .list {
@@ -17,4 +43,21 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 45px;
+
+  @include utils.media-max-width(1600) {
+    gap: 30px;
+  }
+}
+
+.right {
+  @include utils.media-max-width(1400) {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include utils.media-max-width(1050) {
+    grid-template-columns: 1fr;
+  }
 }

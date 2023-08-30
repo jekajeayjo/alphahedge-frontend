@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .card {
   border-radius: 10px;
   background: #FAFAFA;
@@ -5,12 +7,18 @@
   padding: 20px;
 }
 
-
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 43px;
+
+  @include utils.media-max-width(900) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
 }
 
 .title {
@@ -22,6 +30,12 @@
     font-weight: 400;
     text-transform: capitalize;
     flex: 0 0 auto;
+  }
+
+  @include utils.media-max-width(900) {
+    span {
+      font-size: 18px;
+    }
   }
 }
 
@@ -35,6 +49,10 @@
   border-radius: 50%;
   margin-right: 20px;
   flex: 0 0 auto;
+
+  @include utils.media-max-width(900) {
+    margin-right: 10px;
+  }
 }
 
 .close {
@@ -54,8 +72,14 @@
     transition: 400ms;
   }
 
-  &.rotate img{
+  &.rotate img {
     transform: rotate(180deg);
+  }
+
+  @include utils.media-max-width(900) {
+    margin-left: auto;
+    order: -1;
+    font-size: 16px;
   }
 }
 
@@ -64,6 +88,11 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 26px;
+
+  @include utils.media-max-width(900) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 .actives,
@@ -73,6 +102,15 @@
   justify-content: space-between;
   grid-gap: 14px;
 
+  @include utils.media-max-width(750) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stats {
+  @include utils.media-max-width(750) {
+    grid-gap: 20px;
+  }
 }
 
 .active {
@@ -85,6 +123,17 @@
   .value {
     font-size: 20px;
     margin-top: 12px;
+  }
+
+  @include utils.media-max-width(1600) {
+    .value {
+      font-size: 16px;
+    }
+  }
+
+  @include utils.media-max-width(750) {
+    width: 100%;
+    padding: 15px 5px 5px 10px;
   }
 }
 
@@ -100,6 +149,14 @@
 .days {
   font-size: 18px;
   margin-right: 5px;
+
+  @include utils.media-max-width(1600) {
+    font-size: 16px;
+
+    span {
+      font-size: 16px;
+    }
+  }
 }
 
 .stats {
@@ -122,14 +179,30 @@
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 35px;
+
+  @include utils.media-max-width(750) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 }
 
 .input {
   max-width: 417px;
+
+  @include utils.media-max-width(750) {
+    max-width: 100%;
+  }
 }
 
 .button {
   max-width: 188px;
+  margin-left: 20px;
+
+  @include utils.media-max-width(750) {
+    max-width: 100%;
+    margin-left: 0;
+  }
 }
 
 .accordion {
@@ -150,6 +223,10 @@
     font-size: 16px;
     line-height: 23px;
     margin-bottom: 15px;
+
+    @include utils.media-max-width(900) {
+      font-size: 15px;
+    }
   }
 
   &__list {
@@ -182,6 +259,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @include utils.media-max-width(900) {
+      font-size: 17px;
+      line-height: 24px;
+    }
 
     &::before {
       content: '';

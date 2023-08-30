@@ -1,0 +1,58 @@
+@use 'styles/use/utils';
+
+.table {
+  @include utils.media-max-width(900) {
+    min-width: 630px;
+  }
+}
+
+.wrapper {
+  margin-top: 33px;
+}
+
+.inner {
+  &.md {
+    padding-right: 69px;
+
+    @include utils.media-max-width(1780) {
+      padding-right: 0;
+    }
+  }
+
+  @include utils.media-max-width(900) {
+    overflow-x: auto;
+    @include utils.customScroll(#000);
+  }
+}
+
+.head {
+  text-transform: uppercase;
+}
+
+.tbody {
+  tr {
+    border: none;
+
+    &:first-child {
+      th {
+        padding-top: 24px;
+      }
+    }
+
+    th {
+      padding: 15px 0 0;
+    }
+  }
+}
+
+.pagination {
+  &.md {
+    margin-top: 35px;
+  }
+
+  @include utils.media-max-width(900) {
+    &.md {
+      margin-top: 25px;
+    }
+  }
+}

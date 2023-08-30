@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .button {
   font-size: 16px;
   font-weight: 400;
@@ -36,11 +38,56 @@ tr.counter {
   }
 }
 
+.actions {
+  width: 20%;
+
+  &.md {
+    width: 15%;
+  }
+
+  @include utils.media-max-width(1600) {
+    width: 25%;
+  }
+}
+
+.more{
+  width: 100px;
+
+  button {
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration-line: underline;
+  }
+
+  @include utils.media-max-width(1600) {
+    width: 85px;
+    button {
+      font-size: 16px;
+    }
+  }
+}
+
+
+.cell {
+  width: 165px;
+}
 
 .company {
   width: 243px;
+
+  @include utils.media-max-width(1600) {
+    width: auto;
+  }
 }
 
 .price {
   width: 273px;
+
+  &.md {
+    width: auto;
+  }
+
+  @include utils.media-max-width(1600) {
+    width: auto;
+  }
 }

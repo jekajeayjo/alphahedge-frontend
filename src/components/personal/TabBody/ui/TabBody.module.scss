@@ -1,7 +1,17 @@
+@use 'styles/use/utils';
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr;
   padding-top: 25px;
+}
+
+.dropdown {
+  display: none;
+
+  @include utils.media-max-width(650) {
+    display: block;
+  }
 }
 
 .tabs {
@@ -11,64 +21,87 @@
   padding-bottom: 13px;
   padding-left: 40px;
 
-  button {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 18px;
-    font-weight: 300;
-    text-transform: capitalize;
-    line-height: 26px;
-    position: relative;
+  @include utils.media-max-width(1000) {
+    gap: 10px;
+    padding-left: 10px;
+  }
 
-    &::before {
-      position: absolute;
-      content: '';
-      bottom: -14px;
-      height: 2px;
-      border-radius: 14px;
-      background: var(--pinki-tin);
-      }
+  @include utils.media-max-width(650) {
+    display: none;
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+  line-height: 26px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    bottom: -14px;
+    height: 2px;
+    border-radius: 14px;
+    background: var(--pinki-tin);
+  }
+
+  &.active::before  {
+    left: -9px;
+  }
+
+  &.package::before  {
+    left: -6px;
+  }
+
+  &.individual::before  {
+    left: -7px;
+  }
+
+  &.current {
+    font-weight: 500;
 
     &.active::before  {
-      left: -9px;
+      width: 68px;
     }
 
     &.package::before  {
-      left: -6px;
+      width: 239px;
     }
 
     &.individual::before  {
-      left: -7px;
+      width: 270px;
     }
 
-    &.current {
-      font-weight: 500;
+    .count {
+      display: block;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    img {
+      transform: translateY(1.5px);
+    }
+  }
+
+  @include utils.media-max-width(1000) {
+    .tab {
+      font-size: 16px;
 
       &.active::before  {
-        width: 68px;
-      }
-
-      &.package::before  {
-        width: 239px;
-      }
-
-      &.individual::before  {
-        width: 246px;
-      }
-
-      .count {
-        display: block;
+        left: -2px;
       }
     }
+  }
 
-    &:disabled {
-      pointer-events: none;
-
-      img {
-        transform: translateY(1.5px);
-      }
-    }
+  @include utils.media-max-width(900) {
+    font-size: 15px;
   }
 }
 

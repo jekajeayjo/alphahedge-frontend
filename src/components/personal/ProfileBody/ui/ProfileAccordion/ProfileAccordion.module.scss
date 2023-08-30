@@ -1,3 +1,4 @@
+@use 'styles/use/utils';
 
 .item {
 
@@ -13,11 +14,17 @@
   color: #171C2C;
   font-size: 18px;
   font-weight: 700;
-  line-height: 26px;
+  line-height: 24px;
   width: 100%;
+  text-align: left;
 
   img {
+    margin-left: 20px;
     transition: 400ms;
+  }
+
+  @include utils.media-max-width(900) {
+    font-size: 16px;
   }
 }
 
@@ -30,4 +37,5 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 23px;
+  padding-top: 5px;
 }
