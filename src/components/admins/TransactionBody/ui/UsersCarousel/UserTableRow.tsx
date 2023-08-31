@@ -6,13 +6,13 @@ import { ChangeStatus } from 'components/admins/ChangeStatus'
 import s from './UsersCarousel.module.scss'
 
 export const UserTableRow = () => (
-  <TableRow>
-    <TableNameUser showType="fullName" />
-    <TableNameUser showType="username" />
+  <TableRow className={s.row}>
+    <TableNameUser className={s.fullname} showType="fullName" />
+    <TableNameUser className={s.username} showType="username" />
     <TableCell className={s.date}>
       21.08.2023, <span>16:45</span>
     </TableCell>
-    <TableCell>TRC20</TableCell>
+    <TableCell className={s.type}>TRC20</TableCell>
     <TableCell className={s.price}>
       $20,000
       <button type="button">
@@ -34,7 +34,7 @@ export const UserTableRow = () => (
         </svg>
       </button>
     </TableCell>
-    <TableCell>
+    <TableCell className={s.change}>
       <ChangeStatus status="В обработке" />
     </TableCell>
   </TableRow>

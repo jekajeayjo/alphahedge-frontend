@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .back {
   display: flex;
   align-items: center;
@@ -10,5 +12,24 @@
 
   img {
     transform: translateY(2px);
+  }
+
+  @include utils.media-max-width(1600) {
+    font-size: 22px;
+    margin-top: 40px;
+
+    img {
+      width: 30px;
+    }
+  }
+
+
+  @include utils.media-max-width(900) {
+    font-size: 20px;
+    margin-top: 30px;
+
+    img {
+      width: 22px;
+    }
   }
 }

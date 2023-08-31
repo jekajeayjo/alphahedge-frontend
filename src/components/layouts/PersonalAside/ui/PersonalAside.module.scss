@@ -6,19 +6,88 @@
   padding: 25px 0 80px;
   display: flex;
   flex-direction: column;
-  min-height: 890px;
+  //min-height: 890px;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
+  transition: 400ms;
+  z-index: 10;
 
-  @include utils.media-max-height(890) {
+  &.slide {
+    position: fixed;
+    width: 320px;
+
+    a, button {
+      gap: 20px;
+
+      span {
+        display: block;
+      }
+    }
+
+    .toggle {
+      flex: 0 0 auto;
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  @include utils.media-max-width(1850) {
+    width: 280px;
+  }
+
+  @include utils.media-max-width(1279) {
+    width: 68px;
+    border-right: 1px solid rgba(194, 160, 217, 0.8);
+  }
+
+  @include utils.media-range-height(900, 890) {
     position: static;
+    height: 100%;
+    overflow-y: auto;
+    @include utils.customScroll(#000);
+  }
+}
+
+.toggle {
+  display: none;
+  height: 55px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(194, 160, 217, 0.8);
+  padding-left: 25px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+
+  span {
+    color: #000;
+    font-size: 18px;
+    transition: 400ms;
+    white-space: nowrap;
+    display: none;
+  }
+
+  img {
+    transition: 400ms;
+  }
+
+  @include utils.media-max-width(1279) {
+    display: flex;
   }
 }
 
 .logo {
   margin: 0 auto 70px;
   text-align: center;
+
+  @include utils.media-max-width(1279) {
+    img {
+      width: 45px;
+    }
+  }
 }
 

@@ -1,3 +1,5 @@
+import cn from 'classnames'
+
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { Input } from 'components/shared/Input'
@@ -50,7 +52,7 @@ export const CloseTableForm = () => {
         </div>
         <div className={s.cell}>
           <DropDown
-            className={s.drop}
+            className={cn(s.drop, s.status)}
             placeholder="Статус"
             options={optionsStatus}
             defaultOption={optionsStatus[0]}

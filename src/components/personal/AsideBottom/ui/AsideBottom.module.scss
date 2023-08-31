@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .bottom {
   margin-top: auto;
 
@@ -7,12 +9,20 @@
     padding: 0 30px;
     height: 55px;
     line-height: 40px;
+
+    @include utils.media-max-width(1279) {
+      padding: 0 0 0 18px;
+    }
   }
 
   span {
     color: #000;
     font-size: 18px;
     transform: translateY(-3px);
+
+    @include utils.media-max-width(1279) {
+      display: none;
+    }
   }
 
   button {
@@ -25,4 +35,9 @@
   height: 30px;
   text-align: left;
   margin-right: 9px;
+
+  @include utils.media-max-width(1279) {
+    margin-right: 0;
+    text-align: center;
+  }
 }

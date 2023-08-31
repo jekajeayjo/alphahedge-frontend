@@ -1,15 +1,27 @@
+@use 'use/utils';
+
 @import 'vender/normalize.css';
 @import 'vender/fonts';
 @import 'vender/reset';
 @import 'global/variables';
 
+
 body {
   font-family: var(--font-family-main);
+  min-width: 375px;
 
   background-color: #FFFFFF;
   color: #000;
 
   a {
     color: inherit;
+  }
+
+  @include utils.media-max-width(900) {
+    padding-bottom: 70px;
+  }
+
+  &.fixed {
+    overflow: hidden;
   }
 }

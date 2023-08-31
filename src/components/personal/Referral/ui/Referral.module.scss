@@ -1,7 +1,9 @@
 @use 'styles/use/utils';
 
 .referral {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -11,11 +13,21 @@
   margin-top: 37px;
   padding-bottom: 41px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+
+  @include utils.media-max-width(700) {
+    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
 .col {
   flex: 0 0 auto;
+
+  @include utils.media-max-width(700) {
+    width: fit-content;
+  }
 }
 
 .ref {
@@ -35,11 +47,16 @@
   align-items: center;
   position: relative;
   padding-right: 26px;
+  line-height: 25px;
 
   button {
     position: absolute;
     right: 0;
-    top: -6px;
+    top: -4px;
+  }
+
+  @include utils.media-max-width(1600) {
+    font-size: 16px;
   }
 }
 
@@ -63,15 +80,21 @@
   width: 100%;
 }
 
-.referal {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 50px 1fr 1fr 1fr;
-  font-size: 18px;
+tr.referal {
+  border-bottom: none;
 
-  & + & {
-    margin-top: 15px;
+  th {
+    padding: 7.5px 0;
+
+    &:nth-child(2) {
+      width: 40%;
+    }
   }
+}
+
+.cellName {
+  display: flex;
+  align-items: center;
 }
 
 .name {
@@ -93,7 +116,31 @@
   }
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.inner {
+  overflow-x: auto;
+  @include utils.customScroll(#000);
+}
+
+.table {
+  min-width: 630px;
+}
+
+.theader {
+  display: none;
+}
+
 .pagination {
-  margin-top: 69px;
+  margin-top: auto;
+  margin-bottom: 10px;
   transform: translateX(11px);
+
+  @include utils.media-max-width(1000) {
+    margin-top: 20px;
+  }
 }

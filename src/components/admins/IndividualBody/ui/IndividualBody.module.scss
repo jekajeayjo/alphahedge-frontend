@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .wrapper {
   background-color: #fff;
   border-radius: 15px;
@@ -5,9 +7,23 @@
 
 .header {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(670px, 1fr) 1fr;
   grid-gap: 141px;
-  padding: 30px 34px 0 30px;
+  padding: 30px 14px 0 10px;
+
+  @include utils.media-max-width(1700) {
+    grid-gap: 50px;
+  }
+
+  @include utils.media-max-width(1600) {
+    grid-template-columns: minmax(500px, 1fr) 1fr;
+  }
+
+  @include utils.media-max-width(1050) {
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+    padding: 0;
+  }
 }
 
 .right {
@@ -19,6 +35,11 @@
   align-items: center;
   gap: 38px;
   margin-bottom: 41px;
+
+  @include utils.media-max-width(1000) {
+    margin-bottom: 30px;
+    gap: 15px;
+  }
 }
 
 .circle {
@@ -32,6 +53,16 @@
   font-size: 32px;
   font-weight: 500;
   line-height: 44px;
+
+  @include utils.media-max-width(1500) {
+    font-size: 30px;
+    line-height: 42px;
+  }
+
+  @include utils.media-max-width(1000) {
+    font-size: 28px;
+    line-height: 40px;
+  }
 }
 
 .username {
@@ -44,4 +75,8 @@
   border: none;
   background-color: transparent;
   margin-top: 70px;
+
+  @include utils.media-max-width(1050){
+    margin-top: 30px;
+  }
 }

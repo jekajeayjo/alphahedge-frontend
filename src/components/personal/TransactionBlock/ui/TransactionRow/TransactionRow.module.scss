@@ -1,42 +1,25 @@
-.head {
-  text-transform: uppercase;
-}
-
-.tbody {
-  tr {
-    border: none;
-
-    &:first-child {
-      th {
-        padding-top: 24px;
-      }
-    }
-
-    th {
-      padding: 15px 0 0;
-    }
-  }
-}
-
 .first {
   display: flex;
   align-items: center;
   gap: 24px;
-  width: 200px;
+  width: 150px;
 }
 
-.type {
-}
 
 .data,
 .type {
-  width: 145px;
   span {
     font-weight: 400;
   }
 }
 
 .type {
+  font-size: 18px;
+  width: 25%;
+}
+
+.data {
+  width: 30%;
 }
 
 .status {

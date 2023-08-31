@@ -1,12 +1,15 @@
-.block {
-
-}
+@use 'styles/use/utils';
 
 .value {
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
   margin-bottom: 5px;
+
+  @include utils.media-max-width(900) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 .label {
@@ -14,4 +17,8 @@
   font-size: 14px;
   text-transform: capitalize;
   line-height: 20px;
+
+  @include utils.media-max-width(900) {
+    font-size: 13px;
+  }
 }

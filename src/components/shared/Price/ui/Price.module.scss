@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .price {
   font-weight: 700;
 
@@ -7,6 +9,14 @@
     span {
       font-size: 20px;
     }
+
+    @include utils.media-max-width(1600) {
+      font-size: 16px;
+
+      span {
+        font-size: 18px;
+      }
+    }
   }
 
   &.lg {
@@ -14,6 +24,14 @@
 
     span {
       font-size: 36px;
+    }
+
+    @include utils.media-max-width(1600) {
+      font-size: 28px;
+
+      span {
+        font-size: 32px;
+      }
     }
   }
 

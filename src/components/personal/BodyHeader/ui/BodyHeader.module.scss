@@ -1,13 +1,25 @@
+@use 'styles/use/utils';
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 25px;
+
+  @include utils.media-max-width(900) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .name {
   font-size: 24px;
   margin-bottom: 14px;
+
+  @include utils.media-max-width(900) {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 .data {
@@ -23,11 +35,20 @@
     margin: 0 3px;
     transform: translateY(-4px);
   }
+
+  @include utils.media-max-width(900) {
+    font-size: 14px;
+  }
 }
 
 .lang {
   button {
     border-color: rgba(0, 0, 0, 0.20);
     color: #000000;
+  }
+
+  @include utils.media-max-width(900) {
+    order: -1;
+    margin-left: auto;
   }
 }

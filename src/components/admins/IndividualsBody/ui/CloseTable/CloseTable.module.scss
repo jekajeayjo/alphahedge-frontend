@@ -1,23 +1,53 @@
+@use 'styles/use/utils';
+
 .form {
   display: flex;
   align-items: flex-start;
   gap: 85px;
   margin-bottom: 40px;
+
+  @include utils.media-max-width(1800) {
+    gap: 30px;
+  }
+
+  @include utils.media-max-width(1500) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+
+  @include utils.media-max-width(1000) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.drop > button{
+.drop > button {
   font-weight: 700;
+}
+
+.drop.status{
+  position: relative;
+  z-index: 3;
 }
 
 .cell {
   max-width: 331px;
   width: 100%;
+
+  @include utils.media-max-width(1500) {
+    max-width: 100%;
+  }
 }
 
 .button {
   margin-left: auto;
   width: 188px;
   flex: 0 0 auto;
+
+  @include utils.media-max-width(1500) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .label {
@@ -28,32 +58,59 @@
   line-height: 20px;
 }
 
-.name button{
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.table {
+  @include utils.media-max-width(1100) {
+    min-width: 935px;
+  }
+}
+
+.inner {
+  @include utils.media-max-width(1100) {
+    overflow-x: auto;
+    @include utils.customScroll(#000);
+  }
+}
+
+.name {
+  width: 27%;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+}
+
+.username {
+  width: 20%;
+
+  @include utils.media-max-width(1600) {
+    width: 18%;
+  }
 }
 
 .th {
   font-size: 18px;
+
+  @include utils.media-max-width(1600) {
+    font-size: 16px;
+  }
 }
 
 .price {
   color: var(--pinki-tin);
   font-size: 24px;
-}
 
-.list {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-
-  > table {
-    flex: 0 0 auto;
+  @include utils.media-max-width(1600) {
+    font-size: 20px;
   }
 }
 
-.pagination {
-  margin-right: 4px;
-  margin-top: 25px;
+.change {
+  width: 165px;
+
+  @include utils.media-max-width(1600) {
+    width: 140px;
+  }
 }

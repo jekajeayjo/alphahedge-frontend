@@ -3,14 +3,30 @@ import cn from 'classnames'
 
 import { WrapperTable } from 'components/admins/WrapperTable'
 import { IndividualBody } from 'components/admins/IndividualBody'
-
-import { ActiveTableBody } from './ActiveTable/ActiveTableBody'
+import {
+  NavigationDrop,
+  NavigationTabType,
+} from 'components/shared/NavigationDrop'
 
 import { IContext, UserDataContext } from '../context/UserDataContext'
 
+import { ActiveTableBody } from './ActiveTable/ActiveTableBody'
 import { CloseTableBody } from './CloseTable/CloseTableBody'
 
 import s from './IndividualsBody.module.scss'
+
+const tabs: NavigationTabType[] = [
+  {
+    value: 'active',
+    label: 'Активные введения',
+    count: 18,
+  },
+  {
+    value: 'close',
+    label: 'Заявки на закрытие',
+    count: 18,
+  },
+]
 
 export const IndividualsBody = () => {
   const [tab, setTab] = useState<'active' | 'close'>('active')
@@ -28,6 +44,22 @@ export const IndividualsBody = () => {
 
   return (
     <>
+      <NavigationDrop className={s.dropdown} tabs={tabs} active={tab}>
+        <button
+          className={s.tab}
+          onClick={() => onClickHandler('active')}
+          type="button"
+        >
+          Активные введения
+        </button>
+        <button
+          className={s.tab}
+          onClick={() => onClickHandler('close')}
+          type="button"
+        >
+          Заявки на закрытие
+        </button>
+      </NavigationDrop>
       <div className={s.tabs}>
         <button
           className={cn(s.tab, s.active, { [s.current]: tab === 'active' })}
@@ -48,15 +80,15 @@ export const IndividualsBody = () => {
           <div className={s.count}>4</div>
         </button>
       </div>
-      <WrapperTable>
-        <div className={s.body}>
-          <UserDataContext.Provider value={user}>
+      <UserDataContext.Provider value={user}>
+        <WrapperTable hideTitle={Boolean(userData)}>
+          <div className={s.body}>
             {userData && <IndividualBody />}
             {!userData && tab === 'active' && <ActiveTableBody />}
             {!userData && tab === 'close' && <CloseTableBody />}
-          </UserDataContext.Provider>
-        </div>
-      </WrapperTable>
+          </div>
+        </WrapperTable>
+      </UserDataContext.Provider>
     </>
   )
 }

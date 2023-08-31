@@ -1,11 +1,21 @@
+@use 'styles/use/utils';
+
 .li {
   font-size: 18px;
   font-weight: 500;
   line-height: 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  @include utils.media-max-width(900) {
+    font-size: 17px;
+  }
 
   img {
     width: auto;
     height: 14px;
-    margin-right: 12px;
+    flex: 0 0 auto;
+    transform: translateY(6px);
   }
 }

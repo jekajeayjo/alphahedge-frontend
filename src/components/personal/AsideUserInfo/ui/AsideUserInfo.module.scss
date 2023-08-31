@@ -1,9 +1,38 @@
+@use 'styles/use/utils';
+
 .info {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 30px;
   margin-bottom: 38px;
+  transition: 400ms;
+
+  &.isSplit {
+
+
+    .content {
+      display: block;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding: 0 0 0 10px;
+
+  } @include utils.media-max-width(900) {
+    padding: 0 0 0 0;
+  }
+}
+
+.content {
+  white-space: nowrap;
+  @include utils.media-max-width(1279) {
+    display: none;
+  }
+
+  @include utils.media-max-width(900) {
+    display: block;
+  }
 }
 
 .price {

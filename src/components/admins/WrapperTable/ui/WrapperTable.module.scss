@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .wrapper {
   background-color: #fff;
   border-radius: 15px;
@@ -10,4 +12,17 @@
   font-weight: 500;
   line-height: 52px;
   margin-bottom: 25px;
+
+  @include utils.media-max-width(1500) {
+    font-size: 25px;
+  }
+
+  @include utils.media-max-width(1000) {
+    font-size: 22px;
+  }
+
+  @include utils.media-max-width(650) {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }

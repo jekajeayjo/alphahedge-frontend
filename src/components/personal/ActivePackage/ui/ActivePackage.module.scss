@@ -1,14 +1,26 @@
+@use 'styles/use/utils';
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 44px 0 24px;
+
+  @include utils.media-max-width(900) {
+    align-items: flex-start;
+  }
 }
 
 .left {
   display: flex;
   align-items: center;
   gap: 67px;
+
+  @include utils.media-max-width(900) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }
 
 .right a{
@@ -22,12 +34,31 @@
   img {
     transform: translateY(1px);
   }
+
+  @include utils.media-max-width(900) {
+    margin-top: 4px;
+  }
 }
 
+
+.wrapper {
+  overflow-x: auto;
+  @include utils.customScroll(#000);
+}
+
+.table {
+  @include utils.media-max-width(900) {
+    min-width: 1000px;
+  }
+}
 
 .tbody {
   th {
     font-size: 18px;
+
+    @include utils.media-max-width(1600) {
+      font-size: 16px;
+    }
   }
 
   tr {
@@ -35,20 +66,7 @@
       border-bottom: none;
     }
   }
-}
 
-.carousel {
-  overflow: hidden;
-}
-
-.list {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-
-  > table {
-      flex: 0 0 auto;
-  }
 }
 
 .pagination {

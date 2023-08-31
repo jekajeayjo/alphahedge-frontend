@@ -5,8 +5,8 @@ export interface ITransactionForm {
 
 export interface ITransactionBlock {
   classNameForm?: string
-  classNameCarousel?: string
   type: 'replenishment' | 'derivation'
+  perPage: number
 }
 
 export interface ITransactionTableCarousel {

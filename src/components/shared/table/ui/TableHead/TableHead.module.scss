@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   height: 56px;
@@ -8,5 +10,10 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 23px;
+
+    @include utils.media-max-width(1600) {
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }

@@ -35,22 +35,29 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
 
   return (
     <>
-      <TableRow className={cn(s.row, { [s.borderHide]: sellCounter })}>
+      <TableRow className={cn({ [s.borderHide]: sellCounter })}>
         <TableCell className={s.company}>
           <Company name="Meta" />
         </TableCell>
-        <TableCell className={s.price}>
+        <TableCell className={cn(s.price, { [s.md]: showButton })}>
           <Price type="xs" price="1753.00" />
         </TableCell>
         <TableCell>
           <TablePrice price="18,530. 00" type="up" showPercent />
         </TableCell>
-        <TableCell>10</TableCell>
+        <TableCell className={cn(s.actions, { [s.md]: showButton })}>
+          10
+        </TableCell>
         <TableCell>
           <TablePrice price="18,530. 00" type="up" />
         </TableCell>
         {showButton && (
-          <TableCell>
+          <TableCell className={s.more}>
+            <button type="button">Подробнее</button>
+          </TableCell>
+        )}
+        {showButton && (
+          <TableCell className={s.cell}>
             <Button className={s.button} type="button" onClick={changeCounter}>
               {sellCounter ? 'Подтвердить' : 'Продать'}
             </Button>

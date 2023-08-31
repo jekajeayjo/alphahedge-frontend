@@ -1,13 +1,28 @@
+@use 'styles/use/utils';
+
 .form {
   display: flex;
   align-items: flex-start;
   gap: 50px;
   margin-bottom: 40px;
+
+  @include utils.media-max-width(1600) {
+    gap: 20px;
+  }
+
+  @include utils.media-max-width(1000) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .cell {
   max-width: 331px;
   width: 100%;
+
+  @include utils.media-max-width(1000) {
+    max-width: 100%;
+  }
 }
 
 .label {
@@ -26,4 +41,9 @@
   margin-left: auto;
   width: 188px;
   flex: 0 0 auto;
+
+  @include utils.media-max-width(1000) {
+    width: 100%;
+    margin: 0;
+  }
 }

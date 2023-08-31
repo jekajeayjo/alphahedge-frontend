@@ -1,21 +1,5 @@
 @use 'styles/use/utils';
 
-
-.list {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-
-  > table {
-    flex: 0 0 auto;
-  }
-}
-
-.pagination {
-  margin-right: 4px;
-  margin-top: 25px;
-}
-
 .toggle {
   width: 41px;
   height: 15px;
@@ -45,6 +29,7 @@
 }
 
 .date {
+  width: 20%;
   span {
     font-weight: 500;
     font-size: 16px;
@@ -61,4 +46,39 @@
   border-radius: 50%;
   background-color: var(--pinki-tin);
   transition: 400ms;
+}
+
+.row {
+  th {
+    font-size: 18px;
+
+    @include utils.media-max-width(1500) {
+      font-size: 16px;
+    }
+  }
+}
+
+.table {
+  min-width: 1255px;
+}
+
+.inner {
+  overflow-x: auto;
+  @include utils.customScroll(#000);
+}
+
+.fullname {
+  width: 22%;
+}
+
+.username {
+  width: 15%;
+}
+
+.type {
+  width: 15%;
+}
+
+.change {
+  width: 200px;
 }

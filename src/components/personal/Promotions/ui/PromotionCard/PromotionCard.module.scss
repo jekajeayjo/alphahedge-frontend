@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .card {
   padding: 11px 15px 15px;
   border-radius: 10px;
@@ -31,6 +33,11 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 29px;
+
+
+  @include utils.media-max-width(1000) {
+    font-size: 18px;
+  }
 }
 
 .company {
@@ -39,6 +46,10 @@
   font-weight: 300;
   line-height: 23px;
   margin-top: 1px;
+
+  @include utils.media-max-width(1000) {
+    font-size: 15px;
+  }
 }
 
 .change {
