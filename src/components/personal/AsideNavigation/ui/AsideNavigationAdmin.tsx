@@ -12,12 +12,17 @@ import {
 
 import s from './AsideNavigation.module.scss'
 
-export const AsideNavigationAdmin = () => (
+interface IProps {
+  onClick(type: boolean): void
+}
+
+export const AsideNavigationAdmin = ({ onClick }: IProps) => (
   <>
     <NavLink
       end
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin/dashboard"
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={DashboardIcon} alt="dashboard" />
@@ -29,6 +34,7 @@ export const AsideNavigationAdmin = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin"
       end
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={AccountIcon} alt="аккаунт" />
@@ -39,6 +45,7 @@ export const AsideNavigationAdmin = () => (
     <NavLink
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin/individuals"
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={IndividualIcon} alt="индвидиуальные" />
@@ -50,6 +57,7 @@ export const AsideNavigationAdmin = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin/users"
       end
+      onClick={() => onClick(true)}
     >
       <div className={cn(s.icon, s.financeIcon)}>
         <img src={UsersIcon} alt="пользователи" />
@@ -61,6 +69,7 @@ export const AsideNavigationAdmin = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin/transaction"
       end
+      onClick={() => onClick(true)}
     >
       <div className={cn(s.icon, s.transaction)}>
         <img src={TransactionIcon} alt="транзакции" />
@@ -72,6 +81,7 @@ export const AsideNavigationAdmin = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/admin/verification"
       end
+      onClick={() => onClick(true)}
     >
       <div className={cn(s.icon, s.verification)}>
         <img src={Verification} alt="верификация" />

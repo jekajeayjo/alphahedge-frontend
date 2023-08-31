@@ -16,26 +16,49 @@ import s from './PersonalAside.module.scss'
 export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
   const [isSplit, setIsSplit] = useState(false)
 
-  const toggleHandler = () => {
-    setIsSplit((prevState) => !prevState)
+  const toggleHandler = (split: boolean) => {
+    const body = document.body
+
+    if (!split) {
+      body.classList.add('fixed')
+    } else {
+      body.classList.remove('fixed')
+    }
+
+    setIsSplit(!split)
   }
 
   const ref = useRef<any>()
 
-  useOnOutsideClick(ref, () => setIsSplit(false))
+  useOnOutsideClick(ref, () => isSplit && toggleHandler(true))
+
+  const onChangePage = () => {
+    toggleHandler(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 
   return (
-    <aside className={cn(s.aside, { [s.slide]: isSplit })} ref={ref}>
-      <div className={s.logo}>
-        <img src={LogoBlue} alt="logo" />
-      </div>
-      <AsideUserInfo isSplit={isSplit} />
-      <AsideNavigation adminEdit={adminEdit} />
-      <button className={s.toggle} onClick={toggleHandler} type="button">
-        <img src={DoubleArrowIcon} alt="" />
-        <span>Свернуть меню</span>
-      </button>
-      <AsideBottom />
-    </aside>
+    <>
+      <aside className={cn(s.aside, { [s.slide]: isSplit })} ref={ref}>
+        <div className={s.logo}>
+          <img src={LogoBlue} alt="logo" />
+        </div>
+        <AsideUserInfo isSplit={isSplit} />
+        <AsideNavigation adminEdit={adminEdit} onClick={onChangePage} />
+        <button
+          className={s.toggle}
+          onClick={() => toggleHandler(isSplit)}
+          type="button"
+        >
+          <img src={DoubleArrowIcon} alt="" />
+          <span>Свернуть меню</span>
+        </button>
+        <AsideBottom />
+      </aside>
+      {isSplit && <div />}
+    </>
   )
 }

@@ -6,7 +6,7 @@
   padding: 25px 0 80px;
   display: flex;
   flex-direction: column;
-  min-height: 890px;
+  //min-height: 890px;
   position: fixed;
   left: 0;
   top: 0;
@@ -27,6 +27,7 @@
     }
 
     .toggle {
+      flex: 0 0 auto;
       img {
         transform: rotate(180deg);
       }
@@ -42,9 +43,11 @@
     border-right: 1px solid rgba(194, 160, 217, 0.8);
   }
 
-  @include utils.media-range-height(1280, 890) {
+  @include utils.media-range-height(900, 890) {
     position: static;
     height: 100%;
+    overflow-y: auto;
+    @include utils.customScroll(#000);
   }
 }
 
@@ -57,6 +60,8 @@
   align-items: center;
   justify-content: flex-start;
   gap: 25px;
+  margin-bottom: 20px;
+  padding-top: 10px;
 
   span {
     color: #000;

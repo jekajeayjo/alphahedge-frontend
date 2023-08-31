@@ -35,7 +35,7 @@
 
 .overlay {
   height: 100vh;
-  @include utils.media-range-height(1280, 890) {
+  @include utils.media-range-height(900, 890) {
     display: none;
   }
 }

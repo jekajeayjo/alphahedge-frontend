@@ -10,12 +10,17 @@ import {
 
 import s from './AsideNavigation.module.scss'
 
-export const AsideNavigationUser = () => (
+interface IProps {
+  onClick(type: boolean): void
+}
+
+export const AsideNavigationUser = ({ onClick }: IProps) => (
   <>
     <NavLink
       end
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal/dashboard"
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={DashboardIcon} alt="dashboard" />
@@ -26,6 +31,7 @@ export const AsideNavigationUser = () => (
     <NavLink
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal/investments"
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={InvestmentsIcon} alt="инвестиции" />
@@ -37,6 +43,7 @@ export const AsideNavigationUser = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal/finance"
       end
+      onClick={() => onClick(true)}
     >
       <div className={cn(s.icon, s.financeIcon)}>
         <img src={FinanceIcon} alt="финансы" />
@@ -48,6 +55,7 @@ export const AsideNavigationUser = () => (
       className={({ isActive }) => (isActive ? s.current : '')}
       to="/personal"
       end
+      onClick={() => onClick(true)}
     >
       <div className={s.icon}>
         <img src={AccountIcon} alt="аккаунт" />

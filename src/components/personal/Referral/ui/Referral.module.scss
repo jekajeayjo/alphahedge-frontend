@@ -123,10 +123,8 @@ tr.referal {
 }
 
 .inner {
-  @include utils.media-max-width(700) {
-    overflow-x: auto;
-    @include utils.customScroll(#000);
-  }
+  overflow-x: auto;
+  @include utils.customScroll(#000);
 }
 
 .table {

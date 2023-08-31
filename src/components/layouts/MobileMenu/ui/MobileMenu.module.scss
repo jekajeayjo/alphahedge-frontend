@@ -3,6 +3,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -11,6 +12,20 @@
   height: 70px;
   z-index: 10;
   border-top: 1px solid rgba(#050926, .1);
+
+  a {
+    margin: 0 10px;
+
+    img {
+      width: 25px;
+    }
+
+    &.current {
+      .icon {
+        background: rgba(194, 160, 217, 0.3);
+      }
+    }
+  }
 }
 
 .menu {
@@ -38,15 +53,29 @@
   }
 }
 
+.icon {
+  @include utils.centering();
+  border-radius: 5px;
+  width: 52px;
+  height: 52px;
+
+  &.acc {
+    img {
+      width: 21px;
+    }
+  }
+}
+
 
 .button {
+  flex: 0 0 auto;
   width: 52px;
   height: 52px;
   border-radius: 50%;
   border: 1px solid var(--pinki-tin);
   @include utils.centering();
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 10px;
 
   span {
     display: block;

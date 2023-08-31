@@ -8,14 +8,20 @@ import { IAsideNavigation } from '../model/AsideNavigation.interface'
 
 import s from './AsideNavigation.module.scss'
 
-export const AsideNavigation = ({ adminEdit }: IAsideNavigation) => {
+export const AsideNavigation = (props: IAsideNavigation) => {
+  const { adminEdit, onClick } = props
+
   const { role } = useAuth()
 
   return (
     <nav className={s.navigation}>
-      {role === 'USER' && <AsideNavigationUser />}
-      {!adminEdit && role === 'ADMIN' && <AsideNavigationAdmin />}
-      {adminEdit && role === 'ADMIN' && <AsideNavigationAdminEdit />}
+      {role === 'USER' && <AsideNavigationUser onClick={onClick} />}
+      {!adminEdit && role === 'ADMIN' && (
+        <AsideNavigationAdmin onClick={onClick} />
+      )}
+      {adminEdit && role === 'ADMIN' && (
+        <AsideNavigationAdminEdit onClick={onClick} />
+      )}
     </nav>
   )
 }
