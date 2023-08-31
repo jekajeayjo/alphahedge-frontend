@@ -17,12 +17,12 @@ export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
   const [isSplit, setIsSplit] = useState(false)
 
   const toggleHandler = (split: boolean) => {
-    const body = document.body
+    const { classList } = document.body
 
     if (!split) {
-      body.classList.add('fixed')
+      classList.add('fixed')
     } else {
-      body.classList.remove('fixed')
+      classList.remove('fixed')
     }
 
     setIsSplit(!split)

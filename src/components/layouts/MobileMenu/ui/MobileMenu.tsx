@@ -29,20 +29,20 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
   useEffect(() => {
     window.addEventListener('resize', () => {
       if (isOpen) {
-        const body = document.body
-        body.classList.remove('fixed')
+        const { classList } = document.body
+        classList.remove('fixed')
         setIsOpen(false)
       }
     })
   }, [isOpen])
 
   const toggleOpenHandler = (open: boolean) => {
-    const body = document.body
+    const { classList } = document.body
 
     if (!open) {
-      body.classList.add('fixed')
+      classList.add('fixed')
     } else {
-      body.classList.remove('fixed')
+      classList.remove('fixed')
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
