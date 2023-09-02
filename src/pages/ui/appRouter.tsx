@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
+
 import { PageLayout } from 'components/layouts/PageLayout'
+import { AuthLayout } from 'components/layouts/AuthLayout'
 
 import { ProtectedRoutes } from './ProtectedRoutes'
 
@@ -15,7 +17,29 @@ import { InvestmentsPage } from './personal/InvestmentsPage/InvestmentsPage'
 import { FinancePage } from './personal/FinancePage/FinancePage'
 import { PersonalHome } from './personal/PersonalHome/PersonalHome'
 
+import { LoginPage } from './login/LoginPage'
+import { RegisterPage } from './register/RegisterPage'
+import { EmailConfirmPage } from './emailConfirmPage/EmailConfirmPage'
+
 export const appRouter = createBrowserRouter([
+  {
+    element: AuthLayout(),
+    errorElement: <div>error</div>,
+    children: [
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/register',
+        element: <RegisterPage />,
+      },
+      {
+        path: '/email-confirm',
+        element: <EmailConfirmPage />,
+      },
+    ],
+  },
   {
     element: PageLayout(),
     errorElement: <div>error</div>,
@@ -24,10 +48,14 @@ export const appRouter = createBrowserRouter([
         path: '/',
         element: <HomePage />,
       },
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
     ],
   },
   {
-    element: ProtectedRoutes({ roleRequired: 'USER' }),
+    element: <ProtectedRoutes roleRequired="user" />,
     errorElement: <div>error</div>,
     children: [
       {
@@ -53,7 +81,7 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: ProtectedRoutes({ roleRequired: 'ADMIN' }),
+    element: <ProtectedRoutes roleRequired="admin" />,
     errorElement: <div>error</div>,
     children: [
       {
@@ -83,7 +111,7 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: ProtectedRoutes({ roleRequired: 'ADMIN', adminEdit: true }),
+    element: <ProtectedRoutes roleRequired="admin" adminEdit />,
     errorElement: <div>error</div>,
     children: [
       {

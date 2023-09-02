@@ -1,5 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import cn from 'classnames'
+
+import useAuth from 'hooks/useAuth'
 
 import { Container } from 'components/shared/Container'
 import { ChangeLanguage } from 'components/shared/ChangeLanguage'
@@ -9,12 +11,7 @@ import { DropArrow, HeaderLogo, UserIcon } from 'assets/icons'
 import s from './Header.module.scss'
 
 export const Header = () => {
-  const navigate = useNavigate()
-
-  const login = () => {
-    localStorage.setItem('user', JSON.stringify({ role: 'USER' }))
-    navigate('/personal/dashboard')
-  }
+  const { auth } = useAuth()
 
   return (
     <header className={s.header}>
@@ -40,9 +37,16 @@ export const Header = () => {
           </nav>
           <div className={s.actions}>
             <ChangeLanguage />
-            <button className={s.user} type="button" onClick={login}>
+            <Link
+              className={s.user}
+              to={
+                auth?.isAuth
+                  ? `/${auth?.role === 'user' ? 'personal' : 'admin'}/dashboard`
+                  : '/login'
+              }
+            >
               <img src={UserIcon} alt="user-icon" />
-            </button>
+            </Link>
           </div>
         </div>
       </Container>

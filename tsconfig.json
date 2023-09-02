@@ -22,7 +22,8 @@
 			"helpers/*": ["helpers/*"],
 			"hooks/*": ["hooks/*"],
 			"assets/*": ["assets/*"],
-			"types/*": ["types/*"],
+			"models/*": ["models/*"],
+			"context/*": ["context/*"],
 			"styles/*": ["styles/*"]
 		}
 	},

@@ -5,10 +5,18 @@
 @import 'vender/reset';
 @import 'global/variables';
 
+html, body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
 
 body {
   font-family: var(--font-family-main);
   min-width: 375px;
+
 
   background-color: #FFFFFF;
   color: #000;
