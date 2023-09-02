@@ -1,4 +1,4 @@
-import { useAuth } from 'hooks/useAuth'
+import useAuth from 'hooks/useAuth'
 
 import { AdminBack } from 'components/admins/AdminBack'
 
@@ -14,7 +14,7 @@ import s from './DashboardBody.module.scss'
 export const DashboardBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
 
-  const { role } = useAuth()
+  const { auth } = useAuth()
 
   return (
     <>
@@ -33,7 +33,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
             link="/"
             textLink="Все портфели"
           >
-            <ActivePortfolios isAdmin={role === 'ADMIN'} />
+            <ActivePortfolios isAdmin={auth?.role === 'admin'} />
           </PersonalBlock>
         </div>
         <PersonalBlock label="Реферальная система">

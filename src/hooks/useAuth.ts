@@ -1,22 +1,7 @@
-export const useAuth = () => {
-  let user: any
+import { useContext } from 'react'
 
-  const _user = localStorage.getItem('user')
+import { AuthContext } from 'context/AuthProvider'
 
-  if (_user) {
-    user = JSON.parse(_user)
-    console.log('user', user)
-  }
+const useAuth = () => useContext(AuthContext)
 
-  if (user) {
-    return {
-      auth: true,
-      role: user.role,
-    }
-  }
-
-  return {
-    auth: false,
-    role: null,
-  }
-}
+export default useAuth

@@ -44,6 +44,13 @@ export { default as UsersIcon } from './personal/users.svg'
 export { default as TransactionIcon } from './personal/transaction.svg'
 export { default as Verification } from './personal/verificationIcon.svg'
 
+// auth
+export { default as FirstIcon } from './auth/first.svg'
+export { default as SecondIcon } from './auth/second.svg'
+export { default as ThirdIcon } from './auth/third.svg'
+export { default as FourthIcon } from './auth/fourth.svg'
+export { default as BgIcon } from './auth/bg.svg'
+
 // mock
 export { default as MetaIcon } from './shared/MetaIcon.svg'
 export { default as ApplyIcon } from './shared/ApplyIcon.svg'

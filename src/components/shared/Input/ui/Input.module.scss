@@ -1,3 +1,10 @@
+@use 'styles/use/utils';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   width: 100%;
   display: block;
@@ -7,8 +14,21 @@
   font-weight: 300;
   border-radius: 9px;
   border: 1px solid #000;
+  line-height: 49px;
 
   &::placeholder {
     color: #818181;
+  }
+}
+
+.show {
+  position: absolute;
+  right: 10px;
+  transition: 400ms;
+
+  @include utils.centerVertically();
+
+  &.active {
+    opacity: .4;
   }
 }

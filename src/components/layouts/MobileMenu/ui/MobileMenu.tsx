@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 
+import useAuth from 'hooks/useAuth'
+
 import {
   AccountIcon,
   DashboardIcon,
@@ -15,8 +17,6 @@ import {
 import { AsideNavigation } from 'components/personal/AsideNavigation'
 import { AsideUserInfo } from 'components/personal/AsideUserInfo'
 
-import { useAuth } from 'hooks/useAuth'
-
 import s from './MobileMenu.module.scss'
 
 export const MobileMenu = (props: { adminEdit: boolean }) => {
@@ -24,7 +24,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { role } = useAuth()
+  const { auth } = useAuth()
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -64,7 +64,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
         />
       </div>
       <div className={s.header}>
-        {role === 'USER' && (
+        {auth?.role === 'user' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -88,7 +88,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {role === 'ADMIN' && (
+        {auth?.role === 'admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -123,7 +123,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           <span />
         </button>
 
-        {role === 'ADMIN' && (
+        {auth?.role === 'admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -149,7 +149,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {role === 'USER' && (
+        {auth?.role === 'user' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}

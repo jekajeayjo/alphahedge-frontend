@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import { appRouter } from 'pages'
 
 import './styles/index.scss'
+import { AuthProvider } from 'context/AuthProvider'
 
 const container = document.getElementById('app') as HTMLElement
 
@@ -16,4 +17,8 @@ if (!container) {
 
 const root = createRoot(container)
 
-root.render(<RouterProvider router={appRouter} />)
+root.render(
+  <AuthProvider>
+    <RouterProvider router={appRouter} />
+  </AuthProvider>,
+)
