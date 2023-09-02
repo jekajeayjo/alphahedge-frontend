@@ -7,6 +7,10 @@
   width: 100%;
 
   @include utils.center();
+
+  @include utils.media-max-width(900) {
+    top: 30px;
+  }
 }
 
 .inner {
@@ -15,12 +19,31 @@
   justify-content: space-between;
 }
 
-.logo {
+.logo img{
+
+  @include utils.media-max-width(500) {
+    width: 35px;
+  }
 }
 
 .navigation {
   @include utils.centering();
   gap: 70px;
+
+  @include utils.media-max-width(1470) {
+    gap: 40px;
+  }
+
+  @include utils.media-max-width(900) {
+    justify-content: flex-start;
+    padding-top: 30px;
+    border-top: 1px solid hsla(0,0%,95%,.1);
+    margin-top: 30px;
+  }
+
+  @include utils.media-max-width(500) {
+    gap: 25px;
+  }
 }
 
 .link {
@@ -39,13 +62,30 @@
       right: -18px;
       border-radius: 19px;
       background: #a767d5;
+
+      @include utils.media-max-width(900) {
+        left: 0;
+        right: 0;
+      }
     }
+  }
+
+  @include utils.media-max-width(1470) {
+    font-size: 16px;
+  }
+
+  @include utils.media-max-width(500) {
+    font-size: 15px;
   }
 }
 
 .dropArrow {
   display: inline-block;
   transform: translate(3px, -3px);
+
+  @include utils.media-max-width(500) {
+      width: 9px;
+  }
 }
 
 .actions {
@@ -53,6 +93,18 @@
   align-items: center;
   gap: 20px;
   font-size: 18px;
+
+  @include utils.media-max-width(500) {
+    a, button {
+      font-size: 15px;
+      width: 35px;
+      height: 35px;
+    }
+
+    img {
+      width: 17px;
+    }
+  }
 }
 
 

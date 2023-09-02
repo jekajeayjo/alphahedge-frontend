@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .title {
   font-family: var(--font-family-title);
 
@@ -5,5 +7,17 @@
 
   span {
     color: var(--pinki-medium);
+  }
+
+  @include utils.media-max-width(1740) {
+    font-size: 58px;
+  }
+
+  @include utils.media-max-width(1470) {
+    font-size: 43px;
+  }
+
+  @include utils.media-max-width(900) {
+    font-size: 35px;
   }
 }

@@ -15,7 +15,6 @@ import { cards } from './Uniqueness.data'
 
 const options: EmblaOptionsType = {
   align: 'start',
-  dragFree: true,
 }
 
 export const Uniqueness = () => {
@@ -32,6 +31,7 @@ export const Uniqueness = () => {
             Что делает нас <span>уникальными</span> ?
           </TitleSection>
           <CarouselNavigation
+            className={s.navigation}
             prevButtonClick={scrollPrev}
             nextButtonClick={scrollNext}
           />

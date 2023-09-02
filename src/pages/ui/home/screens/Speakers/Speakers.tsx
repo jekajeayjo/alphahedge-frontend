@@ -12,7 +12,6 @@ import s from './Speakers.module.scss'
 
 const options: EmblaOptionsType = {
   align: 'start',
-  dragFree: true,
 }
 
 export const Speakers = () => {
@@ -29,6 +28,7 @@ export const Speakers = () => {
             <span>Встречи</span> со спикерами
           </TitleSection>
           <CarouselNavigation
+            className={s.navigation}
             prevButtonClick={scrollPrev}
             nextButtonClick={scrollNext}
           />

@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
-import cn from 'classnames'
 
 import useAuth from 'hooks/useAuth'
+import { useWindowSize } from 'hooks/useWindowSize'
 
 import { Container } from 'components/shared/Container'
 import { ChangeLanguage } from 'components/shared/ChangeLanguage'
 
-import { DropArrow, HeaderLogo, UserIcon } from 'assets/icons'
+import { HeaderLogo, UserIcon } from 'assets/icons'
+
+import { HeaderNav } from './HeaderNav'
 
 import s from './Header.module.scss'
 
 export const Header = () => {
   const { auth } = useAuth()
+
+  const { width } = useWindowSize()
+
+  console.log(width)
 
   return (
     <header className={s.header}>
@@ -20,21 +26,7 @@ export const Header = () => {
           <Link className={s.logo} to="/">
             <img src={HeaderLogo} alt="logo" />
           </Link>
-          <nav className={s.navigation}>
-            <Link className={cn(s.link, s.current)} to="/">
-              Главная
-            </Link>
-            <Link className={s.link} to="/">
-              InvestingPro{' '}
-              <img className={s.dropArrow} src={DropArrow} alt="" />
-            </Link>
-            <Link className={s.link} to="/">
-              Тренды
-            </Link>
-            <Link className={s.link} to="/">
-              Контакты
-            </Link>
-          </nav>
+          {width > 900 && <HeaderNav />}
           <div className={s.actions}>
             <ChangeLanguage />
             <Link
@@ -49,6 +41,7 @@ export const Header = () => {
             </Link>
           </div>
         </div>
+        {width <= 900 && <HeaderNav />}
       </Container>
     </header>
   )
