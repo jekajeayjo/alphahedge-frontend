@@ -13,6 +13,14 @@
     background: rgba(0, 0, 0, 0.55);
     filter: blur(1px);
   }
+
+  @include utils.media-max-width(1740) {
+    height: 1000px;
+  }
+
+  @include utils.media-max-width(500) {
+    height: 900px;
+  }
 }
 
 .content {
@@ -20,6 +28,10 @@
   padding-top: 316px;
   z-index: 1;
   color: #fff;
+
+  @include utils.media-max-width(500) {
+    padding-top: 270px;
+  }
 }
 
 .title {
@@ -32,11 +44,36 @@
     font-family: var(--font-family-main);
     font-weight: 100;
   }
+
+  @include utils.media-max-width(1740) {
+    font-size: 75px;
+    line-height: 100px;
+  }
+
+  @include utils.media-max-width(1470) {
+    font-size: 70px;
+    line-height: 90px;
+  }
+
+  @include utils.media-max-width(900) {
+    font-size: 60px;
+    line-height: 80px;
+  }
+
+  @include utils.media-max-width(500) {
+    font-size: 45px;
+    line-height: 65px;
+  }
 }
 
 .typed {
   -webkit-text-stroke: 1px white;
   color: transparent;
+
+  @include utils.media-max-width(500) {
+    font-size: 40px;
+    line-height: 60px;
+  }
 }
 
 .text {
@@ -45,6 +82,27 @@
   line-height: 44px;
   max-width: 955px;
   margin-bottom: 80px;
+
+  @include utils.media-max-width(1740) {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  @include utils.media-max-width(1470) {
+    max-width: 700px;
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  @include utils.media-max-width(1000) {
+    padding-right: 10px;
+  }
+
+  @include utils.media-max-width(500) {
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 60px;
+  }
 }
 
 .link {
@@ -57,6 +115,28 @@
   height: 101px;
   display: inline-block;
   line-height: 100px;
+
+  @include utils.media-max-width(1740) {
+    font-size: 22px;
+    height: 80px;
+    line-height: 79px;
+  }
+
+  @include utils.media-max-width(900) {
+    font-size: 20px;
+    height: 60px;
+    line-height: 59px;
+  }
+
+  @include utils.media-max-width(500) {
+    padding: 0 30px;
+    font-size: 18px;
+
+    img {
+      width: 20px;
+      height: auto;
+    }
+  }
 }
 
 .arrow {
@@ -69,6 +149,17 @@
   position: absolute;
   right: 0;
   top: 179px;
+
+  @include utils.media-max-width(1740) {
+    right: -140px;
+    width: 650px;
+    height: auto;
+    top: 190px;
+  }
+
+  @include utils.media-max-width(1000) {
+    display: none;
+  }
 }
 
 .bg {
@@ -80,4 +171,5 @@
   height: 100%;
 
   @include utils.imageBg();
+
 }

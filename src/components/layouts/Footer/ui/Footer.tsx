@@ -15,8 +15,9 @@ export const Footer = () => (
           <h2 className={s.title}>Alphahedge Holdings</h2>
           <p className={s.text}>
             The activities of are conducted within the obtained permits and are
-            in full compliance with the obtained certificates. Copyright ©
-            2023, Alphahedge Holdings Ltd
+            in full compliance with the obtained certificates.
+            <br />
+            Copyright ©2023, Alphahedge Holdings Ltd
           </p>
         </div>
         <div className={s.navigation}>

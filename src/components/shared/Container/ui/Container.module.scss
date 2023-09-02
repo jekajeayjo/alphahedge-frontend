@@ -1,6 +1,16 @@
+@use 'styles/use/utils';
+
 .container {
   max-width: 1680px;
   padding: 0 20px;
   width: 100%;
   margin: 0 auto;
+
+  @include utils.media-max-width(1740) {
+    max-width: 1400px;
+  }
+
+  @include utils.media-max-width(1470) {
+    max-width: 1000px;
+  }
 }
