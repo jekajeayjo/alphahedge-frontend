@@ -1,8 +1,11 @@
 import { AdminBack } from 'components/admins/AdminBack'
 
+import { RequestVerification } from 'components/shared/RequestVerification'
+
 import { Balance } from 'components/personal/Balance'
 import { TransactionBlock } from 'components/personal/TransactionBlock'
 import { IncomeTableCarousel } from 'components/personal/IncomeTable'
+import useDisable from 'hooks/useDisable'
 
 import { PersonalBlock } from 'components/shared/PersonalBlock'
 
@@ -10,6 +13,12 @@ import s from './FinanceBody.module.scss'
 
 export const FinanceBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
+
+  const disable = useDisable()
+
+  if (disable) {
+    return <RequestVerification />
+  }
 
   return (
     <>

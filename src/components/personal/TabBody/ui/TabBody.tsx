@@ -1,9 +1,13 @@
 import { useState } from 'react'
 
+import { RequestVerification } from 'components/shared/RequestVerification'
+
 import { Promotions, PromotionTable } from 'components/personal/Promotions'
 import { PackageList } from 'components/personal/PackageList'
 import { IncomeTableCarousel, Individual } from 'components/personal/Individual'
 import { AdminBack } from 'components/admins/AdminBack'
+
+import useDisable from 'hooks/useDisable'
 
 import { tabEnum } from '../model/TabBody.interface'
 
@@ -16,8 +20,18 @@ export const TabBody = (props: { adminEdit: boolean }) => {
 
   const [tab, setTab] = useState<tabEnum>(tabEnum.ACTIVE)
 
+  const disable = useDisable()
+
   const onClickHandler = (type: tabEnum) => {
     setTab(type)
+  }
+
+  if (disable) {
+    return (
+      <div className={s.grid}>
+        <RequestVerification />
+      </div>
+    )
   }
 
   return (

@@ -187,12 +187,33 @@
   }
 }
 
+.success {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
 .form {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 35px;
+
+  &.disable {
+    pointer-events: none;
+    input {
+      pointer-events: none;
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    button {
+      pointer-events: none;
+      opacity: .4;
+    }
+  }
 
   @include utils.media-max-width(750) {
     flex-direction: column;
@@ -201,8 +222,19 @@
   }
 }
 
-.input {
+.wrapper{
   max-width: 417px;
+  position: relative;
+  width: 100%;
+}
+
+.lock {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+}
+
+.input {
 
   @include utils.media-max-width(750) {
     max-width: 100%;
@@ -212,6 +244,11 @@
 .button {
   max-width: 188px;
   margin-left: 20px;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
 
   @include utils.media-max-width(750) {
     max-width: 100%;

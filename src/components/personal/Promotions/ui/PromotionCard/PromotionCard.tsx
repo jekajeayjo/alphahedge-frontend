@@ -8,7 +8,7 @@ import s from './PromotionCard.module.scss'
 
 const IS_UP = true
 
-export const PromotionCard = () => (
+export const PromotionCard = ({ disable }: { disable: boolean }) => (
   <div className={s.card}>
     <div className={s.header}>
       <div className={s.icon}>
@@ -29,6 +29,6 @@ export const PromotionCard = () => (
     <div className={s.diagramma}>
       <img src={DiagramaIcon} alt="" />
     </div>
-    <PromotionCardActions />
+    {!disable && <PromotionCardActions />}
   </div>
 )

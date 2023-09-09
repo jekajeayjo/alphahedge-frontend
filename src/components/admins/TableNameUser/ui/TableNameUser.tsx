@@ -15,7 +15,7 @@ export const TableNameUser = (props: ITableNameUser) => {
     return (
       <TableCell className={cn(s.name, className)}>
         <NavLink to="/admin/user/1/dashboard">
-          <UserName name="GN" />
+          <UserName name="GN AN" />
           <span>Golovnea Natalia</span>
         </NavLink>
       </TableCell>

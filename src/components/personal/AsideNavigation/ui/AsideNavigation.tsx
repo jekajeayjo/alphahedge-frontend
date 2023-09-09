@@ -15,11 +15,13 @@ export const AsideNavigation = (props: IAsideNavigation) => {
 
   return (
     <nav className={s.navigation}>
-      {auth?.role === 'user' && <AsideNavigationUser onClick={onClick} />}
-      {!adminEdit && auth?.role === 'admin' && (
+      {auth?.profile?.role === 'User' && (
+        <AsideNavigationUser onClick={onClick} />
+      )}
+      {!adminEdit && auth?.profile?.role === 'Admin' && (
         <AsideNavigationAdmin onClick={onClick} />
       )}
-      {adminEdit && auth?.role === 'admin' && (
+      {adminEdit && auth?.profile?.role === 'Admin' && (
         <AsideNavigationAdminEdit onClick={onClick} />
       )}
     </nav>

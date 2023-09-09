@@ -41,7 +41,10 @@ export const Referral = () => (
       classNameBody={s.tbody}
       classNamePagination={s.pagination}
       tables={list}
-      perPage={7}
+      currentPage={1}
+      total={10}
+      fetchNext={() => null}
+      fetchPrev={() => null}
       renderComponent={(referal: IReferralItem) => (
         <ReferralItem {...referal} />
       )}

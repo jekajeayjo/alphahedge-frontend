@@ -12,7 +12,7 @@ import { IInfoCardContent } from '../model/InfoCard.interface'
 import s from './InfoCard.module.scss'
 
 export const InfoCardContent = (props: IInfoCardContent) => {
-  const { isActive, isAdmin } = props
+  const { isActive, isAdmin, name } = props
 
   const [open, setOpen] = useState(false)
 
@@ -27,7 +27,7 @@ export const InfoCardContent = (props: IInfoCardContent) => {
           <div className={s.icon}>
             <img src={RocketIcon} alt="rocket" />
           </div>
-          <span>прорывные инновации</span>
+          <span>{name}</span>
           {isAdmin && isActive && (
             <Button className={s.close} type="button">
               ЗАКРЫТЬ

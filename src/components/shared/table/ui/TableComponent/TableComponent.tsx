@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import { useState } from 'react'
 import { CarouselPagination } from 'components/shared/CarouselPagination'
 
 import { ITableComponent } from '../../model/Table.interface'
@@ -17,25 +16,17 @@ export function TableComponent<T>(props: ITableComponent<T>) {
     tableTitles,
     tables,
     renderComponent,
-    perPage,
     classNameWrapper,
     classNameInner,
     className,
     classNameHeader,
     classNameBody,
     classNamePagination,
+    currentPage,
+    total,
+    fetchNext = () => null,
+    fetchPrev = () => null,
   } = props
-
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const paginationChange = (page: number) => {
-    if (page >= 1 && page - 1 < tables.length / perPage) {
-      setCurrentPage(page)
-    }
-  }
-
-  const getData = (current: number, pageSize: number) =>
-    tables.slice((current - 1) * pageSize, current * pageSize)
 
   return (
     <div className={classNameWrapper}>
@@ -49,17 +40,17 @@ export function TableComponent<T>(props: ITableComponent<T>) {
             </TableRow>
           </TableHead>
           <TableBody className={classNameBody}>
-            {getData(currentPage, perPage).map(renderComponent)}
+            {tables.map(renderComponent)}
           </TableBody>
         </Table>
       </div>
       <CarouselPagination
         className={cn(s.pagination, classNamePagination)}
         showPagination
-        index={currentPage}
-        total={tables.length / perPage}
-        nextButtonClick={() => paginationChange(currentPage + 1)}
-        prevButtonClick={() => paginationChange(currentPage - 1)}
+        index={currentPage + 1}
+        total={total}
+        nextButtonClick={() => fetchNext()}
+        prevButtonClick={() => fetchPrev()}
       />
     </div>
   )

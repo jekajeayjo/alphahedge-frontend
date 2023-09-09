@@ -1,25 +1,61 @@
+/* eslint-disable */
 import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import cn from 'classnames'
+import InputMask from 'react-input-mask'
 
 import { IAuthInput } from '../model/Input.interface'
 
 import s from './Input.module.scss'
 
 export const Input = (props: IAuthInput) => {
-  const { className, name, type, placeholder } = props
+  const { className, name, type, placeholder, disabled = false } = props
 
   const [showPass, setShowPass] = useState(false)
 
-  const { register } = useFormContext()
+  const { register, control } = useFormContext()
+
+  if (type === 'tel') {
+    return (
+      <Controller
+        render={({ field: { onChange, value }, formState: { errors } }) => (
+          <div className={cn(s.inner, { [s.error]: errors[name] })}>
+            <InputMask
+              className={cn(s.input, className, { [s.error]: errors[name] })}
+              mask="+9 (999) 999-99-99"
+              value={value}
+              disabled={disabled}
+              onChange={(e) => {
+                onChange(e)
+              }}
+              placeholder={placeholder}
+            />
+          </div>
+        )}
+        control={control}
+        name={name}
+      />
+    )
+  }
 
   return (
     <div className={s.wrapper}>
-      <input
-        className={cn(s.input, className)}
-        {...register(name)}
-        type={showPass ? 'text' : type}
-        placeholder={placeholder}
+      <Controller
+        render={({ field: { onChange, value }, formState: { errors } }) => (
+          <>
+            <input
+              className={cn(s.input, className, { [s.error]: errors[name] })}
+              {...register(name)}
+              onChange={onChange}
+              disabled={disabled}
+              value={value}
+              type={showPass ? 'text' : type}
+              placeholder={placeholder}
+            />
+          </>
+        )}
+        control={control}
+        name={name}
       />
       {type === 'password' && (
         <button

@@ -18,7 +18,11 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
   const { auth } = useAuth()
 
   if (roleRequired) {
-    if (roleRequired === auth?.role) {
+    if (auth.loading) {
+      return <div>load</div>
+    }
+
+    if (roleRequired === auth?.profile?.role && !auth.loading) {
       return (
         <PersonalLayout adminEdit={adminEdit}>
           <Outlet />
@@ -26,11 +30,11 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
       )
     }
 
-    if (roleRequired !== auth?.role) {
-      return <Navigate to="/denied" />
+    if (roleRequired !== auth?.profile?.role && !auth.loading) {
+      return <Navigate to="/login" />
     }
 
-    if (!auth?.isAuth) {
+    if (!auth?.isAuth && !auth.loading) {
       return <Navigate to="/login" />
     }
   }

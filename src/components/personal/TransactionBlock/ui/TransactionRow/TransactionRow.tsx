@@ -8,7 +8,7 @@ import s from './TransactionRow.module.scss'
 export const TransactionRow = () => (
   <TableRow>
     <TableCell className={s.first}>
-      <UserName name="W" />
+      <UserName name="GN AN" />
       <span className={s.price}>$1500</span>
     </TableCell>
     <TableCell className={s.type}>

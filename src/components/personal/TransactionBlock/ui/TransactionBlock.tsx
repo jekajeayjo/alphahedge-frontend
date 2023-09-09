@@ -26,7 +26,10 @@ export const TransactionBlock = (props: ITransactionBlock) => {
           [s.md]: type === 'replenishment',
         })}
         tables={mockArr}
-        perPage={perPage}
+        currentPage={1}
+        total={10}
+        fetchNext={() => null}
+        fetchPrev={() => null}
         renderComponent={(item) => <TransactionRow key={item} />}
         tableTitles={['История Пополнений']}
       />

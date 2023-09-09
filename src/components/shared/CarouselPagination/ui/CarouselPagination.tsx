@@ -15,7 +15,7 @@ export const CarouselPagination = (props: ICarouselNavigation) => {
   } = props
 
   return (
-    <div className={cn(s.navigation, className)}>
+    <div className={cn(s.navigation, className, { [s.hide]: total <= 1 })}>
       {showPagination && (
         <div className={s.pagination}>
           {index} of {Math.ceil(total)}

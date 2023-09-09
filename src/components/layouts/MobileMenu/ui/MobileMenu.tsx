@@ -64,7 +64,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
         />
       </div>
       <div className={s.header}>
-        {auth?.role === 'user' && (
+        {auth?.profile?.role === 'User' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -88,7 +88,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {auth?.role === 'admin' && (
+        {auth?.profile?.role === 'Admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -123,7 +123,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           <span />
         </button>
 
-        {auth?.role === 'admin' && (
+        {auth?.profile?.role === 'Admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -149,7 +149,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {auth?.role === 'user' && (
+        {auth?.profile?.role === 'User' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}

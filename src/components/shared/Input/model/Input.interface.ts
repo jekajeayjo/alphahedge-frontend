@@ -5,4 +5,5 @@ export interface IAuthInput {
   placeholder: string
   type: HTMLInputTypeAttribute
   name: string
+  disabled?: boolean
 }

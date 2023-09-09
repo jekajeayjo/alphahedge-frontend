@@ -17,7 +17,10 @@ export const UsersCarousel = () => (
       'Дата верификации',
       'Статус',
     ]}
-    perPage={7}
+    currentPage={1}
+    total={10}
+    fetchNext={() => null}
+    fetchPrev={() => null}
     tables={mockArr}
     renderComponent={(item) => <UserTableRow key={item} />}
   />

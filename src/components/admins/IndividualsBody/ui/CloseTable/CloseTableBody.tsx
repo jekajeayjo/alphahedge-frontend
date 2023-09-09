@@ -23,7 +23,10 @@ export const CloseTableBody = () => {
         className={s.table}
         classNameBody={s.tbody}
         tables={mockArr}
-        perPage={7}
+        currentPage={1}
+        total={10}
+        fetchNext={() => null}
+        fetchPrev={() => null}
         renderComponent={(item) => (
           <CloseTableRow onClick={(e) => setUserData(e)} />
         )}

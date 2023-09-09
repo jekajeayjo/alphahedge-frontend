@@ -1,10 +1,15 @@
 /* eslint-disable */
 import { createContext, ReactNode, useState } from 'react'
-import { UserType } from 'models/UserType'
+import {
+  IResponseBalance,
+  IResponseProfile,
+} from 'models/response/AccountResponse'
 
 interface IAuthInterface {
   isAuth?: boolean
-  role?: UserType
+  loading?: boolean
+  profile?: IResponseProfile
+  balance?: IResponseBalance
 }
 
 interface IAuthContext {
@@ -15,7 +20,10 @@ interface IAuthContext {
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [auth, setAuth] = useState<IAuthInterface>({})
+  const [auth, setAuth] = useState<IAuthInterface>({
+    isAuth: false,
+    loading: true,
+  })
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

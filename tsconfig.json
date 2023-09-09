@@ -19,6 +19,7 @@
 		"paths": {
 			"pages/*": ["pages/*"],
 			"components/*": ["components/*"],
+			"services/*": ["services/*"],
 			"helpers/*": ["helpers/*"],
 			"hooks/*": ["hooks/*"],
 			"assets/*": ["assets/*"],

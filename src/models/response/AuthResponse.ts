@@ -1,4 +1,4 @@
 export interface IAuthResponse {
-    accessToken: string
-    refreshToken: string
+  acceptToken: string
+  refreshToken: string
 }

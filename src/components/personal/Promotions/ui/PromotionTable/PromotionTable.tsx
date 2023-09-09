@@ -27,7 +27,10 @@ export const PromotionTable = () => (
       classNameBody={s.tbody}
       classNamePagination={s.pagination}
       tables={mockArr}
-      perPage={6}
+      currentPage={1}
+      total={10}
+      fetchNext={() => null}
+      fetchPrev={() => null}
       renderComponent={(item) => <ActiveTableRow showButton key={item} />}
       tableTitles={[
         'Название',

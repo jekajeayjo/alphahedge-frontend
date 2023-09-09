@@ -1,6 +1,6 @@
 export interface IPrice {
   type: 'xs' | 'lg'
-  price: string
+  price: number | string
   className?: string
   before?: string
 }

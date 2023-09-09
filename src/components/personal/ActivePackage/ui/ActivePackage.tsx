@@ -37,7 +37,10 @@ export const ActivePackage = () => (
       className={s.table}
       classNameBody={s.tbody}
       tables={mockArr}
-      perPage={6}
+      currentPage={1}
+      total={10}
+      fetchNext={() => null}
+      fetchPrev={() => null}
       renderComponent={() => <ActiveTableRow />}
       tableTitles={[
         'Название',

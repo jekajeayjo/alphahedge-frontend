@@ -1,15 +1,12 @@
 @use 'styles/use/utils';
 
 .wrapper {
-  padding: 10px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 15px;
   margin-top: 45px;
   overflow: hidden;
 
-  @include utils.media-max-width(1050) {
-    padding: 0;
-  }
 }
 
 .header {

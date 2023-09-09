@@ -13,7 +13,7 @@ export const ReferralItem = (props: IReferralItem) => {
   return (
     <TableRow className={s.referal}>
       <TableCell className={s.cellName}>
-        <UserName name="ME" />
+        <UserName name="GN AN" />
         <div className={s.name}>{name}</div>
       </TableCell>
       <TableCell>
