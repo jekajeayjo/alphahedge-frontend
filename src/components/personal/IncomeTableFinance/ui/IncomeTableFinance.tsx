@@ -9,18 +9,21 @@ import {
   TableRow,
 } from 'components/shared/table'
 
+import { RocketIcon } from 'assets/icons'
+
 import { clearDate } from 'helpers/clearDate'
+import { floorPrice } from 'helpers/floorPrice'
 
 import BriefcaseServices from 'services/BriefcaseServices'
 import { IGetGainBriefcaseResponse } from 'models/response/BriefcaseResponse'
 
 import { IIncomeTableCarousel } from '../model/IncomeTableCarousel.interface'
 
-import s from './IncomeTable.module.scss'
+import s from './IncomeTableFinance.module.scss'
 
 const { getGainBriefcase } = BriefcaseServices
 
-export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
+export const IncomeTableFinance = (props: IIncomeTableCarousel) => {
   const { className, showTotal = true } = props
 
   const [data, setData] = useState<IGetGainBriefcaseResponse>()
@@ -31,7 +34,10 @@ export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
 
   const fetchData = async () => {
     try {
-      const response = await getGainBriefcase({ page: 0, size: 6 })
+      const response = await getGainBriefcase({
+        page: 0,
+        size: 6,
+      })
       setData(response.data)
     } catch (e) {
       console.log('Error fetch gain', e)
@@ -56,7 +62,7 @@ export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
     if (data && !data.page.first) {
       try {
         const response = await getGainBriefcase({
-          page: data.page.number + 1,
+          page: data.page.number - 1,
           size: 6,
         })
         setData(response.data)
@@ -97,7 +103,13 @@ export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
       <TableComponent
         className={s.table}
         classNameInner={s.inner}
-        tableTitles={['Объем инвестиций', 'Дата', 'Сумма дохода']}
+        tableTitles={[
+          'Портфель',
+          'Тип портфеля',
+          'Сумма',
+          'Дата',
+          'Сумма дохода',
+        ]}
         total={data.page.totalPages}
         currentPage={data.page.number}
         fetchPrev={fetchPrev}
@@ -105,6 +117,15 @@ export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
         tables={data.page.content}
         renderComponent={(item) => (
           <TableRow key={item.briefcaseId}>
+            <TableCell className={s.briefName}>
+              <div className={s.icon}>
+                <img src={RocketIcon} alt={item.briefcaseName} />
+              </div>
+              <span>{item.briefcaseName}</span>
+            </TableCell>
+            <TableCell className={s.type}>
+              {item.code === 'ADVANCED' ? 'Индвидуальный' : 'Портфельные'}
+            </TableCell>
             <TableCell className={s.price}>
               <span>$ {item.briefcaseAmount}</span>
             </TableCell>
@@ -112,7 +133,10 @@ export const IncomeTableCarousel = (props: IIncomeTableCarousel) => {
               {clearDate(item.createdDate)}
             </TableCell>
             <TableCell className={s.cellTotal}>
-              <TablePrice price={item.gainAmount.toString()} type="up" />
+              <TablePrice
+                price={floorPrice(item.gainAmount).toString()}
+                type="up"
+              />
             </TableCell>
           </TableRow>
         )}

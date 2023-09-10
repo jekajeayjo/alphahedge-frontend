@@ -1,7 +1,7 @@
 import { UserName } from 'components/shared/UserName'
 
 import { AddIncome } from 'components/admins/AddIncome'
-import { IncomeTableCarousel } from 'components/personal/IncomeTable'
+import { IncomeTable } from 'components/personal/IncomeTable'
 
 import s from './IndividualBody.module.scss'
 
@@ -22,6 +22,6 @@ export const IndividualBody = () => (
         <AddIncome />
       </div>
     </div>
-    <IncomeTableCarousel className={s.carousel} showTotal={false} />
+    <IncomeTable className={s.carousel} showTotal={false} />
   </div>
 )

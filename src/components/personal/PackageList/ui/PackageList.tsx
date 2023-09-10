@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import useInvestCounter from 'hooks/useInvestCounter'
+
 import { IGetBriefcaseResponse } from 'models/response/BriefcaseResponse'
 
 import { InfoCard } from 'components/shared/InfoCard'
@@ -13,6 +15,8 @@ const { getBriefcase } = BriefcaseServices
 export const PackageList = () => {
   const [briefcases, setBriefcases] = useState<IGetBriefcaseResponse | null>()
 
+  const { setCounter } = useInvestCounter()
+
   const fetchBriefcases = async (size: number): Promise<void> => {
     try {
       const response = await getBriefcase({
@@ -21,6 +25,11 @@ export const PackageList = () => {
         criteria: [{ key: 'briefcaseCode', value: 'SIMPLE' }],
       })
       await setBriefcases(response.data)
+      setCounter({
+        simple: response.data.totalElements,
+        actions: null,
+        advanced: null,
+      })
     } catch (e) {
       console.log(e)
     }

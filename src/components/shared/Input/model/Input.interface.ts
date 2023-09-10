@@ -6,4 +6,5 @@ export interface IAuthInput {
   type: HTMLInputTypeAttribute
   name: string
   disabled?: boolean
+  prefix?: string
 }

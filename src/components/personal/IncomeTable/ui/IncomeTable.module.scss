@@ -45,6 +45,11 @@
 }
 
 .price {
+  color: var(--pinki-tin);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+
   @include utils.media-max-width(1000) {
     width: 300px;
   }
@@ -52,6 +57,8 @@
 
 .data {
   width: 45%;
+  font-size: 18px;
+  font-weight: 700;
 
   @include utils.media-max-width(1600) {
     width: 40%;
@@ -64,6 +71,8 @@
 
 .cellTotal {
   width: 10%;
+  font-size: 18px;
+  font-weight: 700;
 
   @include utils.media-max-width(1600) {
     width: 200px;

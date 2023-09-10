@@ -25,7 +25,7 @@ export const ActivePackage = () => (
         <TableLabel label="Общее кол-во Акций" value="18" type="num" />
       </div>
       <div className={s.right}>
-        <Link to="/">
+        <Link to="/personal/investments?tab=action">
           Все акции
           <img src={ArrowLinkBlack} alt="arrow" />
         </Link>

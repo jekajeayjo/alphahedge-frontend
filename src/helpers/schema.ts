@@ -44,4 +44,5 @@ export const schema = {
     .required('Необходимо ввести сообщение')
     .min(5, 'Минимально 5 символов'),
   country: yup.string().required('Необходимо выбрать страну'),
+  deposit: yup.number().required('Необходимо указать число'),
 }

@@ -70,7 +70,7 @@ export const DropDown = (props: IDropDown) => {
             type="button"
             key={item.id}
             onClick={() => {
-              onSelect(item.label)
+              onSelect(item.label ?? '')
               handleItemClick(item)
             }}
           >

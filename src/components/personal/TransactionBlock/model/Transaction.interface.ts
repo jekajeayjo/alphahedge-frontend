@@ -1,14 +1,8 @@
-export interface ITransactionForm {
-  className?: string
-  type: 'replenishment' | 'derivation'
+export interface ITransactionForm extends ITransactionBlock {
+  fetch: () => Promise<void>
 }
 
 export interface ITransactionBlock {
-  classNameForm?: string
-  type: 'replenishment' | 'derivation'
-  perPage: number
-}
-
-export interface ITransactionTableCarousel {
   className?: string
+  type: 'In' | 'Out'
 }

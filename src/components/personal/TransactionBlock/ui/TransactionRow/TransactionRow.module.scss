@@ -24,17 +24,23 @@
 
 .status {
   text-align: right;
+  text-decoration: underline;
 
   &.success {
     color: #04C100;
   }
 
   &.cancel {
-    color: #DEBB00;
+    color: #C10000;
   }
 
   &.pending {
-    color: #C10000;
+    color: #DEBB00;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    text-decoration: none;
   }
 }
 

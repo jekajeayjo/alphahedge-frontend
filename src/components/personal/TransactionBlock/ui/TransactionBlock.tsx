@@ -1,38 +1,86 @@
-import cn from 'classnames'
-
-import { TableComponent } from 'components/shared/table'
-import { TransactionRow } from 'components/personal/TransactionBlock/ui/TransactionRow/TransactionRow'
+import { useEffect, useState } from 'react'
+import { ITransactionHistory } from 'models/response/TransactionResponse'
+import TransactionServices from 'services/TransactionServices'
+import { FinanceReplenishment } from 'components/personal/FinanceBody/ui/FinanceReplenishment'
+import { FinanceDerivation } from 'components/personal/FinanceBody/ui/FinanceDerivation'
 
 import { ITransactionBlock } from '../model/Transaction.interface'
 
 import { TransactionForm } from './TransactionForm/TransactionForm'
 
-import s from './TransactionBlock.module.scss'
-
-const mockArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const { getHistoryList } = TransactionServices
 
 export const TransactionBlock = (props: ITransactionBlock) => {
-  const { classNameForm, type, perPage } = props
+  const { className, type } = props
+
+  const [data, setData] = useState<ITransactionHistory>()
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const response = await getHistoryList({
+        size: 4,
+        page: 0,
+        sortDir: 'DESC',
+        criteria: [{ key: 'transactionType', value: type }],
+      })
+      setData(response.data)
+    } catch (e) {
+      console.log('Error fetch history', e)
+    }
+  }
+
+  const fetchNext = async () => {
+    if (data && !data.last) {
+      try {
+        const response = await getHistoryList({
+          page: data.number + 1,
+          size: 4,
+          sortDir: 'DESC',
+          criteria: [{ key: 'transactionType', value: type }],
+        })
+        setData(response.data)
+      } catch (e) {
+        console.log('Error fetch gain', e)
+      }
+    }
+  }
+
+  const fetchPrev = async () => {
+    if (data && !data.first) {
+      try {
+        const response = await getHistoryList({
+          page: data.number - 1,
+          size: 4,
+          sortDir: 'DESC',
+          criteria: [{ key: 'transactionType', value: type }],
+        })
+        setData(response.data)
+      } catch (e) {
+        console.log('Error fetch gain', e)
+      }
+    }
+  }
+
   return (
     <div>
-      <TransactionForm className={classNameForm} type={type} />
-      <TableComponent
-        classNameWrapper={s.wrapper}
-        classNameInner={cn(s.inner, { [s.md]: type === 'replenishment' })}
-        classNameHeader={s.head}
-        className={s.table}
-        classNameBody={s.tbody}
-        classNamePagination={cn(s.pagination, {
-          [s.md]: type === 'replenishment',
-        })}
-        tables={mockArr}
-        currentPage={1}
-        total={10}
-        fetchNext={() => null}
-        fetchPrev={() => null}
-        renderComponent={(item) => <TransactionRow key={item} />}
-        tableTitles={['История Пополнений']}
-      />
+      <TransactionForm className={className} fetch={fetchData} type={type} />
+      {type === 'In' ? (
+        <FinanceReplenishment
+          data={data}
+          fetchPrev={fetchPrev}
+          fetchNext={fetchNext}
+        />
+      ) : (
+        <FinanceDerivation
+          data={data}
+          fetchPrev={fetchPrev}
+          fetchNext={fetchNext}
+        />
+      )}
     </div>
   )
 }

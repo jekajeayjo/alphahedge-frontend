@@ -7,6 +7,7 @@ import {
 } from 'components/shared/NavigationDrop'
 
 import useAuth from 'hooks/useAuth'
+import useInvestCounter from 'hooks/useInvestCounter'
 
 import { UnlockIcon } from 'assets/icons'
 
@@ -41,6 +42,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
   const [isWait, setIsWait] = useState(false)
 
   const { auth } = useAuth()
+  const { counter } = useInvestCounter()
 
   useEffect(() => {
     if (auth.profile?.profileSetting.length) {
@@ -105,7 +107,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
           type="button"
         >
           Акции
-          <div className={s.count}>18</div>
+          {counter.actions && <div className={s.count}>{counter.actions}</div>}
         </button>
         <button
           className={cn(s.tab, s.package, {
@@ -115,7 +117,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
           type="button"
         >
           портфельные инвестиции
-          <div className={s.count}>4</div>
+          {counter.simple && <div className={s.count}>{counter.simple}</div>}
         </button>
 
         {!disable ? (
@@ -128,7 +130,9 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
           >
             <img src={UnlockIcon} alt="lock" />
             индивидуальные введения
-            <div className={s.count}>3</div>
+            {counter.advanced && (
+              <div className={s.count}>{counter.advanced}</div>
+            )}
           </button>
         ) : (
           <TabBodyModal payload={isWait ? 'success' : null} />

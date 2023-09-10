@@ -17,6 +17,10 @@
   transition: 400ms;
   font-weight: 500;
 
+  &.havePrefix {
+    padding-left: 20px;
+  }
+
   &.error {
     border-color: #E52929;
   }
@@ -37,4 +41,12 @@
   &.active {
     opacity: .4;
   }
+}
+
+.prefix {
+  position: absolute;
+  left: 11px;
+  top: 12.5px;
+  font-size: 16px;
+  line-height: 23px;
 }

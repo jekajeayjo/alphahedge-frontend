@@ -1,3 +1,5 @@
+import { Pageable } from 'models/IPageable'
+
 export interface IGetBriefcaseResponse {
   content: IBriefcaseActive[]
   totalPages: number
@@ -55,16 +57,9 @@ export interface IGainItem {
   briefcaseName: any
   accountId: number
   fio: string
+  image: string
   code: string
   briefcaseAmount: number
   gainAmount: number
   createdDate: string
-}
-
-export interface Pageable {
-  offset: number
-  pageNumber: number
-  pageSize: number
-  paged: boolean
-  unpaged: boolean
 }

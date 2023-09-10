@@ -9,7 +9,7 @@ import { IAuthInput } from '../model/Input.interface'
 import s from './Input.module.scss'
 
 export const Input = (props: IAuthInput) => {
-  const { className, name, type, placeholder, disabled = false } = props
+  const { className, name, type, placeholder, disabled = false, prefix } = props
 
   const [showPass, setShowPass] = useState(false)
 
@@ -44,7 +44,10 @@ export const Input = (props: IAuthInput) => {
         render={({ field: { onChange, value }, formState: { errors } }) => (
           <>
             <input
-              className={cn(s.input, className, { [s.error]: errors[name] })}
+              className={cn(s.input, className, {
+                [s.error]: errors[name],
+                [s.havePrefix]: prefix && value,
+              })}
               {...register(name)}
               onChange={onChange}
               disabled={disabled}
@@ -52,6 +55,7 @@ export const Input = (props: IAuthInput) => {
               type={showPass ? 'text' : type}
               placeholder={placeholder}
             />
+            {prefix && value && <span className={s.prefix}>{prefix}</span>}
           </>
         )}
         control={control}

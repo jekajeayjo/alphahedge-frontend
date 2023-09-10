@@ -11,8 +11,7 @@ export const UserName = (props: IUserName) => {
 
   return (
     <div className={cn(s.name, className)}>
-      {splitName[0].slice(0, 1)}
-      {splitName[1].slice(0, 1)}
+      {splitName[0].slice(0, 1)} {splitName[1].slice(0, 1)}
     </div>
   )
 }

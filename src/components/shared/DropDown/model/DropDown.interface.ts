@@ -7,7 +7,7 @@ export interface IDropDown {
 }
 
 export type OptionType = {
-  id: number
+  id?: number
   image?: string
-  label: string
+  label?: string
 }

@@ -1,2 +1,2 @@
 export { Individual } from './ui/Individual'
-export { IncomeTableCarousel } from 'components/personal/IncomeTable/ui/IncomeTableCarousel'
+export { IncomeTable } from 'components/personal/IncomeTable/ui/IncomeTable'

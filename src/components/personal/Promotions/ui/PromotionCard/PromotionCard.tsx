@@ -1,6 +1,22 @@
 import cn from 'classnames'
+import { Line } from 'react-chartjs-2'
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  ChartOptions,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+} from 'chart.js'
 
-import { ApplyIcon, DiagramaIcon, DownIcon, UpIcon } from 'assets/icons'
+import { DownIcon, UpIcon } from 'assets/icons'
+import { floorPrice } from 'helpers/floorPrice'
+
+import { IActionItem } from 'models/response/ActionResponse'
 
 import { PromotionCardActions } from './PromotionCardActions'
 
@@ -8,27 +24,112 @@ import s from './PromotionCard.module.scss'
 
 const IS_UP = true
 
-export const PromotionCard = ({ disable }: { disable: boolean }) => (
-  <div className={s.card}>
-    <div className={s.header}>
-      <div className={s.icon}>
-        <img src={ApplyIcon} alt="apple" />
-      </div>
-      <div className={s.content}>
-        <div className={s.name}>AAPL</div>
-        <div className={s.company}>Apple</div>
-      </div>
-    </div>
-    <div className={s.change}>
-      <div className={s.label}>CHANGED (1D)</div>
-      <div className={cn(s.percent, { [s.down]: !IS_UP })}>
-        <img src={IS_UP ? UpIcon : DownIcon} alt={IS_UP ? 'up' : 'down'} />
-        +14,8 %
-      </div>
-    </div>
-    <div className={s.diagramma}>
-      <img src={DiagramaIcon} alt="" />
-    </div>
-    {!disable && <PromotionCardActions />}
-  </div>
+interface IPromotionCard extends IActionItem {
+  disable: boolean
+}
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
 )
+
+export const options: ChartOptions = {
+  responsive: true,
+  scales: {
+    x: {
+      display: false,
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      display: false,
+      grid: {
+        display: false,
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+}
+
+export const PromotionCard = (props: IPromotionCard) => {
+  const {
+    disable,
+    image,
+    actionId,
+    actionCode,
+    statistics,
+    actionName,
+    currentPrice,
+  } = props
+
+  const data = {
+    labels: statistics.slice(statistics.length / 2).map((element) => element),
+    datasets: [
+      {
+        data: statistics.slice(statistics.length / 2),
+        fill: 'start',
+        backgroundColor: '#F3E9F9',
+        borderColor: '#B050F2',
+      },
+    ],
+  }
+
+  const getPercent = () => {
+    const lastValue = statistics[statistics.length - 2]
+    const result = 100 - (currentPrice * 100) / lastValue
+
+    if (result > 0) {
+      return (
+        <>
+          <img src={UpIcon} alt="up" />
+          {`+${floorPrice(result)} %`}
+        </>
+      )
+    }
+
+    return (
+      <>
+        <img src={DownIcon} alt="down" />
+        {`-${floorPrice(result)} %`}
+      </>
+    )
+  }
+
+  return (
+    <div className={s.card}>
+      <div className={s.header}>
+        <div className={s.icon}>
+          <img src={image} alt="apple" />
+        </div>
+        <div className={s.content}>
+          <div className={s.name}>{actionCode}</div>
+          <div className={s.company}>{actionName ?? 'no-name'}</div>
+        </div>
+      </div>
+      <div className={s.change}>
+        <div className={s.label}>CHANGED (1D)</div>
+        <div className={cn(s.percent, { [s.down]: !IS_UP })}>
+          {getPercent()}
+        </div>
+      </div>
+      <div className={s.diagramma}>
+        {/* @ts-ignore */}
+        <Line options={options} data={data} />
+      </div>
+      {!disable && (
+        <PromotionCardActions code={actionCode} currentPrice={currentPrice} />
+      )}
+    </div>
+  )
+}

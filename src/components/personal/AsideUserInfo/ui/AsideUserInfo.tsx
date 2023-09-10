@@ -1,6 +1,8 @@
 import cn from 'classnames'
 import useAuth from 'hooks/useAuth'
 
+import { floorPrice } from 'helpers/floorPrice'
+
 import { UserName } from 'components/shared/UserName'
 import { Price } from 'components/shared/Price'
 
@@ -19,7 +21,7 @@ export const AsideUserInfo = ({ isSplit }: { isSplit: boolean }) => {
           <div className={s.content}>
             <Price
               className={s.price}
-              price={balance.activeBalance}
+              price={floorPrice(balance.activeBalance)}
               type="xs"
             />
             <div className={s.account}>

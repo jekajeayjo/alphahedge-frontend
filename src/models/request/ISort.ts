@@ -1,5 +1,6 @@
 export interface ISort {
   page: number
   size: number
-  criteria?: [{ key: string; value: string }]
+  sortDir?: string
+  criteria?: { key: string; value: string }[]
 }

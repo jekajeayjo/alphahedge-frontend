@@ -38,7 +38,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
           </PersonalBlock>
           <PersonalBlock
             label="Активные портфели"
-            link="/"
+            link="/personal/investments?tab=briefcase"
             textLink="Все портфели"
           >
             <ActivePortfolios isAdmin={auth?.profile?.role === 'Admin'} />

@@ -1,32 +1,51 @@
 import cn from 'classnames'
 
+import { clearDate } from 'helpers/clearDate'
+
+import { ITransaction } from 'models/response/TransactionResponse'
+
 import { TableCell, TableRow } from 'components/shared/table'
 import { UserName } from 'components/shared/UserName'
 
 import s from './TransactionRow.module.scss'
 
-export const TransactionRow = () => (
-  <TableRow>
-    <TableCell className={s.first}>
-      <UserName name="GN AN" />
-      <span className={s.price}>$1500</span>
-    </TableCell>
-    <TableCell className={s.type}>
-      <span>TRC20</span>
-    </TableCell>
-    <TableCell className={s.data}>
-      <span>18.08.2023</span>
-    </TableCell>
-    <TableCell>
-      <div
-        className={cn(s.status, {
-          [s.success]: true,
-          [s.cancel]: false,
-          [s.pending]: false,
-        })}
-      >
-        Успешно
-      </div>
-    </TableCell>
-  </TableRow>
-)
+export const TransactionRow = (props: ITransaction) => {
+  const {
+    transactionDate,
+    transactionStatus,
+    currencyToken,
+    typePay,
+    fio,
+    amount,
+  } = props
+
+  return (
+    <TableRow>
+      <TableCell className={s.first}>
+        <UserName name={fio} />
+        <span className={s.price}>${amount}</span>
+      </TableCell>
+      <TableCell className={s.type}>
+        <span>{currencyToken}</span>
+      </TableCell>
+      <TableCell className={s.data}>
+        <span>{clearDate(transactionDate, true)}</span>
+      </TableCell>
+      <TableCell>
+        <button
+          className={cn(s.status, {
+            [s.success]: transactionStatus === 'Success',
+            [s.cancel]: transactionStatus === 'Cancel',
+            [s.pending]: transactionStatus === 'Process',
+          })}
+          disabled={transactionStatus !== 'Process'}
+          type="button"
+        >
+          {transactionStatus === 'Success' && 'Успешно'}
+          {transactionStatus === 'Cancel' && 'Отменен'}
+          {transactionStatus === 'Process' && 'В обработке'}
+        </button>
+      </TableCell>
+    </TableRow>
+  )
+}

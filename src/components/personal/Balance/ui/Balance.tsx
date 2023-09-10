@@ -1,13 +1,14 @@
 import { Price } from 'components/shared/Price'
 
 import useAuth from 'hooks/useAuth'
+import { floorPrice } from 'helpers/floorPrice'
 
 import s from './Balance.module.scss'
 
 export const Balance = () => {
   const { auth } = useAuth()
 
-  const { profile, balance } = auth
+  const { balance } = auth
 
   const items = [
     {
@@ -36,7 +37,11 @@ export const Balance = () => {
     <div className={s.block}>
       {balance && (
         <>
-          <Price className={s.total} price={balance.balance} type="lg" />
+          <Price
+            className={s.total}
+            price={floorPrice(balance.balance)}
+            type="lg"
+          />
           <div className={s.bar}>
             {items.map((line, idx) => (
               <div
@@ -59,7 +64,11 @@ export const Balance = () => {
                   />
                   {line.label}
                 </div>
-                <Price className={s.price} type="xs" price={line.price} />
+                <Price
+                  className={s.price}
+                  type="xs"
+                  price={floorPrice(line.price)}
+                />
               </div>
             ))}
           </div>

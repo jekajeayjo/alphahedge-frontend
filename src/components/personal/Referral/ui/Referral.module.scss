@@ -25,6 +25,12 @@
 .col {
   flex: 0 0 auto;
 
+  button {
+    svg path {
+      transition: 400ms;
+    }
+  }
+
   @include utils.media-max-width(700) {
     width: fit-content;
   }
@@ -113,6 +119,12 @@ tr.referal {
 
   &.positive {
     color: var(--green)
+  }
+}
+
+.coped {
+  svg path {
+    fill: var(--green);
   }
 }
 
