@@ -1,23 +1,14 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 
-import {
-  TableCell,
-  TableComponent,
-  TableLabel,
-  TablePrice,
-  TableRow,
-} from 'components/shared/table'
-
-import { RocketIcon } from 'assets/icons'
-
-import { clearDate } from 'helpers/clearDate'
-import { floorPrice } from 'helpers/floorPrice'
+import { TableComponent, TableLabel } from 'components/shared/table'
 
 import BriefcaseServices from 'services/BriefcaseServices'
 import { IGetGainBriefcaseResponse } from 'models/response/BriefcaseResponse'
 
 import { IIncomeTableCarousel } from '../model/IncomeTableCarousel.interface'
+
+import { IncomeTableRow } from './IncomeTableRow'
 
 import s from './IncomeTableFinance.module.scss'
 
@@ -116,29 +107,7 @@ export const IncomeTableFinance = (props: IIncomeTableCarousel) => {
         fetchNext={fetchNext}
         tables={data.page.content}
         renderComponent={(item) => (
-          <TableRow key={item.briefcaseId}>
-            <TableCell className={s.briefName}>
-              <div className={s.icon}>
-                <img src={RocketIcon} alt={item.briefcaseName} />
-              </div>
-              <span>{item.briefcaseName}</span>
-            </TableCell>
-            <TableCell className={s.type}>
-              {item.code === 'ADVANCED' ? 'Индвидуальный' : 'Портфельные'}
-            </TableCell>
-            <TableCell className={s.price}>
-              <span>$ {item.briefcaseAmount}</span>
-            </TableCell>
-            <TableCell className={s.data}>
-              {clearDate(item.createdDate)}
-            </TableCell>
-            <TableCell className={s.cellTotal}>
-              <TablePrice
-                price={floorPrice(item.gainAmount).toString()}
-                type="up"
-              />
-            </TableCell>
-          </TableRow>
+          <IncomeTableRow key={item.briefcaseAccountGainId} {...item} />
         )}
       />
     </div>

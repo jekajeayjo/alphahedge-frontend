@@ -44,8 +44,12 @@
 }
 
 .col {
+  display: flex;
+  flex-direction: column;
+
   > div + div {
     margin-top: 30px;
+    flex: 1;
   }
 
   @include utils.media-max-width(1780) {

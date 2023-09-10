@@ -113,7 +113,7 @@ export const ActivePackage = () => {
         ]}
         tables={data.actionAccountBalanceViewDtoPage.content}
         currentPage={data.actionAccountBalanceViewDtoPage.number}
-        total={data.actionAccountBalanceViewDtoPage.totalElements}
+        total={data.actionAccountBalanceViewDtoPage.totalPages}
         fetchNext={fetchNext}
         fetchPrev={fetchPrev}
         renderComponent={(action) => (
