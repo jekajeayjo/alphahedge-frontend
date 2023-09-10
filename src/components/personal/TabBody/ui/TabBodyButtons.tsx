@@ -72,6 +72,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
         <button
           className={s.tab}
           onClick={() => onClick(tabEnum.ACTIVE)}
+          disabled={tab === tabEnum.ACTIVE}
           type="button"
         >
           Акции
@@ -79,6 +80,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
         <button
           className={s.tab}
           onClick={() => onClick(tabEnum.PACKAGE)}
+          disabled={tab === tabEnum.PACKAGE}
           type="button"
         >
           портфельные инвестиции
@@ -88,6 +90,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
           <button
             className={s.tab}
             onClick={() => onClick(tabEnum.INDIVIDUAL)}
+            disabled={tab === tabEnum.INDIVIDUAL}
             type="button"
           >
             <img src={UnlockIcon} alt="lock" />

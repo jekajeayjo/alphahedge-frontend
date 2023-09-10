@@ -5,7 +5,8 @@
   font-weight: 400;
   padding: 0 17px;
   width: auto;
-  margin-left: auto;
+
+  &.isShow {}
 }
 
 .label {
@@ -18,7 +19,7 @@
 th.changer {
   font-size: 20px;
   font-weight: 400;
-  padding-left: 13px;
+  transform: translateX(-25px);
 }
 
 tr.borderHide {
@@ -42,12 +43,15 @@ tr.counter {
   width: 20%;
 
   &.md {
-    width: 15%;
+    width: 21%;
   }
 
   @include utils.media-max-width(1600) {
     width: 25%;
   }
+}
+
+.currentMd {
 }
 
 .more{
@@ -68,12 +72,20 @@ tr.counter {
 }
 
 
-.cell {
+.action {
   width: 165px;
+
+  button {
+    margin-left: auto;
+  }
 }
 
 .company {
   width: 243px;
+
+  &.md {
+    width: 280px;
+  }
 
   @include utils.media-max-width(1600) {
     width: auto;
@@ -84,10 +96,31 @@ tr.counter {
   width: 273px;
 
   &.md {
-    width: auto;
+    width: 130px;
   }
 
   @include utils.media-max-width(1600) {
     width: auto;
   }
+}
+
+.modal {
+  height: 859px;
+  max-width: 1512px;
+  width: 100%;
+  border-radius: 20px;
+  background: #FFF;
+  padding: 48px 105px 49px 105px;
+}
+
+.inner {
+  padding-left: 350px;
+  padding-right: 30px;
+}
+
+.title {
+  margin-bottom: 50px;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
 }

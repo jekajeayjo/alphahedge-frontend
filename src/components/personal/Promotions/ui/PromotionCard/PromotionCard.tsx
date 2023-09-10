@@ -16,6 +16,9 @@ import {
 import { DownIcon, UpIcon } from 'assets/icons'
 import { floorPrice } from 'helpers/floorPrice'
 
+import ActionServices from 'services/ActionServices'
+import useActions from 'hooks/useActions'
+
 import { IActionItem } from 'models/response/ActionResponse'
 
 import { PromotionCardActions } from './PromotionCardActions'
@@ -62,6 +65,8 @@ export const options: ChartOptions = {
   },
 }
 
+const { getActionBalance } = ActionServices
+
 export const PromotionCard = (props: IPromotionCard) => {
   const {
     disable,
@@ -72,6 +77,8 @@ export const PromotionCard = (props: IPromotionCard) => {
     actionName,
     currentPrice,
   } = props
+
+  const { setData } = useActions()
 
   const data = {
     labels: statistics.slice(statistics.length / 2).map((element) => element),
@@ -106,6 +113,18 @@ export const PromotionCard = (props: IPromotionCard) => {
     )
   }
 
+  const fetchData = async () => {
+    try {
+      const response = await getActionBalance({
+        page: 0,
+        size: 6,
+      })
+      setData(response.data)
+    } catch (e) {
+      console.log('Error fetch action balance', e)
+    }
+  }
+
   return (
     <div className={s.card}>
       <div className={s.header}>
@@ -125,10 +144,14 @@ export const PromotionCard = (props: IPromotionCard) => {
       </div>
       <div className={s.diagramma}>
         {/* @ts-ignore */}
-        <Line options={options} data={data} />
+        <Line className={s.canvas} options={options} data={data} />
       </div>
       {!disable && (
-        <PromotionCardActions code={actionCode} currentPrice={currentPrice} />
+        <PromotionCardActions
+          code={actionCode}
+          fetchData={fetchData}
+          currentPrice={currentPrice}
+        />
       )}
     </div>
   )

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
+import cn from 'classnames'
+
 import { TableComponent } from 'components/shared/table'
+import { Loader } from 'components/shared/Loader'
 
 import ReferalService from 'services/ReferalService'
 import { IReferalResponse } from 'models/response/ReferalResponse'
@@ -59,7 +62,17 @@ export const Referral = () => {
   }
 
   if (!data) {
-    return <div />
+    return (
+      <div className={cn(s.wrapper, s.pending)}>
+        <Loader className={s.loader} />
+      </div>
+    )
+  }
+
+  if (data.page.empty) {
+    return (
+      <div className={s.empty}>У вас нет доходов с реферальной системы</div>
+    )
   }
 
   return (

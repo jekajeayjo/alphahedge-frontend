@@ -134,6 +134,12 @@ tr.referal {
   flex: 1;
 }
 
+.pending {
+  min-height: 200px;
+  position: relative;
+  height: 100%;
+}
+
 .inner {
   overflow-x: auto;
   @include utils.customScroll(#000);
@@ -155,4 +161,15 @@ tr.referal {
   @include utils.media-max-width(1000) {
     margin-top: 20px;
   }
+}
+
+.loader {
+  position: absolute;
+
+  @include utils.centerCenter();
+}
+
+.empty {
+  font-size: 16px;
+  margin: 30px 0;
 }

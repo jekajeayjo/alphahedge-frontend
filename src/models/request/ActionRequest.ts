@@ -1,4 +1,4 @@
-export interface IActionInvestRequest {
+export interface IActionRequest {
   count: string
   code: string
 }

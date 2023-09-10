@@ -6,7 +6,7 @@ import { floorPrice } from 'helpers/floorPrice'
 
 import ActionServices from 'services/ActionServices'
 
-import { IActionInvestRequest } from 'models/request/ActionRequest'
+import { IActionRequest } from 'models/request/ActionRequest'
 import { FetchStatusType } from 'models/FetchStatusType'
 
 import { Button } from 'components/shared/Button'
@@ -17,12 +17,13 @@ import s from './PromotionCard.module.scss'
 interface IPromotionCardActions {
   code: string
   currentPrice: number
+  fetchData: () => Promise<void>
 }
 
 const { actionInvest } = ActionServices
 
 export const PromotionCardActions = (props: IPromotionCardActions) => {
-  const { code, currentPrice } = props
+  const { code, currentPrice, fetchData } = props
 
   const [count, setCount] = useState(1)
   const [isOpen, setIsOpen] = useState(false)
@@ -36,13 +37,14 @@ export const PromotionCardActions = (props: IPromotionCardActions) => {
 
     setStatus('pending')
 
-    const data: IActionInvestRequest = {
+    const data: IActionRequest = {
       code,
       count: count.toString(),
     }
 
     try {
       await actionInvest(data)
+      await fetchData()
       setStatus('success')
     } catch (e) {
       setStatus('error')

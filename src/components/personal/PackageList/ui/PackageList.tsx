@@ -5,8 +5,9 @@ import useInvestCounter from 'hooks/useInvestCounter'
 import { IGetBriefcaseResponse } from 'models/response/BriefcaseResponse'
 
 import { InfoCard } from 'components/shared/InfoCard'
+import { Loader } from 'components/shared/Loader'
 
-import BriefcaseServices from '../../../../services/BriefcaseServices'
+import BriefcaseServices from 'services/BriefcaseServices'
 
 import s from './PackageList.module.scss'
 
@@ -39,16 +40,23 @@ export const PackageList = () => {
     fetchBriefcases(10)
   }, [])
 
+  if (!briefcases) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    )
+  }
+
   return (
     <div className={s.list}>
-      {briefcases &&
-        briefcases.content.map((brief) => (
-          <InfoCard
-            key={brief.briefcaseId}
-            fetch={() => fetchBriefcases(10)}
-            {...brief}
-          />
-        ))}
+      {briefcases.content.map((brief) => (
+        <InfoCard
+          key={brief.briefcaseId}
+          fetch={() => fetchBriefcases(10)}
+          {...brief}
+        />
+      ))}
     </div>
   )
 }

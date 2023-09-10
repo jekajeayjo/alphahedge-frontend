@@ -6,6 +6,7 @@ import useAuth from 'hooks/useAuth'
 import { UserType } from 'models/UserType'
 
 import { PersonalLayout } from 'components/layouts/PersonalLayout'
+import { PageLoader } from 'components/shared/Loader'
 
 type ProtectedRouteType = {
   roleRequired?: UserType
@@ -19,7 +20,7 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
 
   if (roleRequired) {
     if (auth.loading) {
-      return <div>load</div>
+      return <PageLoader />
     }
 
     if (roleRequired === auth?.profile?.role && !auth.loading) {

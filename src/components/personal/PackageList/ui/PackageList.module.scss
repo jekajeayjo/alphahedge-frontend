@@ -21,3 +21,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.loader {
+  @include utils.centering();
+  min-height: 370px;
+  height: 100%;
+}

@@ -1,9 +1,13 @@
 import { AxiosResponse } from 'axios'
 
+import { queryPhp } from 'helpers/queryPhp'
+
 import { ISort } from 'models/request/ISort'
-import { IResponseProfile } from 'models/response/AccountResponse'
-import { IActionInvestRequest } from 'models/request/ActionRequest'
-import { IActionItem } from 'models/response/ActionResponse'
+import { IActionRequest } from 'models/request/ActionRequest'
+import {
+  IActionBalanceResponse,
+  IActionItem,
+} from 'models/response/ActionResponse'
 
 import $api from '../http'
 
@@ -14,13 +18,19 @@ export default class ActionServices {
     return $api.post<IActionItem[]>('/action-account/actions/stock/page', data)
   }
 
-  static async getActionBalance(): Promise<AxiosResponse<IResponseProfile>> {
-    return $api.get<IResponseProfile>('/action-account/page/active')
+  static async getActionBalance(
+    data: ISort,
+  ): Promise<AxiosResponse<IActionBalanceResponse>> {
+    return $api.get<IActionBalanceResponse>(
+      `/action-account/page/active?${queryPhp(data)}`,
+    )
   }
 
-  static async actionInvest(
-    data: IActionInvestRequest,
-  ): Promise<AxiosResponse> {
+  static async actionInvest(data: IActionRequest): Promise<AxiosResponse> {
     return $api.post('/action-account/invest', data)
+  }
+
+  static async actionSell(data: IActionRequest): Promise<AxiosResponse> {
+    return $api.post('/action-account/sell', data)
   }
 }

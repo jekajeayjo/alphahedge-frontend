@@ -9,27 +9,37 @@ import { IModal } from '../model/IModal.interface'
 import s from './Modal.module.scss'
 
 export const Modal = (props: IModal) => {
-  const { className, classNameButton, children, textButton } = props
+  const {
+    className,
+    classNameButton,
+    children,
+    textButton,
+    isOpen = false,
+    onOpen = () => null,
+    onClose = () => null,
+  } = props
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(isOpen)
 
   const ref = useRef<any>()
 
-  const onClose = () => {
+  const closeHandler = () => {
     setOpen(false)
+    onClose(false)
   }
 
-  const onOpen = () => {
+  const openHandler = () => {
     setOpen(true)
+    onOpen(true)
   }
 
-  useOnOutsideClick(ref, onClose)
+  useOnOutsideClick(ref, closeHandler)
 
   return (
     <>
       <button
         className={cn(s.trigger, classNameButton)}
-        onClick={onOpen}
+        onClick={openHandler}
         type="button"
         dangerouslySetInnerHTML={{ __html: textButton }}
       />

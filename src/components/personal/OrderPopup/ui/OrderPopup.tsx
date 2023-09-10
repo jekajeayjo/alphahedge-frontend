@@ -1,3 +1,1 @@
-export const OrderPopup = () => {
-  return <div></div>
-}
+export const OrderPopup = () => <div />

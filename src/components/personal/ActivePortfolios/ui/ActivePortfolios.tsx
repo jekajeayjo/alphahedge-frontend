@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import cn from 'classnames'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react'
 
@@ -6,6 +7,7 @@ import BriefcaseServices from 'services/BriefcaseServices'
 import { IBriefcaseActive } from 'models/response/BriefcaseResponse'
 
 import { InfoCard } from 'components/shared/InfoCard'
+import { Loader } from 'components/shared/Loader'
 import { CarouselPagination } from 'components/shared/CarouselPagination'
 
 import { IActivePortfolios } from '../model/ActivePortfolios.interface'
@@ -54,31 +56,35 @@ export const ActivePortfolios = (props: IActivePortfolios) => {
     embla.on('select', onSelect)
   }, [embla])
 
+  if (!briefcases) {
+    return (
+      <div className={cn(s.wrapper, s.pending)}>
+        <Loader className={s.loader} />
+      </div>
+    )
+  }
+
   return (
     <div className={s.wrapper}>
-      {briefcases && (
-        <div className={s.carousel} ref={otherRef}>
-          {briefcases.length > 0 ? (
-            <div className={s.list}>
-              {briefcases.map((brief) => (
-                <InfoCard {...brief} isAdmin={isAdmin} />
-              ))}
-            </div>
-          ) : (
-            <div className={s.empty}>У вас нет активных портфелий</div>
-          )}
-        </div>
-      )}
+      <div className={s.carousel} ref={otherRef}>
+        {briefcases.length > 0 ? (
+          <div className={s.list}>
+            {briefcases.map((brief) => (
+              <InfoCard {...brief} isAdmin={isAdmin} />
+            ))}
+          </div>
+        ) : (
+          <div className={s.empty}>У вас нет активных портфелий</div>
+        )}
+      </div>
 
-      {briefcases && (
-        <CarouselPagination
-          total={briefcases.length}
-          index={selectedIndex}
-          className={s.pagination}
-          nextButtonClick={scrollNext}
-          prevButtonClick={scrollPrev}
-        />
-      )}
+      <CarouselPagination
+        total={briefcases.length}
+        index={selectedIndex}
+        className={s.pagination}
+        nextButtonClick={scrollNext}
+        prevButtonClick={scrollPrev}
+      />
     </div>
   )
 }

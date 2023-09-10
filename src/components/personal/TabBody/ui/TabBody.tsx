@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { InvestProvider } from 'context/InvestCaounter'
+import { ActionProvider } from 'context/ActionProvider'
 
 import { RequestVerification } from 'components/shared/RequestVerification'
 
@@ -52,21 +53,23 @@ export const TabBody = (props: { adminEdit: boolean }) => {
 
   return (
     <InvestProvider>
-      <AdminBack
-        name="Golovnea Natalia"
-        adminEdit={adminEdit}
-        url="/admin/users"
-      />
-      <div className={s.wrapper}>
-        <TabBodyButtons tab={tab} onClick={onClickHandler} />
-        <div className={s.body}>
-          {tab === tabEnum.ACTIVE && <Promotions />}
-          {tab === tabEnum.PACKAGE && <PackageList />}
-          {tab === tabEnum.INDIVIDUAL && <Individual />}
+      <ActionProvider>
+        <AdminBack
+          name="Golovnea Natalia"
+          adminEdit={adminEdit}
+          url="/admin/users"
+        />
+        <div className={s.wrapper}>
+          <TabBodyButtons tab={tab} onClick={onClickHandler} />
+          <div className={s.body}>
+            {tab === tabEnum.ACTIVE && <Promotions />}
+            {tab === tabEnum.PACKAGE && <PackageList />}
+            {tab === tabEnum.INDIVIDUAL && <Individual />}
+          </div>
+          {tab === tabEnum.ACTIVE && <PromotionTable />}
+          {tab === tabEnum.INDIVIDUAL && <IncomeTable />}
         </div>
-        {tab === tabEnum.ACTIVE && <PromotionTable />}
-        {tab === tabEnum.INDIVIDUAL && <IncomeTable />}
-      </div>
+      </ActionProvider>
     </InvestProvider>
   )
 }
