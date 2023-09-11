@@ -1,0 +1,79 @@
+.courses {
+  background: #18181B;
+  padding: 101px 0;
+}
+
+.header {
+  color: #FFF;
+  font-family: var(--font-family-main);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px; /* 100% */
+  margin-bottom: 50px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  border-radius: 33px;
+  background: #353438;
+  padding: 62px 51px;
+  max-width: 780px;
+}
+
+.image {
+  width: 350px;
+  height: 312px;
+  margin: 0 auto;
+}
+
+.label {
+  color: var(--pinki-tin);
+  font-family: var(--font-family-main);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 48px; /* 240% */
+  margin-top: 20px;
+}
+
+.title {
+  color: #FFF;
+  font-family: var(--font-family-main);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px; /* 150% */
+  margin-bottom: 20px;
+}
+
+.description {
+  color: #FFF;
+  font-family: var(--font-family-main);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px; /* 194.444% */
+  margin-bottom: 40px;
+}
+
+.button {
+  border-radius: 30px;
+  background: var(--pinki-tin);
+  padding: 12px;
+
+  color: #FFF;
+  font-family: var(--font-family-main);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}

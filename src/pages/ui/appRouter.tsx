@@ -11,6 +11,7 @@ import { TransactionPage } from './admins/TransactionPage/TransactionPage'
 import { VerificationPage } from './admins/VerificationPage/VerificationPage'
 
 import { HomePage } from './home/HomePage'
+import { ForexPage } from "./forex/ForexPage";
 
 import { DashboardPage } from './personal/DashboardPage/DashboardPage'
 import { InvestmentsPage } from './personal/InvestmentsPage/InvestmentsPage'
@@ -55,6 +56,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+      },
+      {
+        path: '/forex',
+        element: <ForexPage />,
       },
     ],
   },

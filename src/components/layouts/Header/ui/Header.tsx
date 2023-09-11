@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import useAuth from 'hooks/useAuth'
 import { useWindowSize } from 'hooks/useWindowSize'
@@ -15,12 +15,16 @@ import s from './Header.module.scss'
 export const Header = () => {
   const { auth } = useAuth()
 
+  const { pathname } = useLocation()
+
   const { width } = useWindowSize()
 
   console.log(auth)
 
   return (
-    <header className={s.header}>
+    <header
+      className={pathname === '/' ? s.header : `${s.header} ${s.header_black}`}
+    >
       <Container>
         <div className={s.inner}>
           <Link className={s.logo} to="/">

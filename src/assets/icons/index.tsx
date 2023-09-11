@@ -56,3 +56,7 @@ export { default as MetaIcon } from './shared/MetaIcon.svg'
 export { default as ApplyIcon } from './shared/ApplyIcon.svg'
 export { default as DiagramaIcon } from './shared/DiagramaIcon.svg'
 export { default as SystemIcon } from './shared/SystemIcon.svg'
+
+// forex
+export { default as ArrowIcon } from './forex/arrow.svg'
+export { default as DividerIcon } from './forex/divider.svg'
