@@ -102,6 +102,12 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 26px;
+  transition: 400ms;
+  min-height: 78px;
+
+  &.split {
+    @include utils.line-clamp(3);
+  }
 
   @include utils.media-max-width(900) {
     font-size: 16px;
@@ -202,8 +208,10 @@
 
   &.disable {
     pointer-events: none;
+
     input {
       pointer-events: none;
+
       &::placeholder {
         opacity: 0;
       }
@@ -222,7 +230,7 @@
   }
 }
 
-.wrapper{
+.wrapper {
   max-width: 417px;
   position: relative;
   width: 100%;

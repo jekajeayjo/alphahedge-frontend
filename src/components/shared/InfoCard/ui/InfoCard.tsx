@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import { Price } from 'components/shared/Price'
 import useDisable from 'hooks/useDisable'
@@ -22,6 +23,9 @@ interface IProps {
 }
 
 export const InfoCard = (props: IBriefcaseActive & IProps) => {
+  const [t] = useTranslation(`simpleCard`)
+  const [c] = useTranslation(`common`)
+
   const {
     isAdmin = false,
     remainDays,
@@ -46,27 +50,31 @@ export const InfoCard = (props: IBriefcaseActive & IProps) => {
   return (
     <div className={cn(s.card, className)}>
       <InfoCardContent
-        name={briefcaseName}
+        name={t(`${briefcaseId}.title`)}
+        description={t(`${briefcaseId}.description`)}
+        titleList={t(`${briefcaseId}.titleList`)}
+        actionList={t(`${briefcaseId}.actionList`, { returnObjects: true })}
+        technologies={t(`${briefcaseId}.technologies`, { returnObjects: true })}
         isActive={isActive}
         isAdmin={isAdmin}
       />
       {isActive && (
         <div className={s.actives}>
-          <InfoCardActive label="Инвестированно">
+          <InfoCardActive label={t('invested')}>
             <Price type="xs" price={amount ?? 0} />
           </InfoCardActive>
-          <InfoCardActive label="Ежедневный доход">
+          <InfoCardActive label={t('dailyIncome')}>
             <Price type="xs" price={gainAmount ? floorPrice(gainAmount) : 0} />
           </InfoCardActive>
-          <InfoCardActive label="Осталось дней">
+          <InfoCardActive label={t('daysLeft')}>
             <span className={s.days}>
               {ranges - getRemainDays(createddate)}
             </span>
             {getNoun({
               number: remainDays ?? 0,
-              five: 'дней',
-              two: 'дня',
-              one: 'день',
+              five: c('dayFive'),
+              two: c('dayTwo'),
+              one: c('dayOne'),
             })}
           </InfoCardActive>
         </div>
@@ -80,9 +88,12 @@ export const InfoCard = (props: IBriefcaseActive & IProps) => {
         />
       )}
       <div className={s.stats}>
-        <InfoCardStat label="Минимальный депозит" value={`$ ${amountMin}`} />
-        <InfoCardStat label="Ежедневный доход" value={`${percents} %`} />
-        <InfoCardStat label="Период блокировки" value={`${ranges} дней`} />
+        <InfoCardStat label={t('minDeposit')} value={`$ ${amountMin}`} />
+        <InfoCardStat label={t('dailyIncome')} value={`${percents} %`} />
+        <InfoCardStat
+          label={t('blockingPeriod')}
+          value={`${ranges} ${c('dayFive')}`}
+        />
       </div>
     </div>
   )
