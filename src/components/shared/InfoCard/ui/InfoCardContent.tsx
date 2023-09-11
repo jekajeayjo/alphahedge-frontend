@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 import cn from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import { LightningText } from 'components/shared/LightningText'
 import { Button } from 'components/shared/Button'
@@ -12,7 +13,18 @@ import { IInfoCardContent } from '../model/InfoCard.interface'
 import s from './InfoCard.module.scss'
 
 export const InfoCardContent = (props: IInfoCardContent) => {
-  const { isActive, isAdmin, name } = props
+  const [t] = useTranslation(`simpleCard`)
+  const [c] = useTranslation(`common`)
+
+  const {
+    isActive,
+    isAdmin,
+    name,
+    description,
+    titleList,
+    actionList,
+    technologies,
+  } = props
 
   const [open, setOpen] = useState(false)
 
@@ -30,7 +42,7 @@ export const InfoCardContent = (props: IInfoCardContent) => {
           <span>{name}</span>
           {isAdmin && isActive && (
             <Button className={s.close} type="button">
-              ЗАКРЫТЬ
+              {c('closeBtn')}
             </Button>
           )}
         </div>
@@ -39,18 +51,14 @@ export const InfoCardContent = (props: IInfoCardContent) => {
           type="button"
           onClick={onToggle}
         >
-          Подробнее
+          {c('moreBtn')}
           <img src={ButtonAccordionIcon} alt="arrow" />
         </button>
       </div>
-      <p className={s.text}>
-        Фонд определяет «подрывную инновацию» как внедрение технологически
-        нового продукта или услуги, которые потенциально могут изменить то, как
-        работает мир.
-      </p>
+      <p className={cn(s.text, { [s.split]: !open })}>{description}</p>
       {isAdmin && isActive && (
         <Button className={s.mobClose} type="button">
-          ЗАКРЫТЬ
+          {c('closeBtn')}
         </Button>
       )}
       <AnimateHeight
@@ -58,31 +66,20 @@ export const InfoCardContent = (props: IInfoCardContent) => {
         height={open ? 'auto' : 0}
       >
         <div className={s.content}>
-          <p className={s.content__text}>
-            Фонд определяет «подрывную инновацию» как внедрение технологически
-            нового продукта или услуги, которые потенциально могут изменить то,
-            как работает мир. Фонд определяет «подрывную инновацию» как
-            внедрение технологически нового продукта или услуги, которые
-            потенциально могут изменить то, как работает мир.
-          </p>
+          <p className={s.content__text}>{titleList}</p>
           <ul className={s.content__list}>
-            <LightningText text="ДНК-технологии и «геномная революция»" />
-            <LightningText text="Автоматизация, робототехника и хранение энергии" />
-            <LightningText text="Искусственный интеллект и «Интернет следующего поколения»" />
-            <LightningText text="Финтех инновации" />
+            {technologies.map((text, idx) => (
+              <LightningText key={idx} text={text} />
+            ))}
           </ul>
           <div className={s.content__packages}>
-            <div className={s.content__packages_label}>
-              Акции, входящие в данные пакет :
-            </div>
+            <div className={s.content__packages_label}>{t('actionTitle')}</div>
             <div className={s.content__packages_list}>
-              <div className={s.content__package}>TESLA INC</div>
-              <div className={s.content__package}>COINBASE GLOBAL INC</div>
-              <div className={s.content__package}>BLOCK INC</div>
-              <div className={s.content__package}>UNITY SOFTWARE INC</div>
-              <div className={s.content__package}>UIPATH INC</div>
-              <div className={s.content__package}>veracyte INC</div>
-              <div className={s.content__package}>EXACT SCIENCES CORP</div>
+              {actionList.map((action, idx) => (
+                <div className={s.content__package} key={idx}>
+                  {action}
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { AuthProvider } from 'context/AuthProvider'
 
+import './i18n'
+
 import { App } from './App'
 
 import './styles/index.scss'

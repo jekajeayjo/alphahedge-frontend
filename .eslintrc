@@ -53,7 +53,7 @@
     "@typescript-eslint/naming-convention": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "@typescript-eslint/no-use-before-define": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
+    "import/no-extraneous-dependencies": ["warn", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
     "react/jsx-no-useless-fragment": [
       1,
       {
