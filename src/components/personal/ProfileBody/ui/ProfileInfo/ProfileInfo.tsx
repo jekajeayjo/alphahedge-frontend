@@ -5,7 +5,7 @@ import { ProfileAccordion } from '../ProfileAccordion/ProfileAccordion'
 
 import s from './ProfileInfo.module.scss'
 
-export const ProfileInfo = () => (
+export const ProfileInfo = ({ status }: { status: string }) => (
   <>
     <h3 className={s.title}>Верификация</h3>
     <div className={s.verification}>
@@ -18,7 +18,7 @@ export const ProfileInfo = () => (
 
     <div className={s.inner}>
       <div className={s.left}>
-        <ProfileVerification />
+        <ProfileVerification status={status} />
       </div>
       <div className={s.right}>
         <ProfileAccordion />

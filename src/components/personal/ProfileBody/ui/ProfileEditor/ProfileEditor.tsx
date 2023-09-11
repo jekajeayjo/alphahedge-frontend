@@ -1,15 +1,52 @@
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { getDirtyValues } from 'helpers/getDirtyValues'
+
+import AccountServices from 'services/AccountServices'
+
 import { Button } from 'components/shared/Button'
 import { Input } from 'components/shared/Input'
+import { IProfileField } from 'models/response/AccountResponse'
+
+import { updateProfileSchema } from '../../lib/schema'
 
 import s from './ProfileEditor.module.scss'
 
-export const ProfileEditor = () => {
-  const methods = useForm()
-  const { handleSubmit } = methods
+const { updateProfile } = AccountServices
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+export const ProfileEditor = (props: IProfileField) => {
+  const { fam, im, userName, email, phoneNumber, country } = props
+
+  const resolver = yupResolver(updateProfileSchema)
+
+  const notifySuccess = () => toast.success('Вы обновили данные')
+
+  const methods = useForm<IProfileField>({
+    defaultValues: {
+      fam,
+      email,
+      im,
+      userName,
+      phoneNumber,
+      country,
+    },
+    mode: 'onChange',
+  })
+  const {
+    handleSubmit,
+    formState: { dirtyFields },
+  } = methods
+
+  const onSubmit = async (data: IProfileField) => {
+    const body = getDirtyValues(dirtyFields, data)
+
+    try {
+      await updateProfile(body as IProfileField)
+      notifySuccess()
+    } catch (e) {
+      console.log('Error update', e)
+    }
   }
 
   return (
@@ -23,23 +60,28 @@ export const ProfileEditor = () => {
         </div>
         <div className={s.inputs}>
           <div className={s.cell}>
-            <Input placeholder="Фамилия" type="text" name="last_name" />
+            <Input placeholder="Фамилия" type="text" name="fam" />
             <p className={s.label}>Фамилия</p>
           </div>
           <div className={s.cell}>
-            <Input placeholder="Имя" type="text" name="first_name" />
+            <Input placeholder="Имя" type="text" name="im" />
             <p className={s.label}>Имя</p>
           </div>
           <div className={s.cell}>
-            <Input placeholder="User name" type="text" name="username" />
+            <Input
+              placeholder="User name"
+              disabled
+              type="text"
+              name="userName"
+            />
             <p className={s.label}>USERNAME</p>
           </div>
           <div className={s.cell}>
-            <Input placeholder="Телефон" type="text" name="phone" />
+            <Input placeholder="Телефон" type="tel" name="phoneNumber" />
             <p className={s.label}>Телефон</p>
           </div>
           <div className={s.cell}>
-            <Input placeholder="E-mail" type="email" name="email" />
+            <Input placeholder="E-mail" disabled type="email" name="email" />
             <p className={s.label}>E-mail</p>
           </div>
           <div className={s.cell}>
@@ -50,7 +92,7 @@ export const ProfileEditor = () => {
             <Input
               placeholder="Старый пароль"
               type="password"
-              name="old_password"
+              name="oldPassword"
             />
             <p className={s.label}>Старый пароль</p>
           </div>
@@ -58,7 +100,7 @@ export const ProfileEditor = () => {
             <Input
               placeholder="Новый пароль"
               type="password"
-              name="new_password"
+              name="newPassword"
             />
             <p className={s.label}>Новый пароль (минимум 8 символов) </p>
           </div>

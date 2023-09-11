@@ -1,18 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
+import axios from 'axios'
 
 import useAuth from 'hooks/useAuth'
 
-import { ILoginRequest } from 'models/request/AuthRequest'
+import AccountServices from 'services/AccountServices'
 
 import { Input } from 'components/shared/Input'
 
+import { ILoginRequest } from 'models/request/AuthRequest'
+import { IAuthResponse } from 'models/response/AuthResponse'
+
+import { API_URL } from '../../../../http'
+
 import s from './LoginForm.module.scss'
 
+const { getProfile, getBalance } = AccountServices
+
 export const LoginForm = () => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+
   const navigate = useNavigate()
-  const { setAuth } = useAuth()
+  const { setAuth, auth } = useAuth()
 
   const methods = useForm<ILoginRequest>({
     defaultValues: {
@@ -21,11 +32,52 @@ export const LoginForm = () => {
     },
   })
 
-  const { handleSubmit } = methods
+  const {
+    handleSubmit,
+    clearErrors,
+    setValue,
+    formState: { errors },
+  } = methods
 
-  const onSubmit = (data: ILoginRequest) => {
-    setAuth({ isAuth: true, role: 'user' })
-    navigate('/personal/dashboard')
+  const onSubmit = async (data: ILoginRequest) => {
+    setLoading(true)
+    const body = JSON.stringify(data)
+    clearErrors('isError')
+
+    const config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${API_URL}/auth/authenticate`,
+      headers: {
+        'Content-Type': 'application/json',
+        withCredentials: true,
+      },
+      data: body,
+    }
+
+    try {
+      const response = await axios.request<IAuthResponse>(config)
+      localStorage.setItem('token', response.data.acceptToken)
+      const resProfile = await getProfile()
+      const resBalance = await getBalance()
+      await setAuth({
+        loading: false,
+        isAuth: true,
+        balance: resBalance.data,
+        profile: resProfile.data,
+      })
+      if (resProfile.data.role === 'User') {
+        await navigate('/personal/dashboard')
+      } else {
+        await navigate('/admin/dashboard')
+      }
+    } catch (e) {
+      setError(true)
+      setValue('email', '')
+      setValue('password', '')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -38,7 +90,7 @@ export const LoginForm = () => {
             <Input
               className={s.input}
               placeholder="Введите e-mail"
-              type="email"
+              type="text"
               name="email"
             />
           </div>
@@ -51,10 +103,13 @@ export const LoginForm = () => {
               name="password"
             />
           </div>
+          {error && (
+            <div className={s.error}>Почта или пароль введены неверно</div>
+          )}
           <Link className={s.link} to="/">
             Забыли пароль?
           </Link>
-          <button className={s.submit} type="submit">
+          <button className={s.submit} disabled={loading} type="submit">
             Войти
           </button>
         </form>

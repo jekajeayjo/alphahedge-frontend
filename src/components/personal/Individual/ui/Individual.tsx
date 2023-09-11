@@ -1,5 +1,6 @@
 import { LightningText } from 'components/shared/LightningText'
-import { IndividualCard } from 'components/shared/IndividualCard'
+
+import { IndividualList } from './IndividualList'
 
 import s from './Individual.module.scss'
 
@@ -24,10 +25,6 @@ export const Individual = () => (
         <LightningText text="Сложный процент" />
       </ul>
     </div>
-    <div className={s.right}>
-      <IndividualCard price="$ 25,000.00" isOpen />
-      <IndividualCard price="$ 50,000.00" isOpen status />
-      <IndividualCard price="$ 150,000.00" />
-    </div>
+    <IndividualList />
   </div>
 )

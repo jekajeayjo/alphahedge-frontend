@@ -50,30 +50,30 @@
     background: var(--pinki-tin);
   }
 
-  &.active::before  {
+  &.active::before {
     left: -9px;
   }
 
-  &.package::before  {
+  &.package::before {
     left: -6px;
   }
 
-  &.individual::before  {
+  &.individual::before {
     left: -7px;
   }
 
   &.current {
     font-weight: 500;
 
-    &.active::before  {
+    &.active::before {
       width: 68px;
     }
 
-    &.package::before  {
+    &.package::before {
       width: 239px;
     }
 
-    &.individual::before  {
+    &.individual::before {
       width: 270px;
     }
 
@@ -82,11 +82,19 @@
     }
   }
 
-  &:disabled {
-    pointer-events: none;
+  &.disable {
+    text-decoration: underline;
+    color: #818181;
 
     img {
       transform: translateY(1.5px);
+    }
+  }
+
+  &:disabled {
+    @include utils.media-max-width(650) {
+      color: #000;
+      font-weight: 500;
     }
   }
 
@@ -94,7 +102,7 @@
     .tab {
       font-size: 16px;
 
-      &.active::before  {
+      &.active::before {
         left: -2px;
       }
     }
@@ -122,4 +130,65 @@
 .body {
   background-color: #fff;
   border-radius: 15px;
+}
+
+.modal {
+  max-width: 800px;
+  width: 100%;
+  height: 358px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 48px 54px 48px;
+
+  @include utils.media-max-width(1279) {
+    height: 310px;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 46px;
+  margin-bottom: 56px;
+
+  @include utils.media-max-width(1279) {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+}
+
+.text {
+  color: #707070;
+  font-size: 20px;
+  margin-bottom: 10px;
+  line-height: 29px;
+  margin-bottom: 10px;
+
+  @include utils.media-max-width(1279) {
+    font-size: 18px;
+  }
+}
+
+.time {
+  color: #A6A6A6;
+  font-size: 12px;
+  line-height: 17px;
+  margin-bottom: 28px;
+}
+
+.button {
+  background: var(--pinki-tin);
+  line-height: 47px;
+  border-radius: 30px;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  width: 100%;
+  transition: 400ms;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .6;
+  }
 }

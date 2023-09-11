@@ -46,12 +46,14 @@
     "react/no-array-index-key": 0,
     "no-promise-executor-return": 0,
     "react/require-default-props": 0,
+    "react-hooks/exhaustive-deps": 0,
     "react/jsx-props-no-spreading": 0,
     "import/prefer-default-export": 0,
     "react/function-component-definition": 0,
     "@typescript-eslint/naming-convention": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
     "react/jsx-no-useless-fragment": [
       1,
       {

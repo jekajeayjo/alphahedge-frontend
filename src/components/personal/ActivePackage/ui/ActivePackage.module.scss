@@ -11,6 +11,11 @@
   }
 }
 
+.empty {
+  font-size: 16px;
+  margin: 30px 0;
+}
+
 .left {
   display: flex;
   align-items: center;
@@ -44,6 +49,16 @@
 .wrapper {
   overflow-x: auto;
   @include utils.customScroll(#000);
+}
+
+.pending {
+  min-height: 200px;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  @include utils.centerCenter();
 }
 
 .table {

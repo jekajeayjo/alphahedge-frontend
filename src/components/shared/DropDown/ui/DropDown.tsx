@@ -10,7 +10,13 @@ import { IDropDown, OptionType } from '../model/DropDown.interface'
 import s from './DropDown.module.scss'
 
 export const DropDown = (props: IDropDown) => {
-  const { options, className, placeholder, defaultOption } = props
+  const {
+    options,
+    className,
+    placeholder,
+    defaultOption,
+    onSelect = () => null,
+  } = props
 
   const [isOpen, setOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<OptionType | null>(
@@ -63,7 +69,10 @@ export const DropDown = (props: IDropDown) => {
             })}
             type="button"
             key={item.id}
-            onClick={() => handleItemClick(item)}
+            onClick={() => {
+              onSelect(item.label ?? '')
+              handleItemClick(item)
+            }}
           >
             {item.image && <img src={item.image} alt={item.label} />}
             <span>{item.label}</span>

@@ -1,5 +1,42 @@
 @use 'styles/use/utils';
 
+.table {
+  @include utils.media-max-width(900) {
+    min-width: 630px;
+  }
+}
+
+.wrapper {
+  margin-top: 33px;
+}
+
+.loader{
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head {
+  text-transform: uppercase;
+}
+
+.tbody {
+  tr {
+    border: none;
+
+    &:first-child {
+      th {
+        padding-top: 24px;
+      }
+    }
+
+    th {
+      padding: 15px 0 0;
+    }
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: minmax(300px, 845px) minmax(615px, 1fr);
@@ -13,8 +50,12 @@
 }
 
 .col {
+  display: flex;
+  flex-direction: column;
+
   > div + div {
     margin-top: 30px;
+    flex: 1;
   }
 
   @include utils.media-max-width(1780) {
@@ -24,6 +65,7 @@
 
 .block {
   padding-top: 35px;
+  overflow: visible;
 }
 
 .form {
@@ -40,6 +82,34 @@
   margin-right: 49px;
 }
 
+
+.inner {
+  &.md {
+    padding-right: 69px;
+
+    @include utils.media-max-width(1780) {
+      padding-right: 0;
+    }
+  }
+
+  @include utils.media-max-width(900) {
+    overflow-x: auto;
+    @include utils.customScroll(#000);
+  }
+}
+
 .derivation {
   grid-gap: 20px;
+}
+
+.pagination {
+  &.md {
+    margin-top: 35px;
+  }
+
+  @include utils.media-max-width(900) {
+    &.md {
+      margin-top: 25px;
+    }
+  }
 }

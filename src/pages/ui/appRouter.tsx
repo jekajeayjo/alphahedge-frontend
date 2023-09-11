@@ -24,7 +24,7 @@ import { EmailConfirmPage } from './emailConfirmPage/EmailConfirmPage'
 
 export const appRouter = createBrowserRouter([
   {
-    element: AuthLayout(),
+    element: <AuthLayout />,
     errorElement: <div>error</div>,
     children: [
       {
@@ -36,7 +36,11 @@ export const appRouter = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: '/email-confirm',
+        path: '/verify',
+        element: <EmailConfirmPage />,
+      },
+      {
+        path: '/verify/:id',
         element: <EmailConfirmPage />,
       },
     ],
@@ -60,7 +64,7 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoutes roleRequired="user" />,
+    element: <ProtectedRoutes roleRequired="User" />,
     errorElement: <div>error</div>,
     children: [
       {
@@ -86,7 +90,7 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoutes roleRequired="admin" />,
+    element: <ProtectedRoutes roleRequired="Admin" />,
     errorElement: <div>error</div>,
     children: [
       {
@@ -116,7 +120,7 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoutes roleRequired="admin" adminEdit />,
+    element: <ProtectedRoutes roleRequired="Admin" adminEdit />,
     errorElement: <div>error</div>,
     children: [
       {

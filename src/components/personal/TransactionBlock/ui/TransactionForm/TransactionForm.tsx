@@ -1,54 +1,163 @@
+import { useState } from 'react'
 import cn from 'classnames'
 import { FormProvider, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import WAValidator from 'vm-multicoin-address-validator'
+import { toast } from 'react-toastify'
 
-import { SystemIcon } from 'assets/icons'
+import useTokens from 'hooks/useTokens'
 
-import { DropDown, OptionType } from 'components/shared/DropDown'
+import { FetchStatusType } from 'models/FetchStatusType'
+import { IRequestTransaction } from 'models/request/TransactionRequset'
+
+import { DropDown } from 'components/shared/DropDown'
 import { Input } from 'components/shared/Input'
 import { Button } from 'components/shared/Button'
 
+import TransactionServices from 'services/TransactionServices'
+
 import { ITransactionForm } from '../../model/Transaction.interface'
+import { transactionForm } from '../../lib/schema'
 
 import s from './TransactionForm.module.scss'
 
-const MOCK: OptionType[] = [
-  { id: 1, label: 'Istanbul, TR (AHL)', image: SystemIcon },
-  { id: 2, label: 'Paris, FR (CDG)', image: SystemIcon },
-]
+const { getCoinPrice, addTransaction } = TransactionServices
 
 export const TransactionForm = (props: ITransactionForm) => {
-  const { className, type } = props
+  const { className, type, fetch } = props
 
-  const methods = useForm()
-  const { handleSubmit } = methods
+  const { tokens } = useTokens()
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const [coinPrice, setCoinPrice] = useState<string | null>()
+  const [tokenName, setTokenName] = useState<string | null>(null)
+  const [status, setStatus] = useState<FetchStatusType | null>(null)
+
+  const notifyToken = () => toast.error('Данный токен недоступен')
+  const notifyAddress = () => toast.error('Данный адресс вывода некорректен')
+
+  const methods = useForm({
+    resolver: yupResolver(transactionForm),
+  })
+  const { handleSubmit, reset } = methods
+
+  const onSubmit = async (data: any) => {
+    if (!coinPrice || !tokenName) {
+      return
+    }
+
+    setStatus('pending')
+
+    let body = {}
+
+    if (type === 'In') {
+      body = {
+        amountOut: data.deposit,
+        transactionType: type,
+        transactionStatus: 'Process',
+        currencyToken: tokenName,
+        amountIn: (Number(data.deposit) / Number(coinPrice)).toString(),
+      }
+    }
+
+    if (type === 'Out') {
+      if (!WAValidator.validate(data.contact, tokenName)) {
+        notifyAddress()
+        setStatus('error')
+        return
+      }
+
+      body = {
+        amountOut: (Number(data.deposit) / Number(coinPrice)).toString(),
+        transactionType: type,
+        transactionStatus: 'Process',
+        currencyToken: tokenName,
+        amountIn: data.deposit,
+        contact: data.contact,
+      }
+    }
+
+    try {
+      await addTransaction(body as IRequestTransaction)
+      await fetch()
+      setStatus('success')
+    } catch (e) {
+      console.log('Error add transaction', e)
+      setStatus('error')
+    } finally {
+      reset()
+    }
+  }
+
+  const onSelectToken = async (coin: string) => {
+    try {
+      const response = await getCoinPrice(coin)
+      setCoinPrice(response.data.price)
+      setTokenName(coin)
+    } catch (e) {
+      if (tokenName) {
+        setTokenName(null)
+      }
+      notifyToken()
+      console.log('Failed get token', e)
+    }
   }
 
   return (
     <FormProvider {...methods}>
       <form className={cn(s.form, className)} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.col}>
-          <DropDown placeholder="Платежная система" options={MOCK} />
+          <DropDown
+            placeholder="Платежная система"
+            onSelect={onSelectToken}
+            options={
+              tokens
+                ? tokens.map((token) => ({
+                    id: token.currencyTypeId,
+                    label: token.currencyToken,
+                    image: token.image,
+                  }))
+                : []
+            }
+          />
           <div className={s.label}>Выберите Платежную систему</div>
         </div>
         <div className={s.col}>
           <Input
+            prefix="$"
             className={s.input}
             placeholder={`Введите сумму ${
-              type === 'derivation' ? 'вывода' : 'пополнения'
+              type === 'Out' ? 'вывода' : 'пополнения'
             }`}
             type="text"
             name="deposit"
           />
           <div className={s.label}>
-            Укажите сумму для {type === 'derivation' ? 'вывода' : 'пополнения'}
+            Укажите сумму для {type === 'Out' ? 'вывода' : 'пополнения'}
           </div>
         </div>
-        <Button className={s.button} type="submit">
-          {type === 'derivation' ? 'Вывод' : 'Пополнить'}
+        {type === 'Out' && (
+          <div className={s.col}>
+            <Input
+              className={s.input}
+              placeholder="Укажите TRC Adress"
+              type="text"
+              name="contact"
+            />
+            <div className={s.label}>адресс вывода</div>
+          </div>
+        )}
+        <Button
+          className={s.button}
+          disabled={status === 'pending'}
+          type="submit"
+        >
+          {type === 'Out' ? 'Вывод' : 'Пополнить'}
         </Button>
+        {type === 'Out' && (
+          <p className={s.notification}>
+            *Запрос обрабатывается максимально до 24ч
+          </p>
+        )}
       </form>
     </FormProvider>
   )

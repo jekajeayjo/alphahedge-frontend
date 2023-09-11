@@ -1,5 +1,18 @@
+@use 'styles/use/utils';
+
 .wrapper {
   margin-top: 38px;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  @include utils.centerCenter();
+}
+
+.pending {
+  min-height: 200px;
+  height: 100%;
 }
 
 .carousel {
@@ -19,4 +32,8 @@
 
 .pagination {
   margin-top: 20px;
+}
+
+.empty {
+  font-size: 16px;
 }

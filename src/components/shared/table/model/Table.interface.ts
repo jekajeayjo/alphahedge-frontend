@@ -21,7 +21,8 @@ export interface ITableLabel {
 
 export interface ITableComponent<T> {
   tableTitles: string[]
-  perPage: number
+  total: number
+  currentPage: number
 
   tables: T[]
   renderComponent: (item: T) => ReactNode
@@ -32,4 +33,7 @@ export interface ITableComponent<T> {
   classNameHeader?: string
   classNameBody?: string
   classNamePagination?: string
+
+  fetchPrev?: () => void
+  fetchNext?: () => void
 }

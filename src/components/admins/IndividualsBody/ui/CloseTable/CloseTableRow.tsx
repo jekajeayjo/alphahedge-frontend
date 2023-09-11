@@ -14,7 +14,7 @@ export const CloseTableRow = ({ onClick }: ICloseTableRow) => (
   <TableRow>
     <TableCell className={cn(s.name, s.th)}>
       <button type="button" onClick={() => onClick(true)}>
-        <UserName name="GN" />
+        <UserName name="GN AN" />
         <span>Golovnea Natalia</span>
       </button>
     </TableCell>

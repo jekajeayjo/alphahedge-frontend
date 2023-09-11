@@ -1,30 +1,60 @@
 import { useState } from 'react'
 import cn from 'classnames'
+import { toast } from 'react-toastify'
 
 import { TableCell, TablePrice, TableRow } from 'components/shared/table'
-import { Price } from 'components/shared/Price'
-import { Button } from 'components/shared/Button'
 import { CounterChanger } from 'components/shared/CounterChanger'
-
 import { Company } from 'components/personal/Company'
+
+import ActionServices from 'services/ActionServices'
+
+import { floorPrice } from 'helpers/floorPrice'
 
 import { IActiveTableRow } from '../model/ActiveTableRow.interface'
 
+import { ActiveTableActions } from './ActiveTableActions'
+
 import s from './ActiveTableRow.module.scss'
 
+const { actionSell } = ActionServices
+
 export const ActiveTableRow = (props: IActiveTableRow) => {
-  const { showButton = false } = props
+  const {
+    hideLastBuy = false,
+    showButton = false,
+    code,
+    count,
+    currentAmountAll,
+    currentPrice,
+    gain,
+    image,
+    updateData = () => null,
+  } = props
 
-  const [sellCounter, setSellCounter] = useState(0)
+  const [sellCounter, setSellCounter] = useState(1)
+  const [isOpen, setIsOpen] = useState(false)
 
-  const changeCounter = () => {
-    if (!sellCounter) {
-      setSellCounter(1)
+  const notifySuccess = () => toast.success('Вы продали данныую акцию')
+
+  const changeCounter = async () => {
+    if (!isOpen) {
+      setIsOpen(true)
+      return
+    }
+
+    try {
+      await actionSell({ code, count: sellCounter.toString() })
+      await updateData()
+      notifySuccess()
+    } catch (e) {
+      console.log('Error sell action', e)
     }
   }
 
   const incrementHandler = () => {
-    setSellCounter((prevState) => prevState + 1)
+    if (count > sellCounter) {
+      setSellCounter((prevState) => prevState + 1)
+    }
   }
 
   const decrementCounter = () => {
@@ -36,35 +66,42 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
   return (
     <>
       <TableRow className={cn({ [s.borderHide]: sellCounter })}>
-        <TableCell className={s.company}>
-          <Company name="Meta" />
+        <TableCell className={cn(s.company, { [s.md]: showButton })}>
+          <Company name={code} icon={image} />
         </TableCell>
-        <TableCell className={cn(s.price, { [s.md]: showButton })}>
-          <Price type="xs" price="1753.00" />
-        </TableCell>
+        {!hideLastBuy && (
+          <TableCell className={cn(s.price, { [s.md]: showButton })}>
+            {/* <Price type="xs" price="1753.00" /> */}
+          </TableCell>
+        )}
         <TableCell>
-          <TablePrice price="18,530. 00" type="up" showPercent />
+          <TablePrice
+            price={currentPrice.toString()}
+            type={gain > 0 ? 'up' : 'down'}
+          />
         </TableCell>
         <TableCell className={cn(s.actions, { [s.md]: showButton })}>
-          10
+          {count}
         </TableCell>
         <TableCell>
-          <TablePrice price="18,530. 00" type="up" />
+          <TablePrice
+            price={floorPrice(currentAmountAll).toString()}
+            type="up"
+          />
         </TableCell>
         {showButton && (
-          <TableCell className={s.more}>
-            <button type="button">Подробнее</button>
-          </TableCell>
-        )}
-        {showButton && (
-          <TableCell className={s.cell}>
-            <Button className={s.button} type="button" onClick={changeCounter}>
-              {sellCounter ? 'Подтвердить' : 'Продать'}
-            </Button>
-          </TableCell>
+          <ActiveTableActions
+            totalAmount={count.toString()}
+            totalPrice={floorPrice(currentAmountAll).toString()}
+            icon={image}
+            name={code}
+            isOpen={isOpen}
+            code={code}
+            changeCounter={changeCounter}
+          />
         )}
       </TableRow>
-      <TableRow className={cn(s.counter, { [s.show]: sellCounter })}>
+      <TableRow className={cn(s.counter, { [s.show]: isOpen })}>
         <TableCell className={s.label}>
           <span>Выберите кол-во акций :</span>
         </TableCell>

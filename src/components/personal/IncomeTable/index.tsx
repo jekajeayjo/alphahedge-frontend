@@ -1,1 +1,1 @@
-export { IncomeTableCarousel } from './ui/IncomeTableCarousel'
+export { IncomeTable } from './ui/IncomeTable'

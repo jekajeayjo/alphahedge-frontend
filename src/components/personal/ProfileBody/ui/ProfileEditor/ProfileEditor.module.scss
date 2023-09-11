@@ -38,6 +38,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 60px;
 
+
   @include utils.media-max-width(1600) {
     gap: 40px;
   }

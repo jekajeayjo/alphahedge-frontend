@@ -1,15 +1,12 @@
 @use 'styles/use/utils';
 
 .wrapper {
-  padding: 10px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 15px;
   margin-top: 45px;
   overflow: hidden;
 
-  @include utils.media-max-width(1050) {
-    padding: 0;
-  }
 }
 
 .header {
@@ -48,6 +45,11 @@
 }
 
 .price {
+  color: var(--pinki-tin);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+
   @include utils.media-max-width(1000) {
     width: 300px;
   }
@@ -55,6 +57,8 @@
 
 .data {
   width: 45%;
+  font-size: 18px;
+  font-weight: 700;
 
   @include utils.media-max-width(1600) {
     width: 40%;
@@ -67,6 +71,8 @@
 
 .cellTotal {
   width: 10%;
+  font-size: 18px;
+  font-weight: 700;
 
   @include utils.media-max-width(1600) {
     width: 200px;
@@ -83,4 +89,11 @@
     align-items: flex-start;
     gap: 10px;
   }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
 }

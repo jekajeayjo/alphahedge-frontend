@@ -3,10 +3,11 @@ export interface IDropDown {
   className?: string
   options: OptionType[]
   defaultOption?: OptionType
+  onSelect?: (value: string) => void
 }
 
 export type OptionType = {
-  id: number
+  id?: number
   image?: string
-  label: string
+  label?: string
 }

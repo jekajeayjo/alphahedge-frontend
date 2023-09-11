@@ -24,7 +24,10 @@ export const ActiveTableBody = () => {
         className={s.table}
         classNameBody={s.tbody}
         tables={mockArr}
-        perPage={7}
+        currentPage={1}
+        total={10}
+        fetchNext={() => null}
+        fetchPrev={() => null}
         renderComponent={(item) => (
           <ActiveRow onClick={(e) => setUserData(e)} />
         )}

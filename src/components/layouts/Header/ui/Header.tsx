@@ -19,7 +19,7 @@ export const Header = () => {
 
   const { width } = useWindowSize()
 
-  console.log(width)
+  console.log(auth)
 
   return (
     <header
@@ -37,7 +37,9 @@ export const Header = () => {
               className={s.user}
               to={
                 auth?.isAuth
-                  ? `/${auth?.role === 'user' ? 'personal' : 'admin'}/dashboard`
+                  ? `/${
+                      auth?.profile?.role === 'User' ? 'personal' : 'admin'
+                    }/dashboard`
                   : '/login'
               }
             >

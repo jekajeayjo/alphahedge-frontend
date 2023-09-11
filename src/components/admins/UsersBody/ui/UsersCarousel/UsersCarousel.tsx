@@ -11,7 +11,10 @@ export const UsersCarousel = () => (
     className={s.table}
     classNameInner={s.inner}
     tableTitles={['ФИО Пользователя', 'Username', 'E-mail', 'Роль', 'Баланс']}
-    perPage={7}
+    currentPage={1}
+    total={10}
+    fetchNext={() => null}
+    fetchPrev={() => null}
     tables={mockArr}
     renderComponent={(item) => <UserTableRow key={item} />}
   />

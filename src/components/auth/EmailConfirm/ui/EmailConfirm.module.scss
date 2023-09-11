@@ -67,8 +67,19 @@
   border-radius: 30px;
   background-color: var(--pinki-tin);
   margin: 38px 0 17px;
+  transition: 400ms;
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
 }
 
+.description {
+  font-size: 14px;
+  color: var(--pinki-tin);
+  margin: 10px 0 15px;
+}
 
 .after {
   color: #979797;

@@ -1,10 +1,12 @@
-export interface IInfoCard {
-  className?: string
-  isActive?: boolean
-  isAdmin?: boolean
-}
-
 export interface IInfoCardContent {
   isActive: boolean
   isAdmin?: boolean
+  name: string
+}
+
+export interface IInfoCardForm {
+  briefcaseId: number
+  minValue: number
+  fetch: () => void
+  briefcaseInvestStatus: 'Enable' | 'Disable'
 }

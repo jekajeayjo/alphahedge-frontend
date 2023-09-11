@@ -6,6 +6,7 @@ import useAuth from 'hooks/useAuth'
 import { UserType } from 'models/UserType'
 
 import { PersonalLayout } from 'components/layouts/PersonalLayout'
+import { PageLoader } from 'components/shared/Loader'
 
 type ProtectedRouteType = {
   roleRequired?: UserType
@@ -18,7 +19,11 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
   const { auth } = useAuth()
 
   if (roleRequired) {
-    if (roleRequired === auth?.role) {
+    if (auth.loading) {
+      return <PageLoader />
+    }
+
+    if (roleRequired === auth?.profile?.role && !auth.loading) {
       return (
         <PersonalLayout adminEdit={adminEdit}>
           <Outlet />
@@ -26,11 +31,11 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
       )
     }
 
-    if (roleRequired !== auth?.role) {
-      return <Navigate to="/denied" />
+    if (roleRequired !== auth?.profile?.role && !auth.loading) {
+      return <Navigate to="/login" />
     }
 
-    if (!auth?.isAuth) {
+    if (!auth?.isAuth && !auth.loading) {
       return <Navigate to="/login" />
     }
   }

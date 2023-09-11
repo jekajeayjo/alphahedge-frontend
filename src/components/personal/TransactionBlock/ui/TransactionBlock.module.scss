@@ -10,20 +10,6 @@
   margin-top: 33px;
 }
 
-.inner {
-  &.md {
-    padding-right: 69px;
-
-    @include utils.media-max-width(1780) {
-      padding-right: 0;
-    }
-  }
-
-  @include utils.media-max-width(900) {
-    overflow-x: auto;
-    @include utils.customScroll(#000);
-  }
-}
 
 .head {
   text-transform: uppercase;
@@ -45,14 +31,3 @@
   }
 }
 
-.pagination {
-  &.md {
-    margin-top: 35px;
-  }
-
-  @include utils.media-max-width(900) {
-    &.md {
-      margin-top: 25px;
-    }
-  }
-}

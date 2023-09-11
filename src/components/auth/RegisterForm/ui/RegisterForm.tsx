@@ -1,24 +1,74 @@
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import { Input } from 'components/shared/Input'
 import { DropDown, OptionType } from 'components/shared/DropDown'
+import { IRegisterRequest } from 'models/request/AuthRequest'
+
+import { registrationSchema } from '../lib/schema'
 
 import s from './RegisterForm.module.scss'
+import { API_URL } from '../../../../http'
 
 const options: OptionType[] = [
-  { label: 'Germany', id: 0 },
   { label: 'Russia', id: 1 },
+  { label: 'Germany', id: 0 },
   { label: 'USA', id: 2 },
 ]
 
 export const RegisterForm = () => {
-  const methods = useForm()
+  const resolver = yupResolver(registrationSchema)
 
-  const { handleSubmit } = methods
+  const [loading, setLoading] = useState(false)
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const navigator = useNavigate()
+
+  const methods = useForm<IRegisterRequest>({
+    resolver,
+    defaultValues: {
+      fam: '',
+      password: '',
+      im: '',
+      userName: '',
+      ot: '',
+      email: '',
+      phoneNumber: '',
+      country: options[0].label,
+    },
+  })
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = methods
+
+  const onSubmit = async (data: IRegisterRequest) => {
+    setLoading(true)
+    const body = JSON.stringify(data)
+
+    const config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${API_URL}/auth/register`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+    }
+
+    try {
+      const response = await axios.request(config)
+      localStorage.setItem('acceptEmail', data.email)
+      await navigator('/verify')
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -28,22 +78,32 @@ export const RegisterForm = () => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={s.row}>
             <div className={s.cell}>
-              <div className={s.label}>Имя</div>
-              <Input
-                className={s.input}
-                placeholder="Ваше имя"
-                type="text"
-                name="name"
-              />
-            </div>
-
-            <div className={s.cell}>
               <div className={s.label}>Фамилия</div>
               <Input
                 className={s.input}
                 placeholder="Ваша фамилия"
                 type="text"
-                name="email"
+                name="fam"
+              />
+            </div>
+
+            <div className={s.cell}>
+              <div className={s.label}>Имя</div>
+              <Input
+                className={s.input}
+                placeholder="Ваше имя"
+                type="text"
+                name="im"
+              />
+            </div>
+
+            <div className={s.cell}>
+              <div className={s.label}>Отчество</div>
+              <Input
+                className={s.input}
+                placeholder="Ваше отечество"
+                type="text"
+                name="ot"
               />
             </div>
 
@@ -53,7 +113,17 @@ export const RegisterForm = () => {
                 className={s.input}
                 placeholder="Придумайте ник"
                 type="text"
-                name="username"
+                name="userName"
+              />
+            </div>
+
+            <div className={s.cell}>
+              <div className={s.label}>Телефон</div>
+              <Input
+                className={s.input}
+                placeholder="Введите телефон"
+                type="tel"
+                name="phoneNumber"
               />
             </div>
 
@@ -83,11 +153,12 @@ export const RegisterForm = () => {
                 className={s.drop}
                 placeholder="Страна"
                 options={options}
+                onSelect={(value) => setValue('country', value)}
                 defaultOption={options[0]}
               />
             </div>
           </div>
-          <button className={s.submit} type="submit">
+          <button className={s.submit} disabled={loading} type="submit">
             Зарегестрироваться
           </button>
         </form>

@@ -1,11 +1,12 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css'
 
-import { appRouter } from 'pages'
+import { AuthProvider } from 'context/AuthProvider'
+
+import { App } from './App'
 
 import './styles/index.scss'
-import { AuthProvider } from 'context/AuthProvider'
 
 const container = document.getElementById('app') as HTMLElement
 
@@ -19,6 +20,6 @@ const root = createRoot(container)
 
 root.render(
   <AuthProvider>
-    <RouterProvider router={appRouter} />
+    <App />
   </AuthProvider>,
 )

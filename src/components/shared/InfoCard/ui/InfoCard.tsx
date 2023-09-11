@@ -1,8 +1,12 @@
 import cn from 'classnames'
 
 import { Price } from 'components/shared/Price'
+import useDisable from 'hooks/useDisable'
+import { IBriefcaseActive } from 'models/response/BriefcaseResponse'
 
-import { IInfoCard } from '../model/InfoCard.interface'
+import { getNoun } from 'helpers/getNoun'
+import { floorPrice } from 'helpers/floorPrice'
+import { getRemainDays } from 'helpers/getRemainDays'
 
 import { InfoCardContent } from './InfoCardContent'
 import { InfoCardStat } from './InfoCardStat'
@@ -11,30 +15,74 @@ import { InfoCardForm } from './InfoCardForm'
 
 import s from './InfoCard.module.scss'
 
-export const InfoCard = (props: IInfoCard) => {
-  const { className, isActive = false, isAdmin = false } = props
+interface IProps {
+  isAdmin?: boolean
+  className?: string
+  fetch?: () => Promise<void>
+}
+
+export const InfoCard = (props: IBriefcaseActive & IProps) => {
+  const {
+    isAdmin = false,
+    remainDays,
+    amount,
+    gainAmount,
+    className,
+    briefcaseAccountStatus,
+    ranges,
+    briefcaseName,
+    amountMin,
+    percents,
+    briefcaseId,
+    createddate,
+    fetch = () => null,
+    briefcaseInvestStatus,
+  } = props
+
+  const isActive = briefcaseAccountStatus === 'Active'
+
+  const disableAction = useDisable()
 
   return (
     <div className={cn(s.card, className)}>
-      <InfoCardContent isActive={isActive} isAdmin={isAdmin} />
+      <InfoCardContent
+        name={briefcaseName}
+        isActive={isActive}
+        isAdmin={isAdmin}
+      />
       {isActive && (
         <div className={s.actives}>
           <InfoCardActive label="Инвестированно">
-            <Price type="xs" price="350" />
+            <Price type="xs" price={amount ?? 0} />
           </InfoCardActive>
           <InfoCardActive label="Ежедневный доход">
-            <Price type="xs" price="1.225" />
+            <Price type="xs" price={gainAmount ? floorPrice(gainAmount) : 0} />
           </InfoCardActive>
           <InfoCardActive label="Осталось дней">
-            <span className={s.days}>59</span>дней
+            <span className={s.days}>
+              {ranges - getRemainDays(createddate)}
+            </span>
+            {getNoun({
+              number: remainDays ?? 0,
+              five: 'дней',
+              two: 'дня',
+              one: 'день',
+            })}
           </InfoCardActive>
         </div>
       )}
-      {!isActive && <InfoCardForm />}
+      {!isActive && !disableAction && (
+        <InfoCardForm
+          briefcaseId={briefcaseId}
+          fetch={fetch}
+          minValue={amountMin}
+          briefcaseInvestStatus={briefcaseInvestStatus}
+        />
+      )}
       <div className={s.stats}>
-        <InfoCardStat label="Минимальный депозит" value="$ 250" />
-        <InfoCardStat label="Ежедневный доход" value="0.35 %" />
-        <InfoCardStat label="Период блокировки" value="60 дней" />
+        <InfoCardStat label="Минимальный депозит" value={`$ ${amountMin}`} />
+        <InfoCardStat label="Ежедневный доход" value={`${percents} %`} />
+        <InfoCardStat label="Период блокировки" value={`${ranges} дней`} />
       </div>
     </div>
   )

@@ -58,7 +58,6 @@ export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
         </button>
         <AsideBottom />
       </aside>
-      {isSplit && <div />}
     </>
   )
 }
