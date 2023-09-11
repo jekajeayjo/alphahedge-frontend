@@ -1,5 +1,6 @@
 import { TransactionRow } from 'components/personal/TransactionBlock/ui/TransactionRow/TransactionRow'
 import { TableComponent } from 'components/shared/table'
+import { Loader } from 'components/shared/Loader'
 
 import { IFinanceBody } from '../model/FinanceBody'
 
@@ -7,6 +8,14 @@ import s from './FinanceBody.module.scss'
 
 export const FinanceDerivation = (props: IFinanceBody) => {
   const { data, fetchPrev, fetchNext } = props
+
+  if (!data) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    )
+  }
 
   return data && !data.empty ? (
     <TableComponent

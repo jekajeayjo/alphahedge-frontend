@@ -7,6 +7,7 @@ import { IActionRequest } from 'models/request/ActionRequest'
 import {
   IActionBalanceResponse,
   IActionItem,
+  IResponseHistory,
 } from 'models/response/ActionResponse'
 
 import $api from '../http'
@@ -23,6 +24,15 @@ export default class ActionServices {
   ): Promise<AxiosResponse<IActionBalanceResponse>> {
     return $api.get<IActionBalanceResponse>(
       `/action-account/page/active?${queryPhp(data)}`,
+    )
+  }
+
+  static async getActionHistory(
+    data: ISort,
+    code: string,
+  ): Promise<AxiosResponse<IResponseHistory>> {
+    return $api.get<IResponseHistory>(
+      `/action-account/history/${code.toUpperCase()}?${queryPhp(data)}`,
     )
   }
 

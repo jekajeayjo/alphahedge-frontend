@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import cn from 'classnames'
 
@@ -19,7 +19,11 @@ export const Modal = (props: IModal) => {
     onClose = () => null,
   } = props
 
-  const [open, setOpen] = useState(isOpen)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(isOpen)
+  }, [isOpen])
 
   const ref = useRef<any>()
 

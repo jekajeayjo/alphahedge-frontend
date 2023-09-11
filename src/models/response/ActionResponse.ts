@@ -39,3 +39,28 @@ export interface IActionItem {
   currentPrice: number
   statistics: number[]
 }
+
+export interface IResponseHistory {
+  content: IHistoryItem[]
+  pageable: Pageable
+  last: boolean
+  totalPages: number
+  totalElements: number
+  size: number
+  number: number
+  first: boolean
+  numberOfElements: number
+  empty: boolean
+}
+
+export interface IHistoryItem {
+  id: number
+  count: number
+  ask: number
+  amount: number
+  type: string
+  accountId: number
+  fio: string
+  code: string
+  createdDate: string
+}

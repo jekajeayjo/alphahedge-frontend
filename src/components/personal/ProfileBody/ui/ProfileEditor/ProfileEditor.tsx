@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { getDirtyValues } from 'helpers/getDirtyValues'
 
@@ -19,6 +20,8 @@ export const ProfileEditor = (props: IProfileField) => {
 
   const resolver = yupResolver(updateProfileSchema)
 
+  const notifySuccess = () => toast.success('Вы обновили данные')
+
   const methods = useForm<IProfileField>({
     defaultValues: {
       fam,
@@ -38,7 +41,12 @@ export const ProfileEditor = (props: IProfileField) => {
   const onSubmit = async (data: IProfileField) => {
     const body = getDirtyValues(dirtyFields, data)
 
-    await updateProfile(body as IProfileField)
+    try {
+      await updateProfile(body as IProfileField)
+      notifySuccess()
+    } catch (e) {
+      console.log('Error update', e)
+    }
   }
 
   return (

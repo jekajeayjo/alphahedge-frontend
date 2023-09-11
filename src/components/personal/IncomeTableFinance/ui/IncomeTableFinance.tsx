@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import cn from 'classnames'
 
 import { TableComponent, TableLabel } from 'components/shared/table'
+import { Loader } from 'components/shared/Loader'
 
 import BriefcaseServices from 'services/BriefcaseServices'
 import { IGetGainBriefcaseResponse } from 'models/response/BriefcaseResponse'
@@ -63,53 +64,62 @@ export const IncomeTableFinance = (props: IIncomeTableCarousel) => {
     }
   }
 
-  if (!data) {
-    return <div />
-  }
-
   return (
     <div className={cn(s.wrapper, className)}>
       <div className={s.header}>
         <div className={s.title}>Доходы</div>
-        {showTotal && (
-          <div className={s.total}>
-            {data.gainSum && (
-              <TableLabel
-                label="общее кол-во Доходов"
-                value={data.gainSum.toString()}
-                type="price"
-              />
+
+        {!data ? (
+          <div />
+        ) : (
+          <>
+            {showTotal && (
+              <div className={s.total}>
+                {data.gainSum && (
+                  <TableLabel
+                    label="общее кол-во Доходов"
+                    value={data.gainSum.toString()}
+                    type="price"
+                  />
+                )}
+                {data.briefcaseCount && (
+                  <TableLabel
+                    label="кол-во Активных Портфелей"
+                    value={data.briefcaseCount.toString()}
+                    type="num"
+                  />
+                )}
+              </div>
             )}
-            {data.briefcaseCount && (
-              <TableLabel
-                label="кол-во Активных Портфелей"
-                value={data.briefcaseCount.toString()}
-                type="num"
-              />
-            )}
-          </div>
+          </>
         )}
       </div>
 
-      <TableComponent
-        className={s.table}
-        classNameInner={s.inner}
-        tableTitles={[
-          'Портфель',
-          'Тип портфеля',
-          'Сумма',
-          'Дата',
-          'Сумма дохода',
-        ]}
-        total={data.page.totalPages}
-        currentPage={data.page.number}
-        fetchPrev={fetchPrev}
-        fetchNext={fetchNext}
-        tables={data.page.content}
-        renderComponent={(item) => (
-          <IncomeTableRow key={item.briefcaseAccountGainId} {...item} />
-        )}
-      />
+      {!data ? (
+        <div className={s.loader}>
+          <Loader />
+        </div>
+      ) : (
+        <TableComponent
+          className={s.table}
+          classNameInner={s.inner}
+          tableTitles={[
+            'Портфель',
+            'Тип портфеля',
+            'Сумма',
+            'Дата',
+            'Сумма дохода',
+          ]}
+          total={data.page.totalPages}
+          currentPage={data.page.number}
+          fetchPrev={fetchPrev}
+          fetchNext={fetchNext}
+          tables={data.page.content}
+          renderComponent={(item) => (
+            <IncomeTableRow key={item.briefcaseAccountGainId} {...item} />
+          )}
+        />
+      )}
     </div>
   )
 }

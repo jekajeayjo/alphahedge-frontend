@@ -6,7 +6,8 @@
   padding: 0 17px;
   width: auto;
 
-  &.isShow {}
+  &.isShow {
+  }
 }
 
 .label {
@@ -54,7 +55,7 @@ tr.counter {
 .currentMd {
 }
 
-.more{
+.more {
   width: 100px;
 
   button {
@@ -105,22 +106,146 @@ tr.counter {
 }
 
 .modal {
+  position: relative;
   height: 859px;
-  max-width: 1512px;
+  max-width: 1515px;
   width: 100%;
   border-radius: 20px;
   background: #FFF;
-  padding: 48px 105px 49px 105px;
+  padding: 51px 105px 49px 105px;
+
+  @include utils.media-max-width(1510) {
+    padding: 51px 30px 49px 30px;
+  }
+
+  @include utils.media-max-width(1279) {
+    height: 750px;
+    padding: 25px;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 55px;
+  right: 105px;
+
+  @include utils.media-max-width(1510) {
+    right: 30px;
+    top: 30px;
+  }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inner {
-  padding-left: 350px;
-  padding-right: 30px;
+  padding-left: 360px;
+  padding-right: 50px;
+
+  > div {
+    width: 100%;
+  }
+
+  @include utils.media-max-width(1850) {
+    padding-left: 310px;
+  }
+
+  @include utils.media-max-width(1279) {
+    padding-left: 98px;
+    padding-right: 30px;
+  }
+
+  @include utils.media-max-width(900) {
+    padding: 0 15px;
+  }
+}
+
+.tableInner {
+  @include utils.media-max-width(1000) {
+    overflow-x: auto;
+    @include utils.customScroll(#000);
+  }
 }
 
 .title {
-  margin-bottom: 50px;
+  margin-bottom: 56px;
   color: #000;
   font-size: 24px;
   font-weight: 500;
+
+  @include utils.media-max-width(1279) {
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+
+  @include utils.media-max-width(660) {
+    margin-bottom: 20px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  @include utils.media-max-width(660) {
+    margin-bottom: 10px;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+
+  @include utils.media-max-width(660) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+.table {
+  @include utils.media-max-width(1000) {
+    min-width: 822px;
+  }
+
+  tbody th {
+    font-size: 18px;
+
+    @include utils.media-max-width(1279) {
+      font-size: 16px;
+    }
+  }
+
+  tbody tr:first-child th {
+    padding-top: 24px;
+    padding-bottom: 20px;
+  }
+
+  tr th:first-child {
+    padding-left: 20px;
+  }
+}
+
+.priceBut {
+  width: 26.5%;
+}
+
+.data {
+  width: 25%;
+}
+
+.count {
+
+}
+
+.totalPrice {
+  color: var(--pinki-tin);
 }

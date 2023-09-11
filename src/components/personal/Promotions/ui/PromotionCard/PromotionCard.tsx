@@ -12,6 +12,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
+import { toast } from 'react-toastify'
 
 import { DownIcon, UpIcon } from 'assets/icons'
 import { floorPrice } from 'helpers/floorPrice'
@@ -113,6 +114,9 @@ export const PromotionCard = (props: IPromotionCard) => {
     )
   }
 
+  const notifySuccess = () => toast.success('Вы приобрели данныую акцию')
+  const notifyError = () => toast.error('Что-то пошло не так, попробоуй позже')
+
   const fetchData = async () => {
     try {
       const response = await getActionBalance({
@@ -120,7 +124,9 @@ export const PromotionCard = (props: IPromotionCard) => {
         size: 6,
       })
       setData(response.data)
+      notifySuccess()
     } catch (e) {
+      notifyError()
       console.log('Error fetch action balance', e)
     }
   }

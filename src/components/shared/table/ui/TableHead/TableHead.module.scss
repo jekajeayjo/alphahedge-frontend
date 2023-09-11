@@ -10,7 +10,6 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 23px;
-    padding-bottom: 10px;
 
     @include utils.media-max-width(1600) {
       font-size: 14px;

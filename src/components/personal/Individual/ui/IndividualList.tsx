@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { IndividualCard } from 'components/shared/IndividualCard'
+import { Loader } from 'components/shared/Loader'
+
 import { IBriefcaseActive } from 'models/response/BriefcaseResponse'
 import useInvestCounter from 'hooks/useInvestCounter'
 
@@ -11,7 +13,7 @@ import s from './Individual.module.scss'
 const { getBriefcase } = BriefcaseServices
 
 export const IndividualList = () => {
-  const [data, setData] = useState<IBriefcaseActive[]>([])
+  const [data, setData] = useState<IBriefcaseActive[] | null>()
 
   const { setCounter } = useInvestCounter()
 
@@ -35,6 +37,14 @@ export const IndividualList = () => {
     } catch (e) {
       console.log('error individualList', e)
     }
+  }
+
+  if (!data) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    )
   }
 
   return (

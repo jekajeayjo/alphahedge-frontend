@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import cn from 'classnames'
+import { toast } from 'react-toastify'
 
 import { TableCell, TablePrice, TableRow } from 'components/shared/table'
 import { CounterChanger } from 'components/shared/CounterChanger'
@@ -33,6 +34,8 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
   const [sellCounter, setSellCounter] = useState(1)
   const [isOpen, setIsOpen] = useState(false)
 
+  const notifySuccess = () => toast.success('Вы продали данныую акцию')
+
   const changeCounter = async () => {
     if (!isOpen) {
       setIsOpen(true)
@@ -42,6 +45,7 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
     try {
       await actionSell({ code, count: sellCounter.toString() })
       await updateData()
+      notifySuccess()
     } catch (e) {
       console.log('Error sell action', e)
     }
@@ -86,7 +90,15 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
           />
         </TableCell>
         {showButton && (
-          <ActiveTableActions isOpen={isOpen} changeCounter={changeCounter} />
+          <ActiveTableActions
+            totalAmount={count.toString()}
+            totalPrice={floorPrice(currentAmountAll).toString()}
+            icon={image}
+            name={code}
+            isOpen={isOpen}
+            code={code}
+            changeCounter={changeCounter}
+          />
         )}
       </TableRow>
       <TableRow className={cn(s.counter, { [s.show]: isOpen })}>

@@ -1,5 +1,6 @@
 import { RouterProvider } from 'react-router-dom'
 import React, { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 import useAuth from 'hooks/useAuth'
 
@@ -19,5 +20,10 @@ export const App = () => {
     }
   }, [])
 
-  return <RouterProvider router={appRouter} />
+  return (
+    <>
+      <ToastContainer position="top-right" />
+      <RouterProvider router={appRouter} />
+    </>
+  )
 }

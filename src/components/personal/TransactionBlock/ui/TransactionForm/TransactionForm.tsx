@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import WAValidator from 'vm-multicoin-address-validator'
+import { toast } from 'react-toastify'
 
 import useTokens from 'hooks/useTokens'
 
@@ -31,6 +32,9 @@ export const TransactionForm = (props: ITransactionForm) => {
   const [tokenName, setTokenName] = useState<string | null>(null)
   const [status, setStatus] = useState<FetchStatusType | null>(null)
 
+  const notifyToken = () => toast.error('Данный токен недоступен')
+  const notifyAddress = () => toast.error('Данный адресс вывода некорректен')
+
   const methods = useForm({
     resolver: yupResolver(transactionForm),
   })
@@ -38,10 +42,6 @@ export const TransactionForm = (props: ITransactionForm) => {
 
   const onSubmit = async (data: any) => {
     if (!coinPrice || !tokenName) {
-      return
-    }
-
-    if (!WAValidator.validate(data.contact, tokenName)) {
       return
     }
 
@@ -60,6 +60,12 @@ export const TransactionForm = (props: ITransactionForm) => {
     }
 
     if (type === 'Out') {
+      if (!WAValidator.validate(data.contact, tokenName)) {
+        notifyAddress()
+        setStatus('error')
+        return
+      }
+
       body = {
         amountOut: (Number(data.deposit) / Number(coinPrice)).toString(),
         transactionType: type,
@@ -88,6 +94,10 @@ export const TransactionForm = (props: ITransactionForm) => {
       setCoinPrice(response.data.price)
       setTokenName(coin)
     } catch (e) {
+      if (tokenName) {
+        setTokenName(null)
+      }
+      notifyToken()
       console.log('Failed get token', e)
     }
   }

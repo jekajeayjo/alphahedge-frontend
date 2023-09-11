@@ -46,6 +46,8 @@ export const PromotionCardActions = (props: IPromotionCardActions) => {
       await actionInvest(data)
       await fetchData()
       setStatus('success')
+      setIsOpen(false)
+      setCount(1)
     } catch (e) {
       setStatus('error')
       console.log('Error invest action', e)

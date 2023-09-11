@@ -8,6 +8,7 @@ import {
   TablePrice,
   TableRow,
 } from 'components/shared/table'
+import { Loader } from 'components/shared/Loader'
 
 import { clearDate } from 'helpers/clearDate'
 
@@ -73,7 +74,11 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
   }
 
   if (!data) {
-    return <div />
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    )
   }
 
   return (

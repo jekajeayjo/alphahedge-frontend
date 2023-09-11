@@ -25,6 +25,7 @@ export const TransactionBlock = (props: ITransactionBlock) => {
         size: 4,
         page: 0,
         sortDir: 'DESC',
+        sortField: 'transactionDate',
         criteria: [{ key: 'transactionType', value: type }],
       })
       setData(response.data)
@@ -40,6 +41,7 @@ export const TransactionBlock = (props: ITransactionBlock) => {
           page: data.number + 1,
           size: 4,
           sortDir: 'DESC',
+          sortField: 'transactionDate',
           criteria: [{ key: 'transactionType', value: type }],
         })
         setData(response.data)
@@ -56,6 +58,7 @@ export const TransactionBlock = (props: ITransactionBlock) => {
           page: data.number - 1,
           size: 4,
           sortDir: 'DESC',
+          sortField: 'transactionDate',
           criteria: [{ key: 'transactionType', value: type }],
         })
         setData(response.data)
