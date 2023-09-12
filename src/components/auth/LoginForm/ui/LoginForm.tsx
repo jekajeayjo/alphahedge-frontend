@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import axios from 'axios'
 
-import useAuth from 'hooks/useAuth'
+import useBalance from 'hooks/context/useBalance'
+import useProfile from 'hooks/context/useProfile'
 
 import AccountServices from 'services/AccountServices'
 
@@ -23,7 +24,9 @@ export const LoginForm = () => {
   const [error, setError] = useState(false)
 
   const navigate = useNavigate()
-  const { setAuth, auth } = useAuth()
+
+  const { setPayload } = useProfile()
+  const { setCash } = useBalance()
 
   const methods = useForm<ILoginRequest>({
     defaultValues: {
@@ -60,12 +63,15 @@ export const LoginForm = () => {
       localStorage.setItem('token', response.data.acceptToken)
       const resProfile = await getProfile()
       const resBalance = await getBalance()
-      await setAuth({
+      setPayload({
         loading: false,
         isAuth: true,
-        balance: resBalance.data,
         profile: resProfile.data,
       })
+      setCash({
+        balance: resBalance.data,
+      })
+      localStorage.setItem('user-type', resProfile.data.role)
       if (resProfile.data.role === 'User') {
         await navigate('/personal/dashboard')
       } else {

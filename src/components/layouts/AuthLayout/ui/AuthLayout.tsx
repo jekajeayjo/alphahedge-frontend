@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom'
 import React from 'react'
 import { Outlet } from 'react-router'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import {
   BgIcon,
@@ -16,9 +16,9 @@ import { PreviewImage } from 'assets/images'
 import s from './AuthLayout.module.scss'
 
 export const AuthLayout = () => {
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
-  if (auth.isAuth) {
+  if (payload.isAuth) {
     return <Navigate to="/personal/dashboard" />
   }
 

@@ -6,6 +6,12 @@
   border-radius: 42px;
   position: relative;
   background-color: var(--gray-light);
+  transition: 400ms;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .6;
+  }
 
   &.active {
     background-color: #00A624;

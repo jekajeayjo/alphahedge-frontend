@@ -1,14 +1,23 @@
 import { TableCell, TableRow } from 'components/shared/table'
 
 import { TableNameUser } from 'components/admins/TableNameUser'
-import { ChangeStatus } from 'components/admins/ChangeStatus'
 
 import s from './UsersCarousel.module.scss'
 
 export const UserTableRow = () => (
   <TableRow className={s.row}>
-    <TableNameUser className={s.fullname} showType="fullName" />
-    <TableNameUser className={s.username} showType="username" />
+    <TableNameUser
+      className={s.fullname}
+      userId={1}
+      name="test"
+      showType="fullName"
+    />
+    <TableNameUser
+      className={s.username}
+      userId={1}
+      name="test"
+      showType="username"
+    />
     <TableCell className={s.date}>
       21.08.2023, <span>16:45</span>
     </TableCell>
@@ -35,7 +44,7 @@ export const UserTableRow = () => (
       </button>
     </TableCell>
     <TableCell className={s.change}>
-      <ChangeStatus status="В обработке" />
+      {/* <ChangeStatus status="В обработке" /> */}
     </TableCell>
   </TableRow>
 )

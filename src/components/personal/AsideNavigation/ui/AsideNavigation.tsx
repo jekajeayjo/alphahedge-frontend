@@ -1,4 +1,4 @@
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import { AsideNavigationUser } from './AsideNavigationUser'
 import { AsideNavigationAdmin } from './AsideNavigationAdmin'
@@ -11,17 +11,17 @@ import s from './AsideNavigation.module.scss'
 export const AsideNavigation = (props: IAsideNavigation) => {
   const { adminEdit, onClick } = props
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   return (
     <nav className={s.navigation}>
-      {auth?.profile?.role === 'User' && (
+      {payload?.profile?.role === 'User' && (
         <AsideNavigationUser onClick={onClick} />
       )}
-      {!adminEdit && auth?.profile?.role === 'Admin' && (
+      {!adminEdit && payload?.profile?.role === 'Admin' && (
         <AsideNavigationAdmin onClick={onClick} />
       )}
-      {adminEdit && auth?.profile?.role === 'Admin' && (
+      {adminEdit && payload?.profile?.role === 'Admin' && (
         <AsideNavigationAdminEdit onClick={onClick} />
       )}
     </nav>

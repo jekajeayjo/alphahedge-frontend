@@ -1,19 +1,23 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import { ExitIcon, HelpIcon } from 'assets/icons'
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import s from './AsideBottom.module.scss'
 
 export const AsideBottom = () => {
   const navigator = useNavigate()
 
-  const { setAuth } = useAuth()
+  const { setPayload } = useProfile()
 
   const logoutHandler = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('Account-Id')
+    localStorage.removeItem('editor')
+    localStorage.removeItem('user-type')
+
     navigator('/')
-    setAuth({ isAuth: false, loading: true })
+    setPayload({ isAuth: false, loading: true })
   }
 
   return (

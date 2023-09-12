@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react'
+import queryString from 'query-string'
+import { useSearchParams } from 'react-router-dom'
+
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { Input } from 'components/shared/Input'
@@ -12,24 +16,70 @@ const options: OptionType[] = [
   { label: 'Admin', id: 2 },
 ]
 
-export const SearchForm = () => {
-  const methods = useForm()
-  const { handleSubmit } = methods
+interface IFields {
+  fio: string
+  userName: string
+  email: string
+  role?: string
+  balance: string | null
+  page?: string | null
+}
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+export const SearchForm = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const [role, setRole] = useState<OptionType>(options[0])
+
+  const methods = useForm<IFields>({
+    defaultValues: {
+      fio: '',
+      role: '',
+      userName: '',
+      email: '',
+    },
+  })
+
+  const { handleSubmit, setValue, getValues } = methods
+
+  useEffect(() => {
+    const qs = queryString.parse(searchParams.toString())
+
+    const searchRole = options.find(
+      (option) => option.label === searchParams.get('role'),
+    )
+
+    setRole(searchRole ?? options[0])
+    // @ts-ignore
+    Object.keys(qs).forEach((key) => setValue(key as keyof IFields, qs[key]))
+  }, [])
+
+  const onSubmit = (data: IFields) => {
+    const body = data
+
+    if (role.label === 'Все роли') {
+      delete body.role
+    } else {
+      body.role = role.label
+    }
+
+    if (searchParams.get('balance')) {
+      body.balance = searchParams.get('balance')
+    }
+
+    delete body.page
+
+    const stringified = `?${queryString.stringify(body, {
+      skipEmptyString: true,
+    })}`
+
+    setSearchParams(stringified)
   }
 
   return (
     <FormProvider {...methods}>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.cell}>
-          <Input
-            className={s.input}
-            placeholder="ФИО"
-            type="text"
-            name="name"
-          />
+          <Input className={s.input} placeholder="ФИО" type="text" name="fio" />
           <div className={s.label}>ФИО</div>
         </div>
         <div className={s.cell}>
@@ -37,7 +87,7 @@ export const SearchForm = () => {
             className={s.input}
             placeholder="Username"
             type="text"
-            name="username"
+            name="userName"
           />
           <div className={s.label}>Username</div>
         </div>
@@ -45,7 +95,7 @@ export const SearchForm = () => {
           <Input
             className={s.input}
             placeholder="E-mail"
-            type="email"
+            type="text"
             name="email"
           />
           <div className={s.label}>E-mail</div>
@@ -55,7 +105,8 @@ export const SearchForm = () => {
             className={s.drop}
             placeholder="Роль"
             options={options}
-            defaultOption={options[0]}
+            defaultOption={role}
+            onSelectItem={setRole}
           />
           <div className={s.label}>Роль</div>
         </div>

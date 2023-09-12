@@ -4,6 +4,7 @@ export interface IDropDown {
   options: OptionType[]
   defaultOption?: OptionType
   onSelect?: (value: string) => void
+  onSelectItem?: (item: OptionType) => void
 }
 
 export type OptionType = {

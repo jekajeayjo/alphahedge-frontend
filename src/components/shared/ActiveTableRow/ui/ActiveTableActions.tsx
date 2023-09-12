@@ -158,10 +158,10 @@ export const ActiveTableActions = (props: IActiveTableActions) => {
                   classNameBody={s.tbody}
                   classNamePagination={s.pagination}
                   tableTitles={[
-                    'Цена  покупки',
-                    'Дата покупки',
-                    'Кол-во приобретенных акций',
-                    'Подитог',
+                    { title: 'Цена покупки' },
+                    { title: 'Дата покупки' },
+                    { title: 'Кол-во приобретенных акций' },
+                    { title: 'Подитог' },
                   ]}
                   tables={data.content}
                   currentPage={data.number}

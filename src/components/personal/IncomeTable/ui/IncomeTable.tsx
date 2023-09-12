@@ -108,7 +108,11 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
       <TableComponent
         className={s.table}
         classNameInner={s.inner}
-        tableTitles={['Объем инвестиций', 'Дата', 'Сумма дохода']}
+        tableTitles={[
+          { title: 'Объем инвестиций' },
+          { title: 'Дата' },
+          { title: 'Сумма дохода' },
+        ]}
         total={data.page.totalPages}
         currentPage={data.page.number}
         fetchPrev={fetchPrev}

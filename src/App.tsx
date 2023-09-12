@@ -2,21 +2,57 @@ import { RouterProvider } from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
+import useBalance from 'hooks/context/useBalance'
 
 import { appRouter } from 'pages/ui/appRouter'
-import useGetMainInfo from 'hooks/useGetMainInfo'
+
+import AccountServices from 'services/AccountServices'
+
+const { getProfile, getBalance } = AccountServices
 
 export const App = () => {
-  const getMainInfo = useGetMainInfo()
+  const { setPayload } = useProfile()
+  const { setCash } = useBalance()
 
-  const { setAuth, auth } = useAuth()
+  const fetchUserData = async () => {
+    const isAdmin = localStorage.getItem('user-type') === 'Admin'
+
+    const isEditPage = window.location.pathname.indexOf('/admin/user/')
+
+    try {
+      if (isEditPage === -1) {
+        localStorage.removeItem('Account-Id')
+        localStorage.removeItem('editor')
+      } else {
+        localStorage.setItem('editor', '1')
+      }
+
+      const resProfile = await getProfile()
+      const resBalance = await getBalance()
+
+      setPayload({
+        isAuth: true,
+        loading: false,
+        profile: {
+          ...resProfile.data,
+          role: isAdmin ? 'Admin' : 'User',
+        },
+      })
+
+      setCash({ balance: resBalance.data })
+    } catch (e) {
+      console.log(e)
+      setPayload({ loading: false, isAuth: false })
+      setCash({ balance: null })
+    }
+  }
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      getMainInfo()
+      fetchUserData()
     } else {
-      setAuth({ loading: false, isAuth: false })
+      setPayload({ loading: false, isAuth: false })
     }
   }, [])
 

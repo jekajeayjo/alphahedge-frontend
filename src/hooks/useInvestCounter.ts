@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { InvestContext } from 'context/InvestCaounter'
+import { InvestContext } from 'context/InvestCounter'
 
 const useInvestCounter = () => useContext(InvestContext)
 

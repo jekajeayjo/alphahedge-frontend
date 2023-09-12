@@ -11,12 +11,12 @@ export const UsersCarousel = () => (
     className={s.table}
     classNameInner={s.inner}
     tableTitles={[
-      'ФИО Пользователя',
-      'Username',
-      'Дата',
-      'Сеть',
-      'Сумма',
-      'Статус',
+      { title: 'ФИО Пользователя' },
+      { title: 'Username' },
+      { title: 'Дата' },
+      { title: 'Сеть' },
+      { title: 'Сумма' },
+      { title: 'Статус' },
     ]}
     currentPage={1}
     total={10}

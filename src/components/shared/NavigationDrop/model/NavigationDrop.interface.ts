@@ -10,5 +10,5 @@ export interface INavigationDrop {
 export type NavigationTabType = {
   value: string
   label: string
-  count?: number
+  count?: number | null
 }

@@ -1,14 +1,21 @@
 import { useRef, useState } from 'react'
 import cn from 'classnames'
+import { toast } from 'react-toastify'
+
+import { StatusCloseEnum } from 'models/StatusCloseEnum'
 
 import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
+
+import AdminService from 'services/AdminService'
 
 import { IChangeStatus } from '../model/ChangeStatus.interface'
 
 import s from './ChangeStatus.module.scss'
 
+const { updateBriefcaseOrder } = AdminService
+
 export const ChangeStatus = (props: IChangeStatus) => {
-  const { status } = props
+  const { status, id, updateData } = props
 
   const [isOpen, setOpen] = useState(false)
 
@@ -17,8 +24,22 @@ export const ChangeStatus = (props: IChangeStatus) => {
   useOnOutsideClick(ref, () => setOpen(false))
 
   const toggleDropdown = () => {
-    if (status === 'В обработке') {
+    if (status === StatusCloseEnum['В обработке']) {
       setOpen((prevState) => !prevState)
+    }
+  }
+
+  const notifyError = () => toast.success('Произошла ошибка, попробуйте позже')
+  const notifySuccess = () => toast.error('Статус был изменен')
+
+  const changeStatusHandler = async (_status: StatusCloseEnum) => {
+    try {
+      await updateBriefcaseOrder(id, _status)
+      await updateData()
+      notifySuccess()
+    } catch (e) {
+      notifyError()
+      console.log('Error update order')
     }
   }
 
@@ -27,16 +48,18 @@ export const ChangeStatus = (props: IChangeStatus) => {
       <button
         className={cn(
           s.button,
-          { [s.pending]: status === 'В обработке' },
-          { [s.success]: status === 'Успешно' },
-          { [s.cancel]: status === 'Отменен' },
+          { [s.pending]: status === StatusCloseEnum['В обработке'] },
+          { [s.success]: status === StatusCloseEnum['Успешно'] },
+          { [s.cancel]: status === StatusCloseEnum['Отменен'] },
         )}
         type="button"
         onClick={() => toggleDropdown()}
       >
-        {status}
+        {status === StatusCloseEnum['Успешно'] && 'Успешно'}
+        {status === StatusCloseEnum['В обработке'] && 'В обработке'}
+        {status === StatusCloseEnum['Отменен'] && 'Отменен'}
 
-        {status === 'В обработке' && (
+        {status === StatusCloseEnum['В обработке'] && (
           <svg
             className={cn(s.arrow, { [s.active]: isOpen })}
             xmlns="http://www.w3.org/2000/svg"
@@ -55,10 +78,18 @@ export const ChangeStatus = (props: IChangeStatus) => {
       </button>
 
       <div className={cn(s.list, { [s.open]: isOpen })}>
-        <button className={s.success} type="button">
+        <button
+          className={s.success}
+          onClick={() => changeStatusHandler(StatusCloseEnum['Успешно'])}
+          type="button"
+        >
           Успешно
         </button>
-        <button className={s.cancel} type="button">
+        <button
+          className={s.cancel}
+          onClick={() => changeStatusHandler(StatusCloseEnum['Отменен'])}
+          type="button"
+        >
           Отменен
         </button>
       </div>

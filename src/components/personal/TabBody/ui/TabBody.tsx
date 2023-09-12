@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { InvestProvider } from 'context/InvestCaounter'
+import { InvestProvider } from 'context/InvestCounter'
 import { ActionProvider } from 'context/ActionProvider'
 
 import { RequestVerification } from 'components/shared/RequestVerification'

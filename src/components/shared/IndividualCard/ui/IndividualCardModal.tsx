@@ -45,14 +45,17 @@ export const IndividualCardModal = (props: IIndividualCardModal) => {
             : 'Для закртытия портфеля Вам необходимо отправить заявку в службу поддержки..'}
         </p>
         <div className={s.time}>Заявка обрабатывается в течение 10 минут.</div>
-        <button
-          className={s.send}
-          onClick={sendRequestHandler}
-          disabled={status === 'pending'}
-          type="button"
-        >
-          Отправить на заявку
-        </button>
+
+        {status !== 'success' && (
+          <button
+            className={s.send}
+            onClick={sendRequestHandler}
+            disabled={status === 'pending'}
+            type="button"
+          >
+            Отправить на заявку
+          </button>
+        )}
       </div>
     </Modal>
   )

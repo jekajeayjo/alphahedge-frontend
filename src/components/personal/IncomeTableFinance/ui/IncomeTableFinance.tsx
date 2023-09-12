@@ -104,11 +104,11 @@ export const IncomeTableFinance = (props: IIncomeTableCarousel) => {
           className={s.table}
           classNameInner={s.inner}
           tableTitles={[
-            'Портфель',
-            'Тип портфеля',
-            'Сумма',
-            'Дата',
-            'Сумма дохода',
+            { title: 'Портфель' },
+            { title: 'Тип портфеля' },
+            { title: 'Сумма' },
+            { title: 'Дата' },
+            { title: 'Сумма дохода' },
           ]}
           total={data.page.totalPages}
           currentPage={data.page.number}

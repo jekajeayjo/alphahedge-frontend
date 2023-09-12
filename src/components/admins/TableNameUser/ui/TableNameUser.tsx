@@ -9,14 +9,22 @@ import { ITableNameUser } from '../model/TableNameUser.interface'
 import s from './TableNameUser.module.scss'
 
 export const TableNameUser = (props: ITableNameUser) => {
-  const { showType, className } = props
+  const { showType, className, name, userId } = props
+
+  const setUserId = (id: number) => {
+    localStorage.setItem('Account-Id', id.toString())
+    localStorage.setItem('editor', '1')
+  }
 
   if (showType === 'fullName') {
     return (
       <TableCell className={cn(s.name, className)}>
-        <NavLink to="/admin/user/1/dashboard">
-          <UserName name="GN AN" />
-          <span>Golovnea Natalia</span>
+        <NavLink
+          to={`/admin/user/${userId}/dashboard`}
+          onClick={() => setUserId(userId)}
+        >
+          <UserName name={name} />
+          <span>{name}</span>
         </NavLink>
       </TableCell>
     )
@@ -24,7 +32,12 @@ export const TableNameUser = (props: ITableNameUser) => {
 
   return (
     <TableCell className={cn(s.th, className)}>
-      <NavLink to="/admin/user/1/dashboard">Golna</NavLink>
+      <NavLink
+        to={`/admin/user/${userId}/dashboard`}
+        onClick={() => setUserId(userId)}
+      >
+        {name}
+      </NavLink>
     </TableCell>
   )
 }

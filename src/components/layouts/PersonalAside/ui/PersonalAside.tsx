@@ -41,8 +41,7 @@ export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
   }
 
   return (
-    <>
-      <aside className={cn(s.aside, { [s.slide]: isSplit })} ref={ref}>
+    <aside className={cn(s.aside, { [s.slide]: isSplit })} ref={ref}>
         <div className={s.logo}>
           <img src={LogoBlue} alt="logo" />
         </div>
@@ -58,6 +57,5 @@ export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
         </button>
         <AsideBottom />
       </aside>
-    </>
   )
 }

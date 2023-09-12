@@ -2,3 +2,18 @@
   margin-right: 4px;
   margin-top: 25px;
 }
+
+.arrow {
+  margin-left: 10px;
+  transform: translateY(-1px);
+
+  svg {
+    transition: 400ms;
+  }
+
+  &.isActive {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
