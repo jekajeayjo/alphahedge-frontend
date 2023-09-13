@@ -10,7 +10,7 @@ import useGetMainInfo from 'hooks/useGetMainInfo'
 export const App = () => {
   const getMainInfo = useGetMainInfo()
 
-  const { setAuth, auth } = useAuth()
+  const { setAuth } = useAuth()
 
   useEffect(() => {
     if (localStorage.getItem('token')) {

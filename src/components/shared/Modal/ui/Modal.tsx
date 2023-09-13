@@ -45,6 +45,7 @@ export const Modal = (props: IModal) => {
         className={cn(s.trigger, classNameButton)}
         onClick={openHandler}
         type="button"
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: textButton }}
       />
       {open
