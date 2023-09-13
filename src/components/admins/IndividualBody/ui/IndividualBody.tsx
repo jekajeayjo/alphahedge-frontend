@@ -77,35 +77,27 @@ export const IndividualBody = ({ userId, briefId }: IndividualState) => {
           <Loader />
         </div>
       ) : (
-        <>
-          <div className={s.header}>
-            <div className={s.left}>
-              <div className={s.userInfo}>
-                <UserName
-                  className={s.circle}
-                  name={`${user.fam} ${user.im}`}
-                />
-                <div className={s.info}>
-                  <div className={s.name}>{`${user.fam} ${user.im}`}</div>
-                  <div className={s.username}>{user.userName}</div>
-                </div>
+        <div className={s.header}>
+          <div className={s.left}>
+            <div className={s.userInfo}>
+              <UserName className={s.circle} name={`${user.fam} ${user.im}`} />
+              <div className={s.info}>
+                <div className={s.name}>{`${user.fam} ${user.im}`}</div>
+                <div className={s.username}>{user.userName}</div>
               </div>
-              {data?.map((card) => (
-                <IndividualCard
-                  {...card}
-                  fetch={getList}
-                  key={card.briefcaseAccountId}
-                />
-              ))}
             </div>
-            <div className={s.right}>
-              <AddIncome
-                update={refreshDataTable}
-                briefcaseAccountId={briefId}
+            {data?.map((card) => (
+              <IndividualCard
+                {...card}
+                fetch={getList}
+                key={card.briefcaseAccountId}
               />
-            </div>
+            ))}
           </div>
-        </>
+          <div className={s.right}>
+            <AddIncome update={refreshDataTable} briefcaseAccountId={briefId} />
+          </div>
+        </div>
       )}
       <IncomeTable
         className={s.carousel}
