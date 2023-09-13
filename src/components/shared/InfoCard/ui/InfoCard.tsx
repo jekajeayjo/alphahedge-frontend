@@ -34,7 +34,6 @@ export const InfoCard = (props: IBriefcaseActive & IProps) => {
     className,
     briefcaseAccountStatus,
     ranges,
-    briefcaseName,
     amountMin,
     percents,
     briefcaseId,

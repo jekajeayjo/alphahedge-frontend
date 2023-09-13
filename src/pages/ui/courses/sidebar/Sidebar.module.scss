@@ -1,0 +1,96 @@
+@use 'styles/use/utils';
+
+.sidebar {
+  position: fixed;
+  margin-top: 100px;
+  width: 500px;
+  padding: 50px;
+  border-right: 1px solid #DADADA;
+  background: #FFF;
+  transition: all 0.3s;
+
+  &_hide {
+    transform: translateX(-500px);
+  }
+
+  @include utils.media-max-width(900) {
+    margin-top: 200px;
+  }
+
+  @include utils.media-max-width(500) {
+    width: 320px;
+    padding: 10px;
+
+    &_hide {
+      transform: translateX(-320px);
+    }
+  }
+}
+
+.button {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+
+}
+
+.show {
+  transform: rotate(-90deg);
+}
+
+.hide {
+  transform: rotate(90deg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: #000;
+  font-family: var(--font-family-main);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-bottom: 1px solid #DADADA;
+  padding: 25px 0;
+
+  &_disabled {
+    color: #818181;
+  }
+
+  @include utils.media-max-width(500) {
+    font-size: 16px;
+    gap: 5px;
+    padding: 10px 0;
+  }
+}
+
+.active {
+  transform: rotate(180deg);
+}
+
+.content {
+  padding-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include utils.media-max-width(500) {
+    gap: 15px;
+    padding-top: 20px;
+  }
+}
+
+.item {
+  list-style-type: disc;
+  list-style-position: inside;
+
+  color: #4A4A4A;
+  font-family: var(--font-family-main);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

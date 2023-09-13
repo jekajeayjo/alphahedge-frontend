@@ -23,7 +23,7 @@ export const LoginForm = () => {
   const [error, setError] = useState(false)
 
   const navigate = useNavigate()
-  const { setAuth, auth } = useAuth()
+  const { setAuth } = useAuth()
 
   const methods = useForm<ILoginRequest>({
     defaultValues: {
@@ -36,7 +36,6 @@ export const LoginForm = () => {
     handleSubmit,
     clearErrors,
     setValue,
-    formState: { errors },
   } = methods
 
   const onSubmit = async (data: ILoginRequest) => {

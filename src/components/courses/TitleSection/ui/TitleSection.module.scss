@@ -1,0 +1,42 @@
+@use 'styles/use/utils';
+
+.titleSection {
+  width: 100%;
+  padding-bottom: 45px;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 50px;
+  margin-top: 25px;
+
+  @include utils.media-max-width(500) {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+  }
+}
+
+.label {
+  color: #686868;
+  font-family: var(--font-family-main);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+
+  @include utils.media-max-width(500) {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.title {
+  color: #000;
+  font-family: var(--font-family-main);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px; /* 150% */
+
+  @include utils.media-max-width(500) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}

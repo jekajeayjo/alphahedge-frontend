@@ -12,6 +12,8 @@ import { VerificationPage } from './admins/VerificationPage/VerificationPage'
 
 import { HomePage } from './home/HomePage'
 import { ForexPage } from "./forex/ForexPage";
+import { Course1 } from './courses/course1/Course1'
+import { Course2 } from './courses/course2/Course2'
 
 import { DashboardPage } from './personal/DashboardPage/DashboardPage'
 import { InvestmentsPage } from './personal/InvestmentsPage/InvestmentsPage'
@@ -60,6 +62,14 @@ export const appRouter = createBrowserRouter([
       {
         path: '/forex',
         element: <ForexPage />,
+      },
+      {
+        path: '/course1',
+        element: <Course1 />,
+      },
+      {
+        path: '/course2',
+        element: <Course2 />,
       },
     ],
   },

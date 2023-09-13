@@ -1,0 +1,70 @@
+@use 'styles/use/utils';
+
+.course1 {
+  margin-left: 500px;
+  padding: 150px 90px;
+  display: flex;
+  flex-direction: column;
+
+  @include utils.media-max-width(1500) {
+    margin-left: 0;
+  }
+
+  @include utils.media-max-width(900) {
+    padding: 200px 50px 100px 50px;
+  }
+
+  @include utils.media-max-width(900) {
+    padding: 200px 30px 100px 40px;
+  }
+}
+
+.courseImg {
+  margin: 0 auto;
+  width: 350px;
+  max-width: 100%;
+  height: auto;
+}
+
+.image {
+  margin: 25px 0;
+  max-width: 100%;
+}
+
+.text {
+  color: #686868;
+  font-family: var(--font-family-main);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 35px; /* 175% */
+  margin-bottom: 20px;
+
+  @include utils.media-max-width(500) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  span {
+    color: #686868;
+    font-weight: 700;
+    line-height: 35px; /* 175% */
+  }
+}
+
+.list {
+  list-style-type: disc;
+  list-style-position: inside;
+  color: #686868;
+  font-family: var(--font-family-main);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 35px; /* 175% */
+  margin-bottom: 20px;
+
+  @include utils.media-max-width(500) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
