@@ -2,7 +2,8 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { AuthProvider } from 'context/AuthProvider'
+import { ProfileProvider } from 'context/ProfileContext'
+import { BalanceProvider } from 'context/BalanceContext'
 
 import './i18n'
 
@@ -21,7 +22,9 @@ if (!container) {
 const root = createRoot(container)
 
 root.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>,
+  <ProfileProvider>
+    <BalanceProvider>
+      <App />
+    </BalanceProvider>
+  </ProfileProvider>,
 )

@@ -50,7 +50,11 @@ export const IndividualList = () => {
   return (
     <div className={s.right}>
       {data.map((card) => (
-        <IndividualCard key={card.briefcaseId} fetch={getList} {...card} />
+        <IndividualCard
+          key={card.briefcaseAccountId}
+          fetch={getList}
+          {...card}
+        />
       ))}
     </div>
   )

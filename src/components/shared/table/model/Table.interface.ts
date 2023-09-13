@@ -19,8 +19,13 @@ export interface ITableLabel {
   className?: string
 }
 
+type TableType = {
+  title: string
+  sortField?: string
+}
+
 export interface ITableComponent<T> {
-  tableTitles: string[]
+  tableTitles: TableType[]
   total: number
   currentPage: number
 

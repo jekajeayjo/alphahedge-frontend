@@ -1,5 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
 import cn from 'classnames'
+
+import useAdvanceCounter from 'hooks/useAdvanceCounter'
+import useIndividualContext from 'hooks/useIndividualContext'
 
 import { WrapperTable } from 'components/admins/WrapperTable'
 import { IndividualBody } from 'components/admins/IndividualBody'
@@ -8,39 +12,38 @@ import {
   NavigationTabType,
 } from 'components/shared/NavigationDrop'
 
-import { IContext, UserDataContext } from '../context/UserDataContext'
-
 import { ActiveTableBody } from './ActiveTable/ActiveTableBody'
 import { CloseTableBody } from './CloseTable/CloseTableBody'
 
 import s from './IndividualsBody.module.scss'
 
-const tabs: NavigationTabType[] = [
-  {
-    value: 'active',
-    label: 'Активные введения',
-    count: 18,
-  },
-  {
-    value: 'close',
-    label: 'Заявки на закрытие',
-    count: 18,
-  },
-]
-
 export const IndividualsBody = () => {
-  const [tab, setTab] = useState<'active' | 'close'>('active')
-  const [userData, setUserData] = useState<null | boolean>(null)
+  const { counter } = useAdvanceCounter()
 
-  const user = useMemo<IContext>(
-    () => ({ user: userData, setUserData }),
-    [userData, setUserData],
-  )
+  const { advancedCard, setAdvancedCard } = useIndividualContext()
+
+  const [, setSearchParams] = useSearchParams()
+
+  const [tab, setTab] = useState<'active' | 'close'>('active')
 
   const onClickHandler = (type: 'active' | 'close') => {
     setTab(type)
-    setUserData(null)
+    setAdvancedCard({ userId: null, briefId: null })
+    setSearchParams(undefined)
   }
+
+  const tabs: NavigationTabType[] = [
+    {
+      value: 'active',
+      label: 'Активные введения',
+      count: counter.active ?? null,
+    },
+    {
+      value: 'close',
+      label: 'Заявки на закрытие',
+      count: counter.close ?? null,
+    },
+  ]
 
   return (
     <>
@@ -67,7 +70,9 @@ export const IndividualsBody = () => {
           type="button"
         >
           Активные введения
-          <div className={s.count}>18</div>
+          {Boolean(counter.active) && (
+            <div className={s.count}>{counter.active}</div>
+          )}
         </button>
         <button
           className={cn(s.tab, s.close, {
@@ -77,18 +82,23 @@ export const IndividualsBody = () => {
           type="button"
         >
           Заявки на закрытие
-          <div className={s.count}>4</div>
+          {Boolean(counter.close) && (
+            <div className={s.count}>{counter.close}</div>
+          )}
         </button>
       </div>
-      <UserDataContext.Provider value={user}>
-        <WrapperTable hideTitle={Boolean(userData)}>
-          <div className={s.body}>
-            {userData && <IndividualBody />}
-            {!userData && tab === 'active' && <ActiveTableBody />}
-            {!userData && tab === 'close' && <CloseTableBody />}
-          </div>
-        </WrapperTable>
-      </UserDataContext.Provider>
+      <WrapperTable hideTitle={Boolean(advancedCard.userId)}>
+        <div className={s.body}>
+          {advancedCard.userId && (
+            <IndividualBody
+              userId={advancedCard.userId}
+              briefId={advancedCard.briefId}
+            />
+          )}
+          {!advancedCard.userId && tab === 'active' && <ActiveTableBody />}
+          {!advancedCard.userId && tab === 'close' && <CloseTableBody />}
+        </div>
+      </WrapperTable>
     </>
   )
 }

@@ -35,7 +35,7 @@ export const FinanceReplenishment = (props: IFinanceBody) => {
       renderComponent={(item) => (
         <TransactionRow {...item} key={item.transactionId} />
       )}
-      tableTitles={['История Пополнений']}
+      tableTitles={[{ title: 'История Пополнений' }]}
     />
   ) : (
     <div />

@@ -1,24 +1,32 @@
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
+import useBalance from 'hooks/context/useBalance'
+
 import AccountServices from '../services/AccountServices'
 
 const { getProfile, getBalance } = AccountServices
 
 const useGetMainInfo = () => {
-  const { setAuth } = useAuth()
+  const isAdmin = localStorage.getItem('user-type') === 'Admin'
+
+  const { setPayload } = useProfile()
+  const { setCash } = useBalance()
 
   const fetchUserData = async () => {
     try {
       const resProfile = await getProfile()
       const resBalance = await getBalance()
-      await setAuth({
+      setPayload({
         loading: false,
         isAuth: true,
-        balance: resBalance.data,
-        profile: resProfile.data,
+        profile: {
+          ...resProfile.data,
+          role: isAdmin ? 'Admin' : 'User',
+        },
       })
+      setCash({ balance: resBalance.data })
     } catch (e) {
       console.log(e)
-      setAuth({ loading: false, isAuth: false })
+      setPayload({ loading: false, isAuth: false })
     }
   }
 

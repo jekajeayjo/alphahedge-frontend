@@ -1,15 +1,16 @@
 import { AxiosResponse } from 'axios'
 
-import $api from '../http'
 import {
   IProfileField,
   IResponseBalance,
   IResponseProfile,
-} from '../models/response/AccountResponse'
+} from 'models/response/AccountResponse'
 import {
   IPhotoRequest,
   ISettingProfileRequest,
-} from '../models/request/AccountRequest'
+} from 'models/request/AccountRequest'
+
+import $api from '../http'
 
 export default class AccountServices {
   static async getProfile(): Promise<AxiosResponse<IResponseProfile>> {

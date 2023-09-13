@@ -1,5 +1,10 @@
 import cn from 'classnames'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+
+import AdminService from 'services/AdminService'
+
+import useProfile from 'hooks/context/useProfile'
 
 import { Modal } from 'components/shared/Modal'
 
@@ -12,14 +17,21 @@ import s from './IndividualCard.module.scss'
 interface IIndividualCardModal {
   briefcaseId: number
   isDisable: boolean
+  update?: () => void
 }
 
 const { closeBriefcase } = BriefcaseServices
+const { closeBrief } = AdminService
 
 export const IndividualCardModal = (props: IIndividualCardModal) => {
-  const { isDisable, briefcaseId } = props
+  const { isDisable, briefcaseId, update = () => null } = props
+
+  const { payload } = useProfile()
 
   const [status, setStatus] = useState<FetchStatusType | null>(null)
+
+  const notifyError = () => toast.error('Произошла ошибка, попробуйте позже')
+  const notifySuccess = () => toast.success('Статус был изменен')
 
   const sendRequestHandler = async () => {
     setStatus('pending')
@@ -32,7 +44,30 @@ export const IndividualCardModal = (props: IIndividualCardModal) => {
     }
   }
 
-  return (
+  const onCloseBrief = async () => {
+    setStatus('pending')
+    try {
+      await closeBrief(briefcaseId)
+      await setStatus('success')
+      await update()
+      notifySuccess()
+    } catch (e) {
+      setStatus('error')
+      notifyError()
+      console.log('Error send setting', e)
+    }
+  }
+
+  return payload.profile?.role === 'Admin' ? (
+    <button
+      className={s.open}
+      disabled={status === 'pending'}
+      onClick={onCloseBrief}
+      type="button"
+    >
+      Закрыть
+    </button>
+  ) : (
     <Modal
       classNameButton={cn(s.open, { [s.isDisable]: isDisable })}
       textButton="закрыть"
@@ -45,14 +80,17 @@ export const IndividualCardModal = (props: IIndividualCardModal) => {
             : 'Для закртытия портфеля Вам необходимо отправить заявку в службу поддержки..'}
         </p>
         <div className={s.time}>Заявка обрабатывается в течение 10 минут.</div>
-        <button
-          className={s.send}
-          onClick={sendRequestHandler}
-          disabled={status === 'pending'}
-          type="button"
-        >
-          Отправить на заявку
-        </button>
+
+        {status !== 'success' && (
+          <button
+            className={s.send}
+            onClick={sendRequestHandler}
+            disabled={status === 'pending'}
+            type="button"
+          >
+            Отправить на заявку
+          </button>
+        )}
       </div>
     </Modal>
   )

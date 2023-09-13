@@ -3,11 +3,12 @@ import { Pageable } from 'models/IPageable'
 export interface ITransaction {
   transactionId: number
   transactionType: string
-  transactionStatus: 'Process' | 'Success' | 'Cancel'
+  transactionStatus: string
   transactionDate: string
   currencyToken?: string
   typePay: string
   amount: number
+  username: string
   fio: string
 }
 

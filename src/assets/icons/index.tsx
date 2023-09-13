@@ -26,6 +26,7 @@ export { default as DropArrowBlackIcon } from './shared/DropArrowBlack.svg'
 export { default as ArrowAccordionIcon } from './shared/ArrowAccordion.svg'
 export { default as ArrowBackIcon } from './shared/ArrowBack.svg'
 export { default as DoubleArrowIcon } from './shared/DoubleArrow.svg'
+export { default as EditIcon } from './shared/editIcon.svg'
 
 // personal
 export { default as LogoBlue } from './personal/logoBlue.svg'

@@ -105,11 +105,11 @@ export const ActivePackage = () => {
         className={s.table}
         classNameBody={s.tbody}
         tableTitles={[
-          'Название',
-          '',
-          'Текущая цена',
-          'Приобретенные акции',
-          'Общая стоимость',
+          { title: 'Название' },
+          { title: '' },
+          { title: 'Текущая цена' },
+          { title: 'Приобретенные акции' },
+          { title: 'Общая стоимость' },
         ]}
         tables={data.actionAccountBalanceViewDtoPage.content}
         currentPage={data.actionAccountBalanceViewDtoPage.number}

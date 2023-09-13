@@ -2,7 +2,9 @@ import { Navigate } from 'react-router-dom'
 import React from 'react'
 import { Outlet } from 'react-router'
 
-import useAuth from 'hooks/useAuth'
+import { PageLoader } from 'components/shared/Loader'
+
+import useProfile from 'hooks/context/useProfile'
 
 import {
   BgIcon,
@@ -16,10 +18,18 @@ import { PreviewImage } from 'assets/images'
 import s from './AuthLayout.module.scss'
 
 export const AuthLayout = () => {
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
-  if (auth.isAuth) {
+  if (payload.loading) {
+    return <PageLoader />
+  }
+
+  if (payload.isAuth && payload.profile?.role === 'User') {
     return <Navigate to="/personal/dashboard" />
+  }
+
+  if (payload.isAuth && payload.profile?.role === 'Admin') {
+    return <Navigate to="/admin/dashboard" />
   }
 
   return (

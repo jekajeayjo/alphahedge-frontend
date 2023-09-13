@@ -6,8 +6,8 @@ import {
   NavigationTabType,
 } from 'components/shared/NavigationDrop'
 
-import useAuth from 'hooks/useAuth'
 import useInvestCounter from 'hooks/useInvestCounter'
+import useProfile from 'hooks/context/useProfile'
 
 import { UnlockIcon } from 'assets/icons'
 
@@ -41,16 +41,16 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
   const [disable, setDisable] = useState(true)
   const [isWait, setIsWait] = useState(false)
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
   const { counter } = useInvestCounter()
 
   useEffect(() => {
-    if (auth.profile?.profileSetting.length) {
+    if (payload.profile?.profileSetting.length) {
       const currentDate = new Date()
       const createDate = new Date(
-        auth.profile?.profileSetting[0].profileSettingAccountValue,
+        payload.profile?.profileSetting[0].profileSettingAccountValue,
       )
-      const value = auth.profile?.profileSetting[0].profileSettingValue
+      const value = payload.profile?.profileSetting[0].profileSettingValue
 
       const timeDiff = Math.abs(createDate.getTime() - currentDate.getTime())
       const diffDays = Math.round(((timeDiff % 86400000) % 3600000) / 60000)
@@ -64,7 +64,7 @@ export const TabBodyButtons = (props: ITabBodyButtons) => {
     } else {
       setDisable(true)
     }
-  }, [auth])
+  }, [payload])
 
   return (
     <>

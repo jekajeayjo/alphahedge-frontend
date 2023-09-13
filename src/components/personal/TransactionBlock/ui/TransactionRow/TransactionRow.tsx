@@ -34,14 +34,14 @@ export const TransactionRow = (props: ITransaction) => {
         <button
           className={cn(s.status, {
             [s.success]: transactionStatus === 'Success',
-            [s.cancel]: transactionStatus === 'Cancel',
+            [s.cancel]: transactionStatus === 'Canceled',
             [s.pending]: transactionStatus === 'Process',
           })}
           disabled={transactionStatus !== 'Process'}
           type="button"
         >
           {transactionStatus === 'Success' && 'Успешно'}
-          {transactionStatus === 'Cancel' && 'Отменен'}
+          {transactionStatus === 'Canceled' && 'Отменен'}
           {transactionStatus === 'Process' && 'В обработке'}
         </button>
       </TableCell>

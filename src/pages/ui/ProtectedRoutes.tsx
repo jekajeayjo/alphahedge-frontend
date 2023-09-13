@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import { UserType } from 'models/UserType'
 
@@ -16,14 +16,14 @@ type ProtectedRouteType = {
 export const ProtectedRoutes = (props: ProtectedRouteType) => {
   const { roleRequired, adminEdit = false } = props
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   if (roleRequired) {
-    if (auth.loading) {
+    if (payload.loading) {
       return <PageLoader />
     }
 
-    if (roleRequired === auth?.profile?.role && !auth.loading) {
+    if (roleRequired === payload?.profile?.role && !payload.loading) {
       return (
         <PersonalLayout adminEdit={adminEdit}>
           <Outlet />
@@ -31,14 +31,14 @@ export const ProtectedRoutes = (props: ProtectedRouteType) => {
       )
     }
 
-    if (roleRequired !== auth?.profile?.role && !auth.loading) {
+    if (roleRequired !== payload?.profile?.role && !payload.loading) {
       return <Navigate to="/login" />
     }
 
-    if (!auth?.isAuth && !auth.loading) {
+    if (!payload?.isAuth && !payload.loading) {
       return <Navigate to="/login" />
     }
   }
 
-  return auth?.isAuth ? <Outlet /> : <Navigate to="/login" />
+  return payload?.isAuth ? <Outlet /> : <Navigate to="/login" />
 }

@@ -28,6 +28,7 @@ export const IndividualCard = (props: IIndividualCard) => {
     amountMin,
     briefcaseId,
     briefcaseInvestStatus,
+    briefcaseAccountId,
     briefcaseAccountStatus,
     createddate,
     fetch,
@@ -98,7 +99,8 @@ export const IndividualCard = (props: IIndividualCard) => {
         {isOpen ? (
           <IndividualCardModal
             isDisable={isDisable}
-            briefcaseId={briefcaseId}
+            update={fetch}
+            briefcaseId={briefcaseAccountId}
           />
         ) : (
           <Button

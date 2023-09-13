@@ -33,7 +33,7 @@ export const FinanceDerivation = (props: IFinanceBody) => {
       renderComponent={(item) => (
         <TransactionRow {...item} key={item.transactionId} />
       )}
-      tableTitles={['История выводов']}
+      tableTitles={[{ title: 'История выводов' }]}
     />
   ) : (
     <div />
