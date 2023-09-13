@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { getDirtyValues } from 'helpers/getDirtyValues'
 
 import AccountServices from 'services/AccountServices'
@@ -9,8 +8,6 @@ import { Button } from 'components/shared/Button'
 import { Input } from 'components/shared/Input'
 import { IProfileField } from 'models/response/AccountResponse'
 
-import { updateProfileSchema } from '../../lib/schema'
-
 import s from './ProfileEditor.module.scss'
 
 const { updateProfile } = AccountServices
@@ -18,7 +15,7 @@ const { updateProfile } = AccountServices
 export const ProfileEditor = (props: IProfileField) => {
   const { fam, im, userName, email, phoneNumber, country } = props
 
-  const resolver = yupResolver(updateProfileSchema)
+  // const resolver = yupResolver(updateProfileSchema)
 
   const notifySuccess = () => toast.success('Вы обновили данные')
 

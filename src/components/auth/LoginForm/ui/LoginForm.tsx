@@ -39,7 +39,6 @@ export const LoginForm = () => {
     handleSubmit,
     clearErrors,
     setValue,
-    formState: { errors },
   } = methods
 
   const onSubmit = async (data: ILoginRequest) => {
