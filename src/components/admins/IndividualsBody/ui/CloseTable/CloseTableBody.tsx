@@ -21,7 +21,7 @@ const SIZE = 20
 const { getAdvanced } = AdminService
 
 export const CloseTableBody = () => {
-  const { setUserId } = useIndividualContext()
+  const { setAdvancedCard } = useIndividualContext()
   const { setCounter } = useAdvanceCounter()
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -105,7 +105,7 @@ export const CloseTableBody = () => {
               key={item.briefcaseAccountId}
               updateData={fetchUsers}
               {...item}
-              onClick={setUserId}
+              onClick={(e) => console.log('e')}
             />
           )}
           tableTitles={[

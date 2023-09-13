@@ -10,7 +10,7 @@ import { IAdvance } from 'models/response/AdminResponse'
 import s from './ActiveTable.module.scss'
 
 interface IActiveTable extends IAdvance {
-  onClick: (id: number) => void
+  onClick: (id: number, briefId: number) => void
 }
 
 export const ActiveRow = (props: IActiveTable) => {
@@ -19,6 +19,7 @@ export const ActiveRow = (props: IActiveTable) => {
     amount,
     accountId,
     accountUsername,
+    briefcaseAccountId,
     accountFio,
     createddate,
   } = props
@@ -26,13 +27,19 @@ export const ActiveRow = (props: IActiveTable) => {
   return (
     <TableRow>
       <TableCell className={cn(s.name, s.th)}>
-        <button type="button" onClick={() => onClick(accountId)}>
+        <button
+          type="button"
+          onClick={() => onClick(accountId, briefcaseAccountId)}
+        >
           <UserName name={accountFio} />
           <span>{accountFio}</span>
         </button>
       </TableCell>
       <TableCell className={s.username}>
-        <button type="button" onClick={() => onClick(accountId)}>
+        <button
+          type="button"
+          onClick={() => onClick(accountId, briefcaseAccountId)}
+        >
           {accountUsername}
         </button>
       </TableCell>

@@ -1,24 +1,58 @@
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+
+import AdminService from 'services/AdminService'
+import { AdminGainSetRequest } from 'models/request/AdminRequest'
 
 import { Input } from 'components/shared/Input'
 import { Button } from 'components/shared/Button'
 import { PersonalBlock } from 'components/shared/PersonalBlock'
 
-import { DropDown, OptionType } from 'components/shared/DropDown'
-
 import s from './AddIncome.module.scss'
 
-const MOCK: OptionType[] = [
-  { id: 1, label: 'Istanbul, TR (AHL)' },
-  { id: 2, label: 'Paris, FR (CDG)' },
-]
+interface IAddIncome {
+  briefcaseAccountId?: number | null
+  update: () => Promise<void>
+}
 
-export const AddIncome = () => {
-  const methods = useForm()
-  const { handleSubmit } = methods
+const { gainSetAdvanced } = AdminService
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+export const AddIncome = (props: IAddIncome) => {
+  const { briefcaseAccountId, update } = props
+
+  const methods = useForm<AdminGainSetRequest>()
+  const { handleSubmit, reset } = methods
+
+  const notifyError = () => toast.error('Произошла ошибка, попробуйте позже')
+  const notifySuccess = () => toast.success('Доход добавлен')
+
+  const onSubmit = async (data: AdminGainSetRequest) => {
+    if (briefcaseAccountId) {
+      try {
+        const formDate = new Date(data.date)
+        const day = formDate.getDate()
+        const month = formDate.getMonth() + 1
+        const year = formDate.getFullYear()
+
+        const dateStr = `${day > 9 ? day : `0${day}`}-${
+          month > 9 ? month : `0${month}`
+        }-${year}`
+
+        const body = {
+          ...data,
+          date: dateStr,
+          briefcaseAccountId: briefcaseAccountId.toString(),
+        }
+
+        await gainSetAdvanced(body)
+        update()
+        notifySuccess()
+        reset()
+      } catch (e) {
+        notifyError()
+        console.log('Error set advanced', e)
+      }
+    }
   }
 
   return (
@@ -26,7 +60,7 @@ export const AddIncome = () => {
       <FormProvider {...methods}>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={s.col}>
-            <DropDown placeholder="Дата дохода" options={MOCK} />
+            <Input type="date" name="date" placeholder="Дата дохода" />
             <div className={s.label}>Выберите Дату дохода</div>
           </div>
           <div className={s.col}>
@@ -34,7 +68,7 @@ export const AddIncome = () => {
               className={s.input}
               placeholder="Сумма дохода"
               type="text"
-              name="deposit"
+              name="amount"
             />
             <div className={s.label}>Укажите сумму Дохода</div>
           </div>

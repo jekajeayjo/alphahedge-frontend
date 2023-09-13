@@ -22,7 +22,7 @@ const SIZE = 7
 const { getAdvanced } = AdminService
 
 export const ActiveTableBody = () => {
-  const { setUserId } = useIndividualContext()
+  const { setAdvancedCard } = useIndividualContext()
 
   const { setCounter } = useAdvanceCounter()
 
@@ -55,7 +55,11 @@ export const ActiveTableBody = () => {
         sortField: 'createddate',
         sortDir: createddate ?? 'DESC',
         page: page ? Number(page) : 0,
-        criteria: [{ key: 'briefcaseCode', value: 'ADVANCED' }, ...criteria],
+        criteria: [
+          { key: 'briefcaseCode', value: 'ADVANCED' },
+          { key: 'briefcaseAccountStatus', value: 'Active' },
+          ...criteria,
+        ],
       })
       setUsers(response.data)
       setCounter({ active: response.data.totalElements, close: null })
@@ -109,7 +113,9 @@ export const ActiveTableBody = () => {
             <ActiveRow
               {...item}
               key={`${item.briefcaseId}_${item.createddate}`}
-              onClick={setUserId}
+              onClick={(value, briefId) =>
+                setAdvancedCard({ userId: value, briefId })
+              }
             />
           )}
           tableTitles={[

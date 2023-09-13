@@ -99,6 +99,7 @@ export const IndividualCard = (props: IIndividualCard) => {
         {isOpen ? (
           <IndividualCardModal
             isDisable={isDisable}
+            update={fetch}
             briefcaseId={briefcaseAccountId}
           />
         ) : (

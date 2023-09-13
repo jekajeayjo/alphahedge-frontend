@@ -6,7 +6,7 @@ import {
   IUsersResponse,
 } from 'models/response/AdminResponse'
 
-import { AdminRequest } from 'models/request/AdminRequest'
+import { AdminGainSetRequest, AdminRequest } from 'models/request/AdminRequest'
 import { StatusCloseEnum } from 'models/StatusCloseEnum'
 
 import $api from '../http'
@@ -35,5 +35,15 @@ export default class AdminService {
     data: ISort,
   ): Promise<AxiosResponse<IAdvancedResponse>> {
     return $api.post<IAdvancedResponse>('/briefcase-account/page', data)
+  }
+
+  static async closeAdvanced(id: number): Promise<AxiosResponse> {
+    return $api.put(`/briefcase-account/close/${id}`)
+  }
+
+  static async gainSetAdvanced(
+    data: AdminGainSetRequest,
+  ): Promise<AxiosResponse> {
+    return $api.post(`/briefcase-account/gain/set`, data)
   }
 }

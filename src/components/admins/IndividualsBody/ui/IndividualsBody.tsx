@@ -3,6 +3,7 @@ import { useState } from 'react'
 import cn from 'classnames'
 
 import useAdvanceCounter from 'hooks/useAdvanceCounter'
+import useIndividualContext from 'hooks/useIndividualContext'
 
 import { WrapperTable } from 'components/admins/WrapperTable'
 import { IndividualBody } from 'components/admins/IndividualBody'
@@ -15,12 +16,11 @@ import { ActiveTableBody } from './ActiveTable/ActiveTableBody'
 import { CloseTableBody } from './CloseTable/CloseTableBody'
 
 import s from './IndividualsBody.module.scss'
-import useIndividualContext from 'hooks/useIndividualContext'
 
 export const IndividualsBody = () => {
   const { counter } = useAdvanceCounter()
 
-  const { userId, setUserId } = useIndividualContext()
+  const { advancedCard, setAdvancedCard } = useIndividualContext()
 
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -28,7 +28,7 @@ export const IndividualsBody = () => {
 
   const onClickHandler = (type: 'active' | 'close') => {
     setTab(type)
-    setUserId(null)
+    setAdvancedCard({ userId: null, briefId: null })
     setSearchParams(undefined)
   }
 
@@ -87,11 +87,16 @@ export const IndividualsBody = () => {
           )}
         </button>
       </div>
-      <WrapperTable hideTitle={Boolean(userId)}>
+      <WrapperTable hideTitle={Boolean(advancedCard.userId)}>
         <div className={s.body}>
-          {userId && <IndividualBody userId={userId} />}
-          {!userId && tab === 'active' && <ActiveTableBody />}
-          {!userId && tab === 'close' && <CloseTableBody />}
+          {advancedCard.userId && (
+            <IndividualBody
+              userId={advancedCard.userId}
+              briefId={advancedCard.briefId}
+            />
+          )}
+          {!advancedCard.userId && tab === 'active' && <ActiveTableBody />}
+          {!advancedCard.userId && tab === 'close' && <CloseTableBody />}
         </div>
       </WrapperTable>
     </>

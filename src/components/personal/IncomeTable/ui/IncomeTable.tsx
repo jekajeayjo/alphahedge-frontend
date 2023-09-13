@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import cn from 'classnames'
 
 import {
@@ -21,8 +21,8 @@ import s from './IncomeTable.module.scss'
 
 const { getGainBriefcase } = BriefcaseServices
 
-export const IncomeTable = (props: IIncomeTableCarousel) => {
-  const { className, showTotal = true } = props
+export const IncomeTable = forwardRef((props: IIncomeTableCarousel, ref) => {
+  const { className, showTotal = true, briefId } = props
 
   const [data, setData] = useState<IGetGainBriefcaseResponse>()
 
@@ -35,7 +35,12 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
       const response = await getGainBriefcase({
         page: 0,
         size: 6,
-        criteria: [{ key: 'code', value: 'ADVANCED' }],
+        criteria: briefId
+          ? [
+              { key: 'code', value: 'ADVANCED' },
+              { key: 'briefcaseaccountid', value: briefId.toString() },
+            ]
+          : [{ key: 'code', value: 'ADVANCED' }],
       })
       setData(response.data)
     } catch (e) {
@@ -43,13 +48,20 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
     }
   }
 
+  useImperativeHandle(ref, () => fetchData)
+
   const fetchNext = async () => {
     if (data && !data.page.last) {
       try {
         const response = await getGainBriefcase({
           page: data.page.number + 1,
           size: 6,
-          criteria: [{ key: 'code', value: 'ADVANCED' }],
+          criteria: briefId
+            ? [
+                { key: 'code', value: 'ADVANCED' },
+                { key: 'briefcaseaccountid', value: briefId.toString() },
+              ]
+            : [{ key: 'code', value: 'ADVANCED' }],
         })
         setData(response.data)
       } catch (e) {
@@ -64,7 +76,12 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
         const response = await getGainBriefcase({
           page: data.page.number - 1,
           size: 6,
-          criteria: [{ key: 'code', value: 'ADVANCED' }],
+          criteria: briefId
+            ? [
+                { key: 'code', value: 'ADVANCED' },
+                { key: 'briefcaseaccountid', value: briefId.toString() },
+              ]
+            : [{ key: 'code', value: 'ADVANCED' }],
         })
         setData(response.data)
       } catch (e) {
@@ -134,4 +151,4 @@ export const IncomeTable = (props: IIncomeTableCarousel) => {
       />
     </div>
   )
-}
+})

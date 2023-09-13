@@ -1,9 +1,14 @@
 /* eslint-disable */
 import { createContext, ReactNode, useState } from 'react'
 
-interface ITokensContext {
-  userId: number | null
-  setUserId: (id: number | null) => void
+export interface IndividualState {
+  userId?: number | null
+  briefId?: number | null
+}
+
+interface ITokensContext extends IndividualState {
+  advancedCard: IndividualState
+  setAdvancedCard: (value: IndividualState) => void
 }
 
 export const IndividualData = createContext<ITokensContext>(
@@ -15,10 +20,13 @@ export const IndividualDataProvider = ({
 }: {
   children: ReactNode
 }) => {
-  const [userId, setUserId] = useState<number | null>(null)
+  const [advancedCard, setAdvancedCard] = useState<IndividualState>({
+    briefId: null,
+    userId: null,
+  })
 
   return (
-    <IndividualData.Provider value={{ userId, setUserId }}>
+    <IndividualData.Provider value={{ advancedCard, setAdvancedCard }}>
       {children}
     </IndividualData.Provider>
   )

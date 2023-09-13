@@ -17,7 +17,6 @@ export const App = () => {
 
   const fetchUserData = async () => {
     const isAdmin = localStorage.getItem('user-type') === 'Admin'
-
     const isEditPage = window.location.pathname.indexOf('/admin/user/')
 
     try {
