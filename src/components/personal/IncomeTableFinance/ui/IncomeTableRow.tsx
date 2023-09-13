@@ -10,7 +10,6 @@ import s from './IncomeTableFinance.module.scss'
 export const IncomeTableRow = (props: IGainItem) => {
   const {
     briefcaseAmount,
-    briefcaseId,
     briefcaseName,
     gainAmount,
     code,

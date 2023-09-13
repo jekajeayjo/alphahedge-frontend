@@ -14,7 +14,6 @@ export const TransactionRow = (props: ITransaction) => {
     transactionDate,
     transactionStatus,
     currencyToken,
-    typePay,
     fio,
     amount,
   } = props

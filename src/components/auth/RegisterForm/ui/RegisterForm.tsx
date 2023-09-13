@@ -42,7 +42,6 @@ export const RegisterForm = () => {
 
   const {
     handleSubmit,
-    formState: { errors },
     setValue,
   } = methods
 
@@ -61,7 +60,7 @@ export const RegisterForm = () => {
     }
 
     try {
-      const response = await axios.request(config)
+      await axios.request(config)
       localStorage.setItem('acceptEmail', data.email)
       await navigator('/verify')
     } catch (e) {

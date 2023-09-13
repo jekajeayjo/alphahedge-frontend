@@ -72,7 +72,6 @@ export const PromotionCard = (props: IPromotionCard) => {
   const {
     disable,
     image,
-    actionId,
     actionCode,
     statistics,
     actionName,

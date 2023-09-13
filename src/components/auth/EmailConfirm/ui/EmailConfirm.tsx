@@ -50,7 +50,7 @@ export const EmailConfirm = () => {
           withCredentials: true,
         },
       }
-      const response = await axios.request<IAuthResponse>(config)
+      await axios.request<IAuthResponse>(config)
     } catch (e) {
       setErrorConfirm(true)
       console.log(e)
