@@ -7,7 +7,6 @@ import {
 } from 'models/response/AdminResponse'
 
 import { AdminGainSetRequest, AdminRequest } from 'models/request/AdminRequest'
-import { StatusCloseEnum } from 'models/StatusCloseEnum'
 
 import $api from '../http'
 
@@ -24,7 +23,7 @@ export default class AdminService {
 
   static async updateBriefcaseOrder(
     id: number,
-    status: StatusCloseEnum,
+    status: string,
   ): Promise<AxiosResponse<IUsersResponse>> {
     return $api.put<IUsersResponse>(
       `/briefcase-account/order-close/${id}/${status}`,
@@ -37,7 +36,7 @@ export default class AdminService {
     return $api.post<IAdvancedResponse>('/briefcase-account/page', data)
   }
 
-  static async closeAdvanced(id: number): Promise<AxiosResponse> {
+  static async closeBrief(id: number): Promise<AxiosResponse> {
     return $api.put(`/briefcase-account/close/${id}`)
   }
 
@@ -45,5 +44,54 @@ export default class AdminService {
     data: AdminGainSetRequest,
   ): Promise<AxiosResponse> {
     return $api.post(`/briefcase-account/gain/set`, data)
+  }
+
+  static async getTransactionHistory(data: ISort): Promise<AxiosResponse> {
+    return $api.post(`/transaction/history`, data)
+  }
+
+  static async editStatusTransaction(
+    id: number,
+    status: string,
+    transactionType: string,
+    amount: number,
+  ): Promise<AxiosResponse> {
+    if (transactionType === 'In') {
+      return $api.put('/transaction', {
+        transactionId: id,
+        transactionType,
+        transactionStatus: status,
+        amountOut: amount,
+      })
+    }
+    return $api.put('/transaction', {
+      transactionId: id,
+      transactionType,
+      transactionStatus: status,
+      amountIn: amount,
+    })
+  }
+
+  static async editAmountTransaction(
+    transactionId: number,
+    amount: number,
+    transactionStatus: string,
+    transactionType: string,
+  ): Promise<AxiosResponse> {
+    if (transactionType === 'In') {
+      return $api.put('/transaction', {
+        transactionId,
+        amountOut: amount,
+        transactionStatus,
+        transactionType,
+      })
+    }
+
+    return $api.put('/transaction', {
+      transactionId,
+      amountIn: amount,
+      transactionStatus,
+      transactionType,
+    })
   }
 }

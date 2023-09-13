@@ -6,6 +6,8 @@ export interface IInfoCardContent {
   titleList: string
   actionList: string[]
   technologies: string[]
+  id: number
+  fetch?: () => void
 }
 
 export interface IInfoCardForm {

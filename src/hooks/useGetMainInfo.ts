@@ -6,6 +6,8 @@ import AccountServices from '../services/AccountServices'
 const { getProfile, getBalance } = AccountServices
 
 const useGetMainInfo = () => {
+  const isAdmin = localStorage.getItem('user-type') === 'Admin'
+
   const { setPayload } = useProfile()
   const { setCash } = useBalance()
 
@@ -16,7 +18,10 @@ const useGetMainInfo = () => {
       setPayload({
         loading: false,
         isAuth: true,
-        profile: resProfile.data,
+        profile: {
+          ...resProfile.data,
+          role: isAdmin ? 'Admin' : 'User',
+        },
       })
       setCash({ balance: resBalance.data })
     } catch (e) {

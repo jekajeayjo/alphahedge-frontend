@@ -1,6 +1,5 @@
 import { IUser } from 'models/IUser'
 import { Pageable } from 'models/IPageable'
-import { StatusCloseEnum } from 'models/StatusCloseEnum'
 
 export interface IUsersResponse {
   content: IUser[]
@@ -39,5 +38,5 @@ export interface IAdvance {
   amount: number
   createddate: string
   briefcaseAccountStatus: string
-  briefcaseAccountOrderToCloseStatus: StatusCloseEnum
+  briefcaseAccountOrderToCloseStatus: string
 }

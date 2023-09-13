@@ -28,7 +28,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
   return (
     <>
       <AdminBack
-        name="Golovnea Natalia"
+        name={`${payload.profile?.fam} ${payload.profile?.im}`}
         adminEdit={adminEdit}
         url="/admin/users"
       />

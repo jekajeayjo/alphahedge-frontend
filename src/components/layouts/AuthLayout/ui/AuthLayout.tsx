@@ -2,6 +2,8 @@ import { Navigate } from 'react-router-dom'
 import React from 'react'
 import { Outlet } from 'react-router'
 
+import { PageLoader } from 'components/shared/Loader'
+
 import useProfile from 'hooks/context/useProfile'
 
 import {
@@ -18,8 +20,16 @@ import s from './AuthLayout.module.scss'
 export const AuthLayout = () => {
   const { payload } = useProfile()
 
-  if (payload.isAuth) {
+  if (payload.loading) {
+    return <PageLoader />
+  }
+
+  if (payload.isAuth && payload.profile?.role === 'User') {
     return <Navigate to="/personal/dashboard" />
+  }
+
+  if (payload.isAuth && payload.profile?.role === 'Admin') {
+    return <Navigate to="/admin/dashboard" />
   }
 
   return (

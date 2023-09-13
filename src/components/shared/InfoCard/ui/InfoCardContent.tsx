@@ -2,6 +2,10 @@ import { useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
+
+import AdminService from 'services/AdminService'
+import { FetchStatusType } from 'models/FetchStatusType'
 
 import { LightningText } from 'components/shared/LightningText'
 import { Button } from 'components/shared/Button'
@@ -11,6 +15,8 @@ import { ButtonAccordionIcon, RocketIcon } from 'assets/icons'
 import { IInfoCardContent } from '../model/InfoCard.interface'
 
 import s from './InfoCard.module.scss'
+
+const { closeBrief } = AdminService
 
 export const InfoCardContent = (props: IInfoCardContent) => {
   const [t] = useTranslation(`simpleCard`)
@@ -24,12 +30,32 @@ export const InfoCardContent = (props: IInfoCardContent) => {
     titleList,
     actionList,
     technologies,
+    id,
+    fetch = () => null,
   } = props
 
   const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState<FetchStatusType>()
 
   const onToggle = () => {
     setOpen((prevState) => !prevState)
+  }
+
+  const notifyError = () => toast.error('Произошла ошибка, попробуйте позже')
+  const notifySuccess = () => toast.success('Статус был изменен')
+
+  const onCloseBrief = async () => {
+    setStatus('pending')
+    try {
+      await closeBrief(id)
+      await fetch()
+      notifySuccess()
+      setStatus('success')
+    } catch (e) {
+      setStatus('error')
+      notifyError()
+      console.log('Error send setting', e)
+    }
   }
 
   return (
@@ -40,8 +66,14 @@ export const InfoCardContent = (props: IInfoCardContent) => {
             <img src={RocketIcon} alt="rocket" />
           </div>
           <span>{name}</span>
+
           {isAdmin && isActive && (
-            <Button className={s.close} type="button">
+            <Button
+              className={s.close}
+              onClick={onCloseBrief}
+              disabled={status === 'pending'}
+              type="button"
+            >
               {c('closeBtn')}
             </Button>
           )}

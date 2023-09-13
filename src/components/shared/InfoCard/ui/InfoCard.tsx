@@ -34,7 +34,7 @@ export const InfoCard = (props: IBriefcaseActive & IProps) => {
     className,
     briefcaseAccountStatus,
     ranges,
-    briefcaseName,
+    briefcaseAccountId,
     amountMin,
     percents,
     briefcaseId,
@@ -56,7 +56,9 @@ export const InfoCard = (props: IBriefcaseActive & IProps) => {
         actionList={t(`${briefcaseId}.actionList`, { returnObjects: true })}
         technologies={t(`${briefcaseId}.technologies`, { returnObjects: true })}
         isActive={isActive}
+        id={briefcaseAccountId}
         isAdmin={isAdmin}
+        fetch={fetch}
       />
       {isActive && (
         <div className={s.actives}>

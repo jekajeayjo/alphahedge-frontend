@@ -105,7 +105,9 @@ export const CloseTableBody = () => {
               key={item.briefcaseAccountId}
               updateData={fetchUsers}
               {...item}
-              onClick={(e) => console.log('e')}
+              onClick={(value, briefId) =>
+                setAdvancedCard({ userId: value, briefId })
+              }
             />
           )}
           tableTitles={[

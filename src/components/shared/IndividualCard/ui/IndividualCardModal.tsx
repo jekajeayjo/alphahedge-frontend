@@ -21,7 +21,7 @@ interface IIndividualCardModal {
 }
 
 const { closeBriefcase } = BriefcaseServices
-const { closeAdvanced } = AdminService
+const { closeBrief } = AdminService
 
 export const IndividualCardModal = (props: IIndividualCardModal) => {
   const { isDisable, briefcaseId, update = () => null } = props
@@ -44,10 +44,10 @@ export const IndividualCardModal = (props: IIndividualCardModal) => {
     }
   }
 
-  const closeBrief = async () => {
+  const onCloseBrief = async () => {
     setStatus('pending')
     try {
-      await closeAdvanced(briefcaseId)
+      await closeBrief(briefcaseId)
       await setStatus('success')
       await update()
       notifySuccess()
@@ -62,7 +62,7 @@ export const IndividualCardModal = (props: IIndividualCardModal) => {
     <button
       className={s.open}
       disabled={status === 'pending'}
-      onClick={closeBrief}
+      onClick={onCloseBrief}
       type="button"
     >
       Закрыть
