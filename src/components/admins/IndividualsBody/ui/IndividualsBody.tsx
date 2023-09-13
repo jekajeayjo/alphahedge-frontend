@@ -22,7 +22,7 @@ export const IndividualsBody = () => {
 
   const { advancedCard, setAdvancedCard } = useIndividualContext()
 
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [, setSearchParams] = useSearchParams()
 
   const [tab, setTab] = useState<'active' | 'close'>('active')
 

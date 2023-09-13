@@ -34,7 +34,7 @@ export const UserTablePriceChanger = (props: IProps) => {
   const [isEdit, setIsEdit] = useState(false)
 
   const methods = useForm<IField>()
-  const { handleSubmit, setValue, reset } = methods
+  const { handleSubmit, setValue } = methods
 
   useEffect(() => {
     setValue('amountOut', amount.toString())
@@ -66,20 +66,18 @@ export const UserTablePriceChanger = (props: IProps) => {
     <FormProvider {...methods}>
       <TableCell className={s.price}>
         {isEdit ? (
-          <>
-            <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-              <Input
-                className={s.input}
-                type="text"
-                name="amountOut"
-                prefix="$"
-                placeholder="price"
-              />
-              <button type="submit">
-                <img src={EditIcon} alt="" />
-              </button>
-            </form>
-          </>
+          <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              className={s.input}
+              type="text"
+              name="amountOut"
+              prefix="$"
+              placeholder="price"
+            />
+            <button type="submit">
+              <img src={EditIcon} alt="" />
+            </button>
+          </form>
         ) : (
           <>
             ${floorPrice(amount)}

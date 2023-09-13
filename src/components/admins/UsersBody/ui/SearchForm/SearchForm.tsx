@@ -39,7 +39,7 @@ export const SearchForm = () => {
     },
   })
 
-  const { handleSubmit, setValue, getValues } = methods
+  const { handleSubmit, setValue } = methods
 
   useEffect(() => {
     const qs = queryString.parse(searchParams.toString())
