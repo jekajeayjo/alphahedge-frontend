@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import useGetMainInfo from 'hooks/useGetMainInfo'
 
@@ -33,6 +34,9 @@ export const InfoCardForm = (props: IInfoCardForm) => {
 
   const { handleSubmit, setError } = methods
 
+  const notifyError = () => toast.error('Произошла ошибка, попробуйте позже')
+  const notifySuccess = () => toast.success('Инвистиция прошла успешно')
+
   const onSubmit = async (body: IField) => {
     const amount = Number(body.amount?.replace(/[^+\d]/g, ''))
 
@@ -57,7 +61,9 @@ export const InfoCardForm = (props: IInfoCardForm) => {
       await fetch()
       await getMainInfo()
       setStatus('success')
+      notifySuccess()
     } catch (e) {
+      notifyError()
       console.log('Error send invest', e)
       setStatus('error')
     }

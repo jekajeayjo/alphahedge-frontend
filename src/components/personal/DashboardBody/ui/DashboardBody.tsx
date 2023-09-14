@@ -58,7 +58,13 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
         </PersonalBlock>
       </div>
       <PersonalBlock label="ПАКЕТ АКЦИЙ">
-        <ActivePackage />
+        <ActivePackage
+          link={
+            isEdit === '1'
+              ? `/admin/user/${profile?.accountId}/investments?tab=action`
+              : '/personal/investments?tab=action'
+          }
+        />
       </PersonalBlock>
     </>
   )

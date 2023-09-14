@@ -16,9 +16,15 @@ import { ArrowLinkBlack } from 'assets/icons'
 
 import s from './ActivePackage.module.scss'
 
+interface IActivePackage {
+  link: string
+}
+
 const { getActionBalance } = ActionServices
 
-export const ActivePackage = () => {
+export const ActivePackage = (props: IActivePackage) => {
+  const { link } = props
+
   const [data, setData] = useState<IActionBalanceResponse>()
 
   useEffect(() => {
@@ -93,7 +99,7 @@ export const ActivePackage = () => {
           />
         </div>
         <div className={s.right}>
-          <Link to="/personal/investments?tab=action">
+          <Link to={link}>
             Все акции
             <img src={ArrowLinkBlack} alt="arrow" />
           </Link>
