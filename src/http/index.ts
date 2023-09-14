@@ -12,6 +12,12 @@ const $api = axios.create({
 
 $api.interceptors.request.use((config) => {
   config.headers.Authorization = `${localStorage.getItem('token')}`
+  const accountId = localStorage.getItem('Account-Id')
+  const isEditor = localStorage.getItem('editor') === '1'
+
+  if (accountId && isEditor) {
+    config.headers['Account-Id'] = `${localStorage.getItem('Account-Id')}`
+  }
   return config
 })
 

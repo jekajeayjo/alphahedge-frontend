@@ -1,14 +1,15 @@
 import { Price } from 'components/shared/Price'
 
-import useAuth from 'hooks/useAuth'
+import useBalance from 'hooks/context/useBalance'
+
 import { floorPrice } from 'helpers/floorPrice'
 
 import s from './Balance.module.scss'
 
 export const Balance = () => {
-  const { auth } = useAuth()
+  const { cash } = useBalance()
 
-  const { balance } = auth
+  const { balance } = cash
 
   const items = [
     {

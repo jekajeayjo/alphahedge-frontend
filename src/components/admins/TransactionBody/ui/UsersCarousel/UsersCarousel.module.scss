@@ -77,8 +77,33 @@
 
 .type {
   width: 15%;
+
+  @include utils.media-max-width(1800) {
+    width: 10%;
+  }
 }
 
 .change {
   width: 200px;
+}
+
+.form {
+  position: relative;
+  width: 150px;
+
+  button {
+    position: absolute;
+    right: 15px;
+    top: 7px;
+  }
+}
+
+.input {
+  height: 40px;
+  padding-right: 25px;
+  line-height: 38px;
+
+  + span {
+    top: 8.5px;
+  }
 }

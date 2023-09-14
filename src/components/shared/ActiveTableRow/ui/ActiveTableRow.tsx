@@ -6,6 +6,8 @@ import { TableCell, TablePrice, TableRow } from 'components/shared/table'
 import { CounterChanger } from 'components/shared/CounterChanger'
 import { Company } from 'components/personal/Company'
 
+import useGetMainInfo from 'hooks/useGetMainInfo'
+
 import ActionServices from 'services/ActionServices'
 
 import { floorPrice } from 'helpers/floorPrice'
@@ -36,6 +38,8 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
 
   const notifySuccess = () => toast.success('Вы продали данныую акцию')
 
+  const updateUser = useGetMainInfo()
+
   const changeCounter = async () => {
     if (!isOpen) {
       setIsOpen(true)
@@ -45,6 +49,7 @@ export const ActiveTableRow = (props: IActiveTableRow) => {
     try {
       await actionSell({ code, count: sellCounter.toString() })
       await updateData()
+      await updateUser()
       notifySuccess()
     } catch (e) {
       console.log('Error sell action', e)

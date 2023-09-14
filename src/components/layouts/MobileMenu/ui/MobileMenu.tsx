@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import {
   AccountIcon,
@@ -24,7 +24,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -64,7 +64,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
         />
       </div>
       <div className={s.header}>
-        {auth?.profile?.role === 'User' && (
+        {payload?.profile?.role === 'User' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -88,7 +88,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {auth?.profile?.role === 'Admin' && (
+        {payload?.profile?.role === 'Admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -123,7 +123,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           <span />
         </button>
 
-        {auth?.profile?.role === 'Admin' && (
+        {payload?.profile?.role === 'Admin' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}
@@ -149,7 +149,7 @@ export const MobileMenu = (props: { adminEdit: boolean }) => {
           </>
         )}
 
-        {auth?.profile?.role === 'User' && (
+        {payload?.profile?.role === 'User' && (
           <>
             <NavLink
               className={({ isActive }) => (isActive ? s.current : '')}

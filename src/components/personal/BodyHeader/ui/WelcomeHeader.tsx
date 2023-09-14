@@ -1,11 +1,11 @@
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import s from './BodyHeader.module.scss'
 
 export const WelcomeHeader = () => {
   const {
-    auth: { profile },
-  } = useAuth()
+    payload: { profile },
+  } = useProfile()
 
   return (
     <div className={s.welcome}>

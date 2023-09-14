@@ -1,4 +1,3 @@
-import useAuth from 'hooks/useAuth'
 import useDisable from 'hooks/useDisable'
 
 import { AdminBack } from 'components/admins/AdminBack'
@@ -11,12 +10,14 @@ import { ActivePackage } from 'components/personal/ActivePackage'
 import { PersonalBlock } from 'components/shared/PersonalBlock'
 import { RequestVerification } from 'components/shared/RequestVerification'
 
+import useProfile from 'hooks/context/useProfile'
+
 import s from './DashboardBody.module.scss'
 
 export const DashboardBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   const disable = useDisable()
 
@@ -27,7 +28,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
   return (
     <>
       <AdminBack
-        name="Golovnea Natalia"
+        name={`${payload.profile?.fam} ${payload.profile?.im}`}
         adminEdit={adminEdit}
         url="/admin/users"
       />
@@ -41,7 +42,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
             link="/personal/investments?tab=briefcase"
             textLink="Все портфели"
           >
-            <ActivePortfolios isAdmin={auth?.profile?.role === 'Admin'} />
+            <ActivePortfolios isAdmin={payload?.profile?.role === 'Admin'} />
           </PersonalBlock>
         </div>
         <PersonalBlock label="Реферальная система">

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
 
 import { toBase64 } from 'helpers/toBase64'
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import AccountServices from 'services/AccountServices'
 
@@ -12,7 +12,7 @@ import s from './ProfileVerification.module.scss'
 const { sendIdPhoto } = AccountServices
 
 export const ProfileVerificationModal = () => {
-  const { setAuth, auth } = useAuth()
+  const { payload, setPayload } = useProfile()
 
   const [pending, setPending] = useState(false)
 
@@ -39,10 +39,10 @@ export const ProfileVerificationModal = () => {
         await sendIdPhoto({ file: firstFile, typeFile: 'MAIN' })
         await sendIdPhoto({ file: secondFile, typeFile: 'BACK' })
 
-        if (auth.profile) {
-          setAuth({
+        if (payload.profile) {
+          setPayload({
             profile: {
-              ...auth.profile,
+              ...payload.profile,
               verifiedStatus: 'Process',
             },
           })

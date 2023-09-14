@@ -42,20 +42,20 @@ export const PersonalAside = ({ adminEdit }: IPersonalAside) => {
 
   return (
     <aside className={cn(s.aside, { [s.slide]: isSplit })} ref={ref}>
-      <div className={s.logo}>
-        <img src={LogoBlue} alt="logo" />
-      </div>
-      <AsideUserInfo isSplit={isSplit} />
-      <AsideNavigation adminEdit={adminEdit} onClick={onChangePage} />
-      <button
-        className={s.toggle}
-        onClick={() => toggleHandler(isSplit)}
-        type="button"
-      >
-        <img src={DoubleArrowIcon} alt="" />
-        <span>Свернуть меню</span>
-      </button>
-      <AsideBottom />
-    </aside>
+        <div className={s.logo}>
+          <img src={LogoBlue} alt="logo" />
+        </div>
+        <AsideUserInfo isSplit={isSplit} />
+        <AsideNavigation adminEdit={adminEdit} onClick={onChangePage} />
+        <button
+          className={s.toggle}
+          onClick={() => toggleHandler(isSplit)}
+          type="button"
+        >
+          <img src={DoubleArrowIcon} alt="" />
+          <span>Свернуть меню</span>
+        </button>
+        <AsideBottom />
+      </aside>
   )
 }

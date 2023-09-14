@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 
 import { DropArrowBlackIcon } from 'assets/icons'
@@ -16,12 +16,18 @@ export const DropDown = (props: IDropDown) => {
     placeholder,
     defaultOption,
     onSelect = () => null,
+    onSelectItem = () => null,
   } = props
 
   const [isOpen, setOpen] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<OptionType | null>(
-    defaultOption ?? null,
-  )
+
+  const [selectedItem, setSelectedItem] = useState<OptionType | null>()
+
+  useEffect(() => {
+    if (defaultOption) {
+      setSelectedItem(defaultOption)
+    }
+  }, [defaultOption])
 
   const ref = useRef<any>(null)
 
@@ -71,6 +77,7 @@ export const DropDown = (props: IDropDown) => {
             key={item.id}
             onClick={() => {
               onSelect(item.label ?? '')
+              onSelectItem(item)
               handleItemClick(item)
             }}
           >

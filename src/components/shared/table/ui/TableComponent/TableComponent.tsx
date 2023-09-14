@@ -10,6 +10,7 @@ import { TableBody } from '../TableBody/TableBody'
 import { TableCell } from '../TableCell/TableCell'
 import { TableHead } from '../TableHead/TableHead'
 import { TableRow } from '../TableRow/TableRow'
+import { TableSorting } from './TableSorting'
 
 export function TableComponent<T>(props: ITableComponent<T>) {
   const {
@@ -35,7 +36,12 @@ export function TableComponent<T>(props: ITableComponent<T>) {
           <TableHead className={classNameHeader}>
             <TableRow>
               {tableTitles.map((tableTitle, idx) => (
-                <TableCell key={idx}>{tableTitle}</TableCell>
+                <TableCell key={idx}>
+                  {tableTitle.title}
+                  {tableTitle.sortField && (
+                    <TableSorting sortField={tableTitle.sortField} />
+                  )}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>

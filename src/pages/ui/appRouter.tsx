@@ -100,36 +100,6 @@ export const appRouter = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoutes roleRequired="Admin" />,
-    errorElement: <div>error</div>,
-    children: [
-      {
-        path: '/admin',
-        element: <PersonalHome />,
-      },
-      {
-        path: '/admin/dashboard',
-        element: <DashboardPage />,
-      },
-      {
-        path: '/admin/individuals',
-        element: <IndividualsPage />,
-      },
-      {
-        path: '/admin/users',
-        element: <UsersPage />,
-      },
-      {
-        path: '/admin/transaction',
-        element: <TransactionPage />,
-      },
-      {
-        path: '/admin/verification',
-        element: <VerificationPage />,
-      },
-    ],
-  },
-  {
     element: <ProtectedRoutes roleRequired="Admin" adminEdit />,
     errorElement: <div>error</div>,
     children: [
@@ -148,6 +118,36 @@ export const appRouter = createBrowserRouter([
       {
         path: '/admin/user/:id',
         element: <PersonalHome adminEdit />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoutes roleRequired="Admin" />,
+    errorElement: <div>error</div>,
+    children: [
+      {
+        path: '/admin',
+        element: <PersonalHome />,
+      },
+      {
+        path: '/admin/dashboard',
+        element: <DashboardPage />,
+      },
+      {
+        path: '/admin/advanced',
+        element: <IndividualsPage />,
+      },
+      {
+        path: '/admin/users',
+        element: <UsersPage />,
+      },
+      {
+        path: '/admin/transaction',
+        element: <TransactionPage />,
+      },
+      {
+        path: '/admin/verification',
+        element: <VerificationPage />,
       },
     ],
   },

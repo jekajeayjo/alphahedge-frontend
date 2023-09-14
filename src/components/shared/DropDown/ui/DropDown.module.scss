@@ -1,3 +1,5 @@
+@use 'styles/use/utils';
+
 .dropdown {
   position: relative;
 }
@@ -55,6 +57,10 @@
   width: 100%;
   border-radius: 9px;
   z-index: 1;
+  max-height: 260px;
+  overflow-y: auto;
+
+  @include utils.customScroll(#000);
 
   &.open {
     display: block;

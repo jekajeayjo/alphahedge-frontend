@@ -1,16 +1,16 @@
-import useAuth from 'hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { VerificationEnum } from 'models/VerificationEnum'
+import useProfile from 'hooks/context/useProfile'
 
 const useDisable = () => {
   const [disable, setDisable] = useState(true)
 
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   useEffect(() => {
     if (
-      auth.profile?.role === 'User' &&
-      auth.profile.verifiedStatus !== VerificationEnum.SUCCESS
+      payload.profile?.role === 'User' &&
+      payload.profile.verifiedStatus !== VerificationEnum.SUCCESS
     ) {
       setDisable(true)
     } else {

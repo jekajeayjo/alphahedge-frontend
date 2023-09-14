@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
+
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { Container } from 'components/shared/Container'
@@ -13,13 +14,11 @@ import { HeaderNav } from './HeaderNav'
 import s from './Header.module.scss'
 
 export const Header = () => {
-  const { auth } = useAuth()
+  const { payload } = useProfile()
 
   const { pathname } = useLocation()
 
   const { width } = useWindowSize()
-
-  console.log(auth)
 
   return (
     <header
@@ -36,9 +35,9 @@ export const Header = () => {
             <Link
               className={s.user}
               to={
-                auth?.isAuth
+                payload?.isAuth
                   ? `/${
-                      auth?.profile?.role === 'User' ? 'personal' : 'admin'
+                      payload?.profile?.role === 'User' ? 'personal' : 'admin'
                     }/dashboard`
                   : '/login'
               }

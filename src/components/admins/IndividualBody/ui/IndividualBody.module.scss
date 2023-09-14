@@ -5,6 +5,13 @@
   border-radius: 15px;
 }
 
+.loader {
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header {
   display: grid;
   grid-template-columns: minmax(670px, 1fr) 1fr;

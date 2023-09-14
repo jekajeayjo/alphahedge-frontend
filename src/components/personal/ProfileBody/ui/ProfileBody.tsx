@@ -1,6 +1,6 @@
 import { AdminBack } from 'components/admins/AdminBack'
 
-import useAuth from 'hooks/useAuth'
+import useProfile from 'hooks/context/useProfile'
 
 import { ProfileEditor } from './ProfileEditor/ProfileEditor'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
@@ -11,8 +11,8 @@ export const ProfileBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
 
   const {
-    auth: { profile },
-  } = useAuth()
+    payload: { profile },
+  } = useProfile()
 
   return (
     <>

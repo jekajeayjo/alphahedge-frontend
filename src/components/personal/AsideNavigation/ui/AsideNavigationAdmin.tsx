@@ -44,7 +44,7 @@ export const AsideNavigationAdmin = ({ onClick }: IProps) => (
 
     <NavLink
       className={({ isActive }) => (isActive ? s.current : '')}
-      to="/admin/individuals"
+      to="/admin/advanced"
       onClick={() => onClick(true)}
     >
       <div className={s.icon}>
