@@ -26,7 +26,10 @@ export const IndividualList = () => {
       const response = await getBriefcase({
         page: 0,
         size: 20,
-        criteria: [{ key: 'briefcaseCode', value: 'ADVANCED' }],
+        criteria: [
+          { key: 'briefcaseCode', value: 'ADVANCED' },
+          { key: 'briefcaseAccountStatus', value: 'Active' },
+        ],
       })
       setData(response.data.content)
       setCounter({

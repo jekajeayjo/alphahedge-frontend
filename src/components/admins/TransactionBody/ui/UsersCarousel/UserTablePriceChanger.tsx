@@ -19,6 +19,7 @@ interface IProps {
   currentStatus: string
   transactionType: string
   updateData: () => Promise<void>
+  hideEdit: boolean
 }
 
 interface IField {
@@ -29,7 +30,8 @@ interface IField {
 const { editAmountTransaction } = AdminService
 
 export const UserTablePriceChanger = (props: IProps) => {
-  const { amount, id, currentStatus, transactionType, updateData } = props
+  const { amount, id, currentStatus, hideEdit, transactionType, updateData } =
+    props
 
   const [isEdit, setIsEdit] = useState(false)
 
@@ -81,9 +83,11 @@ export const UserTablePriceChanger = (props: IProps) => {
         ) : (
           <>
             ${floorPrice(amount)}
-            <button type="button" onClick={() => setIsEdit(true)}>
-              <img src={EditIcon} alt="" />
-            </button>
+            {!hideEdit && (
+              <button type="button" onClick={() => setIsEdit(true)}>
+                <img src={EditIcon} alt="" />
+              </button>
+            )}
           </>
         )}
       </TableCell>
