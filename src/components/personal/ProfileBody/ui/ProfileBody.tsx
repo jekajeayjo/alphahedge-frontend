@@ -17,7 +17,7 @@ export const ProfileBody = (props: { adminEdit: boolean }) => {
   return (
     <>
       <AdminBack
-        name="Golovnea Natalia"
+        name={`${profile?.fam} ${profile?.im}`}
         adminEdit={adminEdit}
         url="/admin/users"
       />

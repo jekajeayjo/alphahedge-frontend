@@ -70,7 +70,7 @@ export const ActivePortfolios = (props: IActivePortfolios) => {
         {briefcases.length > 0 ? (
           <div className={s.list}>
             {briefcases.map((brief) => (
-              <InfoCard {...brief} isAdmin={isAdmin} />
+              <InfoCard {...brief} fetch={getBriefcase} isAdmin={isAdmin} />
             ))}
           </div>
         ) : (

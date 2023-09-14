@@ -10,6 +10,7 @@ import { IncomeTableFinance } from 'components/personal/IncomeTableFinance'
 
 import useTokens from 'hooks/useTokens'
 import useDisable from 'hooks/useDisable'
+import useProfile from 'hooks/context/useProfile'
 
 import { PersonalBlock } from 'components/shared/PersonalBlock'
 
@@ -23,6 +24,8 @@ export const FinanceBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
 
   const { setTokens } = useTokens()
+
+  const { payload } = useProfile()
 
   const disable = useDisable()
 
@@ -46,7 +49,7 @@ export const FinanceBody = (props: { adminEdit: boolean }) => {
   return (
     <>
       <AdminBack
-        name="Golovnea Natalia"
+        name={`${payload.profile?.fam} ${payload.profile?.im}`}
         adminEdit={adminEdit}
         url="/admin/users"
       />

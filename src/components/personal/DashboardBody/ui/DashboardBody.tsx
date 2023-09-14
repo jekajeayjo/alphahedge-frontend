@@ -19,7 +19,11 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
 
   const { payload } = useProfile()
 
+  const { profile } = payload
+
   const disable = useDisable()
+
+  const isEdit = localStorage.getItem('editor')
 
   if (disable) {
     return <RequestVerification />
@@ -28,7 +32,7 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
   return (
     <>
       <AdminBack
-        name={`${payload.profile?.fam} ${payload.profile?.im}`}
+        name={`${profile?.fam} ${profile?.im}`}
         adminEdit={adminEdit}
         url="/admin/users"
       />
@@ -39,7 +43,11 @@ export const DashboardBody = (props: { adminEdit: boolean }) => {
           </PersonalBlock>
           <PersonalBlock
             label="Активные портфели"
-            link="/personal/investments?tab=briefcase"
+            link={
+              isEdit === '1'
+                ? `/admin/user/${profile?.accountId}/investments?tab=briefcase`
+                : '/personal/investments?tab=briefcase'
+            }
             textLink="Все портфели"
           >
             <ActivePortfolios isAdmin={payload?.profile?.role === 'Admin'} />

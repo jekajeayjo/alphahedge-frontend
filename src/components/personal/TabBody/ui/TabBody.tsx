@@ -12,6 +12,7 @@ import { AdminBack } from 'components/admins/AdminBack'
 
 import useDisable from 'hooks/useDisable'
 import useQuery from 'hooks/useQuery'
+import useProfile from 'hooks/context/useProfile'
 
 import { tabEnum } from '../model/TabBody.interface'
 
@@ -23,10 +24,10 @@ export const TabBody = (props: { adminEdit: boolean }) => {
   const { adminEdit } = props
 
   const query = useQuery()
+  const { payload } = useProfile()
+  const disable = useDisable()
 
   const [tab, setTab] = useState<tabEnum>(tabEnum.ACTIVE)
-
-  const disable = useDisable()
 
   useEffect(() => {
     if (query.get('tab') === 'briefcase') {
@@ -55,7 +56,7 @@ export const TabBody = (props: { adminEdit: boolean }) => {
     <InvestProvider>
       <ActionProvider>
         <AdminBack
-          name="Golovnea Natalia"
+          name={`${payload.profile?.fam} ${payload.profile?.im}`}
           adminEdit={adminEdit}
           url="/admin/users"
         />
