@@ -36,24 +36,12 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: ILoginRequest) => {
     setLoading(true)
-    const body = JSON.stringify(data)
     clearErrors('isError')
-
-    const config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: `http://185.215.187.179:8080/api/v1/auth/authenticate`,
-      headers: {
-        'Content-Type': 'application/json',
-        withCredentials: true,
-      },
-      data: body,
-    }
 
     try {
       const response = await axios.post(
         'http://185.215.187.179:8080/api/v1/auth/authenticate',
-        body,
+        data,
       )
 
       localStorage.setItem('token', response.data.acceptToken)
@@ -74,6 +62,7 @@ export const LoginForm = () => {
         await navigate('/admin/dashboard')
       }
     } catch (e) {
+      console.log(e)
       setError(true)
       setValue('email', '')
       setValue('password', '')
