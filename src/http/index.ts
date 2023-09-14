@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios'
 
-export const API_URL = '185.215.187.179:8080/api/v1'
+export const API_URL = 'http://185.215.187.179:8080/api/v1'
 
 const $api = axios.create({
   baseURL: API_URL,

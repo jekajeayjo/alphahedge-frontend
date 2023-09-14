@@ -11,9 +11,6 @@ import AccountServices from 'services/AccountServices'
 import { Input } from 'components/shared/Input'
 
 import { ILoginRequest } from 'models/request/AuthRequest'
-import { IAuthResponse } from 'models/response/AuthResponse'
-
-import { API_URL } from '../../../../http'
 
 import s from './LoginForm.module.scss'
 
@@ -35,11 +32,7 @@ export const LoginForm = () => {
     },
   })
 
-  const {
-    handleSubmit,
-    clearErrors,
-    setValue,
-  } = methods
+  const { handleSubmit, clearErrors, setValue } = methods
 
   const onSubmit = async (data: ILoginRequest) => {
     setLoading(true)
@@ -49,7 +42,7 @@ export const LoginForm = () => {
     const config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: `${API_URL}/auth/authenticate`,
+      url: `http://185.215.187.179:8080/api/v1/auth/authenticate`,
       headers: {
         'Content-Type': 'application/json',
         withCredentials: true,
@@ -58,7 +51,11 @@ export const LoginForm = () => {
     }
 
     try {
-      const response = await axios.request<IAuthResponse>(config)
+      const response = await axios.post(
+        'http://185.215.187.179:8080/api/v1/auth/authenticate',
+        body,
+      )
+
       localStorage.setItem('token', response.data.acceptToken)
       const resProfile = await getProfile()
       const resBalance = await getBalance()
