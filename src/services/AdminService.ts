@@ -4,6 +4,7 @@ import { ISort } from 'models/request/ISort'
 import {
   IAdvancedResponse,
   IUsersResponse,
+  VerificationList,
 } from 'models/response/AdminResponse'
 
 import { AdminGainSetRequest, AdminRequest } from 'models/request/AdminRequest'
@@ -93,5 +94,11 @@ export default class AdminService {
       transactionStatus,
       transactionType,
     })
+  }
+
+  static async getVerificationList(
+    data: ISort,
+  ): Promise<AxiosResponse<VerificationList>> {
+    return $api.put<VerificationList>(`/account/page/verification`, data)
   }
 }

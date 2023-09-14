@@ -40,3 +40,36 @@ export interface IAdvance {
   briefcaseAccountStatus: string
   briefcaseAccountOrderToCloseStatus: string
 }
+
+export interface IFile {
+  fileId: number
+  fileType: string
+  file: string
+}
+
+export interface IVerification {
+  accountId: number
+  idNumber: any
+  userName: string
+  email: string
+  fio: string
+  registeredDate: string
+  balance: number
+  role: string
+  status: string
+  verifiedStatus?: string
+  files: IFile[]
+}
+
+export interface VerificationList {
+  content: IVerification[]
+  pageable: Pageable
+  totalPages: number
+  totalElements: number
+  last: boolean
+  size: number
+  number: number
+  numberOfElements: number
+  first: boolean
+  empty: boolean
+}

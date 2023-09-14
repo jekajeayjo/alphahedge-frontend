@@ -1,10 +1,22 @@
 import { TableComponent } from 'components/shared/table'
 
+import { IVerification } from 'models/response/AdminResponse'
+
+import { UserTableRow } from './UserTableRow'
+
 import s from './UsersCarousel.module.scss'
 
-const mockArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+export interface IUsersCarousel {
+  number: number
+  totalPages: number
+  content: IVerification[]
+  fetchPrev: () => Promise<void>
+  fetchNext: () => Promise<void>
+}
 
-export const UsersCarousel = () => {
+export const UsersCarousel = (props: IUsersCarousel) => {
+  const { number, totalPages, content, fetchNext, fetchPrev } = props
+
   console.log('t')
   return (
     <TableComponent
@@ -17,13 +29,14 @@ export const UsersCarousel = () => {
         { title: 'Дата верификации' },
         { title: 'Статус' },
       ]}
-      currentPage={1}
-      total={10}
-      fetchNext={() => null}
-      fetchPrev={() => null}
-      tables={mockArr}
-      renderComponent={(item) => <div>1</div>}
-      // renderComponent={(item) => <UserTableRow key={item} />}
+      currentPage={number}
+      total={totalPages}
+      fetchNext={fetchNext}
+      fetchPrev={fetchPrev}
+      tables={content}
+      renderComponent={(user) => (
+        <UserTableRow {...user} key={user.accountId} />
+      )}
     />
   )
 }
