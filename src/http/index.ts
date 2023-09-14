@@ -4,7 +4,7 @@ import axios from 'axios'
 export const API_URL = '185.215.187.179:8080/api/v1'
 
 const $api = axios.create({
-  baseURL: 'http://' + API_URL,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
