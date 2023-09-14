@@ -23,7 +23,10 @@ export const PackageList = () => {
       const response = await getBriefcase({
         size,
         page: 0,
-        criteria: [{ key: 'briefcaseCode', value: 'SIMPLE' }],
+        criteria: [
+          { key: 'briefcaseCode', value: 'SIMPLE' },
+          { key: 'briefcaseAccountStatus', value: 'Active' },
+        ],
       })
       await setBriefcases(response.data)
       setCounter({

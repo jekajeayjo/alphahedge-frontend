@@ -55,6 +55,9 @@ export const UserTableRow = (props: IUserTableRow) => {
         amount={amount}
         transactionType={transactionType}
         updateData={updateData}
+        hideEdit={
+          transactionStatus === 'Success' || transactionStatus === 'Canceled'
+        }
       />
       <TableCell className={s.change}>
         <ChangeStatus
